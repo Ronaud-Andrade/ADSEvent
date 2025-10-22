@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from core import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,22 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='category_list'), name='logout'),
 
     path('', include('core.urls')),
+
+    # ✅ Login e Logout
+    path('accounts/login/', auth_views.LoginView.as_view(
+        template_name='registration/login.html',
+        redirect_authenticated_user=True  # se já estiver logado, vai pro principal
+    ), name='login'),
+
+    path('accounts/logout/', auth_views.LogoutView.as_view(
+        template_name='registration/logged_out.html',
+        next_page='login'  # volta pro login depois de sair
+    ), name='logout'),
+
+    # ✅ Cadastro (signup)
+    path('accounts/signup/', views.SignUpView.as_view(), name='signup'),
+
+    # ✅ Redirecionar raiz (/) para o login
+    path('', RedirectView.as_view(pattern_name='login', permanent=False)),
+
 ]

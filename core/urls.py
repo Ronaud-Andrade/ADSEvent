@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+from core import views  # importa o SignUpView
+
 urlpatterns = [
     # Category
     path('categories/', views.CategoryListView.as_view(), name='category_list'),

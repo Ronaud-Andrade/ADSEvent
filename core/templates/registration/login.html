@@ -1,0 +1,23 @@
+{% extends "eventos/base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<!-- ===== Área central da página ===== -->
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+    <h2 style="text-align:center;">Entrar</h2>
+
+    <!-- Formulário de login -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="width:100%; padding:10px; background:#4CAF50; color:white; border:none; border-radius:5px;">
+            Entrar
+        </button>
+    </form>
+
+    <!-- Link para cadastro -->
+    <p style="text-align:center; margin-top:10px;">
+        Ainda não tem conta? <a href="{% url 'signup' %}">Cadastre-se aqui</a>.
+    </p>
+</div>
+{% endblock %}

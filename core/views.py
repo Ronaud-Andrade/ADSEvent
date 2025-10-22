@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from .models import CategoryEvent, Events, Subscribe
 from .forms import CategoryForm, EventForm, SubscribeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -119,3 +120,9 @@ class SubscribeDeleteView(DeleteView):
     model = Subscribe
     template_name = 'eventos/subscribe_confirm_delete.html'
     success_url = reverse_lazy('subscribe_list')
+
+class SignUpView(CreateView):
+    """Página de cadastro de novos usuários"""
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('event_list')  # redireciona pra página principal após cadastro

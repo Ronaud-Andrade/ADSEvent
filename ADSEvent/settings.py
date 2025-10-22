@@ -112,6 +112,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = 'event_list'  # para onde o usuário vai após login
+LOGOUT_REDIRECT_URL = 'login'      # para onde vai após logout
+LOGIN_URL = 'login'                # usada pelo LoginRequiredMixin
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
