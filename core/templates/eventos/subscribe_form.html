@@ -1,0 +1,12 @@
+{% extends "eventos/base.html" %}
+{% block content %}
+<h2>Inscrever-se em um Evento</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Confirmar</button>
+</form>
+
+<a href="{% url 'subscribe_list' %}">Voltar</a>
+{% endblock %}

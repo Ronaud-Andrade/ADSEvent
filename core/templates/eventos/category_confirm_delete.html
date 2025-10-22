@@ -1,0 +1,12 @@
+{% extends "eventos/base.html" %}
+{% block content %}
+<h2>Excluir Categoria</h2>
+<p>Tem certeza que deseja excluir "{{ object.name }}"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Confirmar Exclusão</button>
+</form>
+
+<a href="{% url 'category_list' %}">Cancelar</a>
+{% endblock %}

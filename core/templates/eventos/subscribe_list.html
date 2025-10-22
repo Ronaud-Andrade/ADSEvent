@@ -1,0 +1,27 @@
+{% extends "eventos/base.html" %}
+{% block title %}Minhas Inscrições{% endblock %}
+{% block content %}
+<h2>Minhas Inscrições</h2>
+
+<a class="button" href="{% url 'subscribe_create' %}">Nova Inscrição</a>
+
+<table>
+  <tr>
+    <th>Evento</th>
+    <th>Data</th>
+    <th>Ações</th>
+  </tr>
+  {% for sub in subscriptions %}
+  <tr>
+    <td>{{ sub.events.title }}</td>
+    <td>{{ sub.events.date_time|date:"d/m/Y H:i" }}</td>
+    <td>
+      <a href="{% url 'subscribe_edit' sub.pk %}">Editar</a> |
+      <a href="{% url 'subscribe_delete' sub.pk %}">Cancelar</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">Você ainda não possui inscrições.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

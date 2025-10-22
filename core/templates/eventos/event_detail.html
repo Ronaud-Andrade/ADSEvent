@@ -1,0 +1,12 @@
+{% extends "eventos/base.html" %}
+{% block content %}
+<h2>{{ event.title }}</h2>
+
+<p><strong>Data:</strong> {{ event.date_time|date:"d/m/Y H:i" }}</p>
+<p><strong>Local:</strong> {{ event.local }}</p>
+<p><strong>Descrição:</strong> {{ event.descriptions }}</p>
+<p><strong>Vagas:</strong> {{ event.vagas }}</p>
+
+<a class="button" href="{% url 'subscribe_create' %}">Inscrever-se</a> |
+<a href="{% url 'event_list' %}">Voltar</a>
+{% endblock %}

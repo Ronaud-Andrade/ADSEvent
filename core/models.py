@@ -15,7 +15,7 @@ class BaseModel(models.Model):
         self.is_deleted = True
         self.deleted_at = now()
 
-    def Hard_Delete():
+    def Hard_Delete(self):
         super().delete()
 
     def Restored(self):

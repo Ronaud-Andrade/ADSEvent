@@ -1,0 +1,12 @@
+{% extends "eventos/base.html" %}
+{% block content %}
+<h2>Cancelar Inscrição</h2>
+<p>Tem certeza que deseja cancelar sua inscrição no evento "{{ object.events.title }}"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Confirmar Cancelamento</button>
+</form>
+
+<a href="{% url 'subscribe_list' %}">Voltar</a>
+{% endblock %}
