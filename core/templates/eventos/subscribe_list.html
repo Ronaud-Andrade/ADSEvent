@@ -3,25 +3,32 @@
 {% block content %}
 <h2>Minhas Inscrições</h2>
 
-<a class="button" href="{% url 'subscribe_create' %}">Nova Inscrição</a>
+<!-- Botão de nova inscrição -->
+<a class="button main-button" href="{% url 'subscribe_create' %}">Nova Inscrição</a>
 
-<table>
-  <tr>
-    <th>Evento</th>
-    <th>Data</th>
-    <th>Ações</th>
-  </tr>
-  {% for sub in subscriptions %}
-  <tr>
-    <td>{{ sub.events.title }}</td>
-    <td>{{ sub.events.date_time|date:"d/m/Y H:i" }}</td>
-    <td>
-      <a href="{% url 'subscribe_edit' sub.pk %}">Editar</a> |
-      <a href="{% url 'subscribe_delete' sub.pk %}">Cancelar</a>
-    </td>
-  </tr>
-  {% empty %}
-  <tr><td colspan="3">Você ainda não possui inscrições.</td></tr>
-  {% endfor %}
+<table class="table-striped">
+  <thead>
+    <tr>
+      <th>Evento</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sub in subscriptions %}
+    <tr>
+      <td>{{ sub.events.title }}</td>
+      <td>{{ sub.events.date_time|date:"d/m/Y H:i" }}</td>
+      <td>
+        <a href="{% url 'subscribe_edit' sub.pk %}" class="edit-btn">Editar</a> |
+        <a href="{% url 'subscribe_delete' sub.pk %}" class="delete-btn">Cancelar</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3" style="text-align:center;">Você ainda não possui inscrições.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

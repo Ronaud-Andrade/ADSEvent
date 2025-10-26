@@ -4,19 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Sistema de Eventos{% endblock %}</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #fafafa; color: #333; }
-    header, footer { margin-bottom: 20px; text-align: center; }
-    nav a { margin: 0 10px; text-decoration: none; color: #007bff; }
-    nav a:hover { text-decoration: underline; }
-    main { max-width: 800px; margin: 0 auto; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    form { display: flex; flex-direction: column; gap: 10px; }
-    button, input[type="submit"] { padding: 8px; cursor: pointer; }
-    a.button { background: #007bff; color: white; padding: 6px 10px; border-radius: 5px; text-decoration: none; }
-    a.button:hover { background: #0056b3; }
-  </style>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
 <body>
   <header>

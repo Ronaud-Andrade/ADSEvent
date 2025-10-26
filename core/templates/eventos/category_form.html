@@ -1,12 +1,16 @@
 {% extends "eventos/base.html" %}
 {% block content %}
-<h2>{% if object %}Editar{% else %}Nova{% endif %} Categoria</h2>
+<div class="form-card">
+  <h2 class="form-title">{% if object %}Editar{% else %}Nova{% endif %} Categoria</h2>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Salvar</button>
-</form>
+  <form method="post" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
 
-<a href="{% url 'category_list' %}">Voltar</a>
+    <div class="confirm-btn-container">
+      <button type="submit" class="save-btn">Salvar</button>
+      <a href="{% url 'category_list' %}" class="back-btn">Voltar</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

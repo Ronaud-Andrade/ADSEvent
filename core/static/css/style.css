@@ -1,0 +1,374 @@
+/* ==========================
+Variáveis CSS (cores, bordas, radius)
+========================= */
+:root {
+  --primary: #17196dff;
+  --primary-dark: #17196dff;
+  --bg: #0e0f3fff;
+  --text: #333;
+  --card-bg: #fff;
+  --border: #e0e0e0;
+  --radius: 10px;
+}
+
+/* ==========================
+Reset básico
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================
+Corpo da página
+========================= */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================
+Header
+========================= */
+header {
+  background: var(--card-bg);
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+header h1 {
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ==========================
+Navegação
+========================= */
+nav {
+  text-align: center;
+}
+
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+nav a:active {
+  background: var(--primary-dark);
+  color: #fff;
+}
+
+/* ==========================
+Main (conteúdo principal)
+========================= */
+main {
+  flex: 1;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ==========================
+Tabelas
+========================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Tabelas listradas */
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #dcdcdc;
+}
+
+.table-striped tbody tr:nth-child(even) {
+  background-color: #dcdcdc;
+}
+
+/* ==========================
+Formulários e cards
+========================= */
+.form-card {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #dcdcdc;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+}
+
+/* ==========================
+Parágrafo de confirmação de exclusão/cancelamento
+========================= */
+.confirm-text {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* ==========================
+Botão principal acima da tabela
+========================= */
+.main-button-container {
+  display: flex;
+  justify-content: flex-start; /* ou center */
+  margin-bottom: 40px; /* aumente ou diminua esse valor */
+}
+
+/* ==========================
+Botões gerais (padrão)
+========================= */
+button, input[type="submit"], .button {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+button:hover, input[type="submit"]:hover, .button:hover {
+  filter: brightness(1.1);
+}
+
+button:active, input[type="submit"]:active, .button:active {
+  filter: brightness(0.9);
+}
+
+/* ==========================
+Botões principais (main-button)
+========================= */
+.main-button {
+  width: 250px;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 10px;
+  font-weight: 500;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.main-button:hover {
+  background-color: #fd7e14;
+}
+
+.main-button:active {
+  background-color: #ee7511ff;
+}
+
+/* ==========================
+Botões de ação (edição/exclusão)
+========================= */
+.edit-btn {
+  text-decoration: none;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  transition: 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.edit-btn:active {
+  background-color: #218838;
+  color: #fff;
+}
+
+.delete-btn {
+  text-decoration: none;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-btn:active {
+  background-color: #c82333;
+  color: #fff;
+}
+
+/* ==========================
+Título de link
+========================= */
+.title-link {
+  text-decoration: none;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  transition: 0.3s;
+}
+
+.title-link:hover {
+  background-color: #fd7e14;
+  color: #fff;
+}
+
+.title-link:active {
+  background-color: #ee7511ff;
+  color: #fff;
+}
+
+/* ==========================
+Botões Salvar / Voltar (formulários)
+========================= */
+.confirm-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.save-btn {
+  width: 150px;
+  height: 45px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background-color: #218838; /* hover verde */
+}
+
+.save-btn:active {
+  background-color: #19692d; /* pressionado verde */
+}
+
+.back-btn {
+  width: 150px;
+  height: 45px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #fd7e14; /* hover laranja */
+}
+
+.back-btn:active {
+  background-color: #c95b0eff; /* pressionado laranja */
+}
+
+/* ==========================
+Footer
+========================= */
+footer {
+  background: var(--card-bg);
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: auto;
+}
+
+/* ==========================
+Responsividade
+========================= */
+@media (max-width: 600px) {
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  .search-container .main-button,
+  .search-form input[type="text"],
+  .search-form button,
+  .confirm-btn,
+  .cancel-btn,
+  .save-btn,
+  .back-btn {
+    width: 100%;
+  }
+}

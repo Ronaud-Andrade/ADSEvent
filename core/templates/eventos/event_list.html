@@ -1,34 +1,44 @@
 {% extends "eventos/base.html" %}
 {% block title %}Eventos{% endblock %}
 {% block content %}
-<h2>Lista de Eventos</h2>
+<h2 style="text-align:center; margin-bottom:20px;">Lista de Eventos</h2>
 
-<a class="button" href="{% url 'event_create' %}">Novo Evento</a>
+<div class="search-container">
+  <!-- Botão de Novo Evento -->
+  <a href="{% url 'event_create' %}" class="button main-button">Novo Evento</a>
 
-<form method="get" style="margin-top:15px;">
-  <input type="text" name="q" placeholder="Buscar por título..." value="{{ request.GET.q }}">
-  <button type="submit">Buscar</button>
-</form>
+  <!-- Campo de busca -->
+  <form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Buscar por título..." value="{{ request.GET.q }}">
+    <button type="submit">Buscar</button>
+  </form>
+</div>
 
-<table>
-  <tr>
-    <th>Título</th>
-    <th>Data</th>
-    <th>Local</th>
-    <th>Ações</th>
-  </tr>
-  {% for event in events %}
-  <tr>
-    <td><a href="{% url 'event_detail' event.pk %}">{{ event.title }}</a></td>
-    <td>{{ event.date_time|date:"d/m/Y H:i" }}</td>
-    <td>{{ event.local }}</td>
-    <td>
-      <a href="{% url 'event_edit' event.pk %}">Editar</a> |
-      <a href="{% url 'event_delete' event.pk %}">Excluir</a>
-    </td>
-  </tr>
-  {% empty %}
-  <tr><td colspan="4">Nenhum evento encontrado.</td></tr>
-  {% endfor %}
+<table class="table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Data</th>
+      <th>Local</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td><a href="{% url 'event_detail' event.pk %}" class="title-link">{{ event.title }}</a></td>
+      <td>{{ event.date_time|date:"d/m/Y H:i" }}</td>
+      <td>{{ event.local }}</td>
+      <td>
+        <a href="{% url 'event_edit' event.pk %}" class="edit-btn">Editar</a> |
+        <a href="{% url 'event_delete' event.pk %}" class="delete-btn">Excluir</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" style="text-align:center;">Nenhum evento encontrado.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

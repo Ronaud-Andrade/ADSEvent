@@ -1,12 +1,19 @@
 {% extends "eventos/base.html" %}
+
 {% block content %}
-<h2>Excluir Categoria</h2>
-<p>Tem certeza que deseja excluir "{{ object.name }}"?</p>
+<div class="form-card">
+    <h2 class="form-title delete-title">Excluir Categoria</h2>
+    <p class="confirm-text" >
+        Tem certeza que deseja excluir "<strong>{{ object.name }}</strong>"?
+    </p>
 
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Confirmar Exclusão</button>
-</form>
+    <div class="confirm-btn-container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="save-btn">Confirmar</button>
+        </form>
 
-<a href="{% url 'category_list' %}">Cancelar</a>
+        <a href="{% url 'category_list' %}" class="back-btn">Cancelar</a>
+    </div>
+</div>
 {% endblock %}

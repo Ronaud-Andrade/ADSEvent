@@ -1,12 +1,19 @@
 {% extends "eventos/base.html" %}
 {% block content %}
-<h2>{% if object %}Editar{% else %}Novo{% endif %} Evento</h2>
+<div class="form-card">
+  <h2 class="form-title">{% if object %}Editar{% else %}Novo{% endif %} Evento</h2>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Salvar</button>
-</form>
+  <form method="post" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
 
-<a href="{% url 'event_list' %}">Voltar</a>
+    <div class="confirm-btn-container">
+      <!-- Botão Salvar: hover verde, efeito pressionado -->
+      <button type="submit" class="save-btn">Salvar</button>
+
+      <!-- Botão Voltar: hover laranja, efeito pressionado -->
+      <a href="{% url 'event_list' %}" class="back-btn">Voltar</a>
+    </div>
+  </form>
+</div>
 {% endblock %}
