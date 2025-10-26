@@ -4,6 +4,8 @@ from .models import CategoryEvent, Events, Subscribe
 from .forms import CategoryForm, EventForm, SubscribeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext_lazy as _ #marque strings para o I18N
+from .mixins import NotSuperUserMixin
 
 # Create your views here.
 
@@ -32,14 +34,14 @@ from django.contrib.auth.forms import UserCreationForm
 
 # -------- CATEGORY CRUD --------
 
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
     model = CategoryEvent
     template_name = 'eventos/category_list.html'
     context_object_name = 'categories'
     # Exibe todas as categorias cadastradas
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = CategoryEvent
     form_class = CategoryForm
     template_name = 'eventos/category_form.html'
@@ -47,7 +49,9 @@ class CategoryCreateView(CreateView):
     # Cria uma nova categoria
 
 
-class CategoryUpdateView(UpdateView):
+
+
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = CategoryEvent
     form_class = CategoryForm
     template_name = 'eventos/category_form.html'
@@ -55,7 +59,7 @@ class CategoryUpdateView(UpdateView):
     # Edita uma categoria existente
 
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = CategoryEvent
     template_name = 'eventos/category_confirm_delete.html'
     success_url = reverse_lazy('category_list')
@@ -64,31 +68,32 @@ class CategoryDeleteView(DeleteView):
 
 # -------- EVENT CRUD --------
 
-class EventListView(ListView):
+class EventListView(LoginRequiredMixin, ListView):
     model = Events
     template_name = 'eventos/event_list.html'
     context_object_name = 'events'
+    extra_context = {'page_title': _('Lista de Eventos')}
 
 
-class EventCreateView(CreateView):
+class EventCreateView(LoginRequiredMixin, CreateView):
     model = Events
     form_class = EventForm
     template_name = 'eventos/event_form.html'
     success_url = reverse_lazy('event_list')
 
-class EventDetailView(DetailView):
+class EventDetailView(LoginRequiredMixin, DetailView):
     model = Events
     template_name = 'eventos/event_detail.html'
     context_object_name = 'event'
 
-class EventUpdateView(UpdateView):
+class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Events
     form_class = EventForm
     template_name = 'eventos/event_form.html'
     success_url = reverse_lazy('event_list')
 
 
-class EventDeleteView(DeleteView):
+class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Events
     template_name = 'eventos/event_confirm_delete.html'
     success_url = reverse_lazy('event_list')
@@ -96,30 +101,41 @@ class EventDeleteView(DeleteView):
 
 # -------- SUBSCRIBE CRUD --------
 
-class SubscribeListView(ListView):
+class SubscribeListView(LoginRequiredMixin, ListView):
     model = Subscribe
     template_name = 'eventos/subscribe_list.html'
     context_object_name = 'subscriptions'
 
 
-class SubscribeCreateView(CreateView):
+class SubscribeCreateView(NotSuperUserMixin, LoginRequiredMixin, CreateView):
+    model = Subscribe
+    form_class = SubscribeForm
+    template_name = 'eventos/subscribe_form.html'
+    success_url = reverse_lazy('subscribe_list')
+    def get_form(self, *args, **kwargs): #Não é superuser, tira o campo de cliente (Usando pelo NotSuperUserMixins)
+        form = super().get_form(*args, **kwargs)
+        user = self.request.user
+        if not user.is_superuser:
+            form.fields.pop('client', None)
+        return form
+
+
+
+class SubscribeUpdateView(LoginRequiredMixin, UpdateView):
     model = Subscribe
     form_class = SubscribeForm
     template_name = 'eventos/subscribe_form.html'
     success_url = reverse_lazy('subscribe_list')
 
 
-class SubscribeUpdateView(UpdateView):
-    model = Subscribe
-    form_class = SubscribeForm
-    template_name = 'eventos/subscribe_form.html'
-    success_url = reverse_lazy('subscribe_list')
-
-
-class SubscribeDeleteView(DeleteView):
+class SubscribeDeleteView(LoginRequiredMixin, DeleteView):
     model = Subscribe
     template_name = 'eventos/subscribe_confirm_delete.html'
     success_url = reverse_lazy('subscribe_list')
+
+
+##########################################################################
+
 
 class SignUpView(CreateView):
     """Página de cadastro de novos usuários"""

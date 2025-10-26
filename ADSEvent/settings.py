@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -104,18 +105,33 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
 
-USE_TZ = True
 
 LOGIN_REDIRECT_URL = 'event_list'  # para onde o usuário vai após login
 LOGOUT_REDIRECT_URL = 'login'      # para onde vai após logout
 LOGIN_URL = 'login'                # usada pelo LoginRequiredMixin
 
+LANGUAGE_CODE = 'pt-br' # idioma padrão
+
+USE_I18N = True # ativa o sistema de tradução
+
+USE_L10N = True
+
+USE_TZ = True
+
+# Idiomas disponíveis no site
+LANGUAGES = [
+    ('pt-br', _('Português')),
+    ('en', _('Inglês')),
+]
+
+# Caminho onde os arquivos de tradução ficarão
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/

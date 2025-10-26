@@ -3,7 +3,9 @@
 {% block content %}
 <h2>Lista de Eventos</h2>
 
+{%if user.is_superuser%}
 <a class="button" href="{% url 'event_create' %}">Novo Evento</a>
+{%endif%}
 
 <form method="get" style="margin-top:15px;">
   <input type="text" name="q" placeholder="Buscar por título..." value="{{ request.GET.q }}">
@@ -15,17 +17,21 @@
     <th>Título</th>
     <th>Data</th>
     <th>Local</th>
+    {%if user.is_superuser%}
     <th>Ações</th>
+    {%endif%}
   </tr>
   {% for event in events %}
   <tr>
     <td><a href="{% url 'event_detail' event.pk %}">{{ event.title }}</a></td>
     <td>{{ event.date_time|date:"d/m/Y H:i" }}</td>
     <td>{{ event.local }}</td>
+    {%if user.is_superuser%}
     <td>
       <a href="{% url 'event_edit' event.pk %}">Editar</a> |
       <a href="{% url 'event_delete' event.pk %}">Excluir</a>
     </td>
+    {%endif%}
   </tr>
   {% empty %}
   <tr><td colspan="4">Nenhum evento encontrado.</td></tr>
