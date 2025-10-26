@@ -1,6 +1,6 @@
-/* ==========================
-Variáveis CSS (cores, bordas, radius)
-========================= */
+/* =========================================================
+VARIÁVEIS (cores, bordas, radius)
+========================================================= */
 :root {
   --primary: #17196dff;
   --primary-dark: #17196dff;
@@ -11,18 +11,18 @@ Variáveis CSS (cores, bordas, radius)
   --radius: 10px;
 }
 
-/* ==========================
-Reset básico
-========================= */
+/* =========================================================
+RESET BÁSICO
+========================================================= */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ==========================
-Corpo da página
-========================= */
+/* =========================================================
+LAYOUT BASE
+========================================================= */
 body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background: var(--bg);
@@ -33,9 +33,20 @@ body {
   min-height: 100vh;
 }
 
-/* ==========================
-Header
-========================= */
+main {
+  flex: 1;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* =========================================================
+HEADER E NAVEGAÇÃO
+========================================================= */
 header {
   background: var(--card-bg);
   padding: 20px 0;
@@ -50,9 +61,6 @@ header h1 {
   margin-bottom: 10px;
 }
 
-/* ==========================
-Navegação
-========================= */
 nav {
   text-align: center;
 }
@@ -67,33 +75,12 @@ nav a {
   transition: background 0.3s, color 0.3s;
 }
 
-nav a:hover {
-  background: var(--primary);
-  color: #fff;
-}
+nav a:hover { background: var(--primary); color: #fff; }
+nav a:active { background: var(--primary-dark); color: #fff; }
 
-nav a:active {
-  background: var(--primary-dark);
-  color: #fff;
-}
-
-/* ==========================
-Main (conteúdo principal)
-========================= */
-main {
-  flex: 1;
-  width: 90%;
-  max-width: 900px;
-  margin: 0 auto 40px auto;
-  background: var(--card-bg);
-  padding: 25px;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-/* ==========================
-Tabelas
-========================= */
+/* =========================================================
+TABELAS
+========================================================= */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -108,23 +95,14 @@ th, td {
   text-align: left;
 }
 
-th {
-  background: var(--primary);
-  color: #fff;
-}
+th { background: var(--primary); color: #fff; }
 
-/* Tabelas listradas */
-.table-striped tbody tr:nth-child(odd) {
-  background-color: #dcdcdc;
-}
+.table-striped tbody tr:nth-child(odd),
+.table-striped tbody tr:nth-child(even) { background-color: #dcdcdc; }
 
-.table-striped tbody tr:nth-child(even) {
-  background-color: #dcdcdc;
-}
-
-/* ==========================
-Formulários e cards
-========================= */
+/* =========================================================
+FORMULÁRIOS E CARDS
+========================================================= */
 .form-card {
   max-width: 500px;
   margin: 50px auto;
@@ -134,192 +112,108 @@ Formulários e cards
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.form-title {
+.form-title { 
+  font-weight: 600; 
+  margin-bottom: 25px; 
+  color: var(--primary); 
   text-align: center;
-  margin-bottom: 25px;
-  font-weight: 600;
 }
 
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.form-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
 }
 
+/* Labels à esquerda */
+.form-container label {
+  display: block;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+/* Campos de formulário */
 input, select, textarea {
+  width: 100%;
   padding: 10px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  width: 100%;
 }
 
-/* ==========================
-Parágrafo de confirmação de exclusão/cancelamento
-========================= */
+/* Botões centralizados */
+.button-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button-container button,
+.button-container a.back-btn {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* =========================================================
+CONFIRMAÇÃO DE EXCLUSÃO
+========================================================= */
 .confirm-text {
   text-align: center;
   font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
-/* ==========================
-Botão principal acima da tabela
-========================= */
-.main-button-container {
+/* =========================================================
+SEÇÃO DE BUSCA + BOTÃO "NOVO"
+========================================================= */
+.top-actions {
   display: flex;
-  justify-content: flex-start; /* ou center */
-  margin-bottom: 40px; /* aumente ou diminua esse valor */
-}
-
-/* ==========================
-Botões gerais (padrão)
-========================= */
-button, input[type="submit"], .button {
-  background-color: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-}
-
-button:hover, input[type="submit"]:hover, .button:hover {
-  filter: brightness(1.1);
-}
-
-button:active, input[type="submit"]:active, .button:active {
-  filter: brightness(0.9);
-}
-
-/* ==========================
-Botões principais (main-button)
-========================= */
-.main-button {
-  width: 250px;
-  text-align: center;
-  background: var(--primary);
-  color: #fff;
-  border-radius: var(--radius);
-  padding: 10px;
-  font-weight: 500;
-  transition: 0.3s;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.main-button:hover {
-  background-color: #fd7e14;
-}
-
-.main-button:active {
-  background-color: #ee7511ff;
-}
-
-/* ==========================
-Botões de ação (edição/exclusão)
-========================= */
-.edit-btn {
-  text-decoration: none;
-  color: var(--primary);
-  padding: 4px 8px;
-  border-radius: var(--radius);
-  transition: 0.3s;
-}
-
-.edit-btn:hover {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.edit-btn:active {
-  background-color: #218838;
-  color: #fff;
-}
-
-.delete-btn {
-  text-decoration: none;
-  color: var(--primary);
-  padding: 4px 8px;
-  border-radius: var(--radius);
-  transition: 0.3s;
-}
-
-.delete-btn:hover {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.delete-btn:active {
-  background-color: #c82333;
-  color: #fff;
-}
-
-/* ==========================
-Título de link
-========================= */
-.title-link {
-  text-decoration: none;
-  color: var(--primary);
-  padding: 4px 8px;
-  border-radius: var(--radius);
-  transition: 0.3s;
-}
-
-.title-link:hover {
-  background-color: #fd7e14;
-  color: #fff;
-}
-
-.title-link:active {
-  background-color: #ee7511ff;
-  color: #fff;
-}
-
-/* ==========================
-Botões Salvar / Voltar (formulários)
-========================= */
-.confirm-btn-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  margin-top: 10px;
+  gap: 25px;
+  margin-bottom: 35px;
 }
 
-.save-btn {
-  width: 150px;
-  height: 45px;
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-form input[type="text"] {
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.search-form button {
   background-color: var(--primary);
   color: #fff;
-  border-radius: var(--radius);
-  font-weight: 600;
-  cursor: pointer;
   border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.save-btn:hover {
-  background-color: #218838; /* hover verde */
-}
+.search-form button:hover { background-color: #fd7e14; }
 
-.save-btn:active {
-  background-color: #19692d; /* pressionado verde */
-}
-
-.back-btn {
-  width: 150px;
-  height: 45px;
-  background-color: var(--primary);
-  color: #fff;
-  border-radius: var(--radius);
+/* =========================================================
+BOTÕES
+========================================================= */
+button,
+input[type="submit"],
+.button,
+.save-btn,
+.back-btn,
+.main-button {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
   font-weight: 600;
-  cursor: pointer;
+  color: #fff;
   border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
   text-align: center;
   display: inline-flex;
   align-items: center;
@@ -328,17 +222,60 @@ Botões Salvar / Voltar (formulários)
   transition: 0.3s;
 }
 
-.back-btn:hover {
-  background-color: #fd7e14; /* hover laranja */
+.save-btn,
+.back-btn { width: 150px; height: 45px; padding: 0; }
+.main-button { width: 250px; height: 45px; padding: 0 10px; font-weight: 500; }
+
+button:hover,
+input[type="submit"]:hover,
+.button:hover,
+.save-btn:hover,
+.back-btn:hover,
+.main-button:hover { filter: brightness(1.1); }
+
+button:active,
+input[type="submit"]:active,
+.button:active,
+.save-btn:active,
+.back-btn:active,
+.main-button:active { filter: brightness(0.9); }
+
+/* Cores específicas */
+.save-btn { background-color: var(--primary); }
+.save-btn:hover { background-color: #28a745; }
+.save-btn:active { background-color: #19692d; }
+
+.back-btn { background-color: var(--primary); }
+.back-btn:hover { background-color: #fd7e14; }
+.back-btn:active { background-color: #c95b0e; }
+
+.main-button { background-color: var(--primary); }
+.main-button:hover { background-color: #fd7e14; }
+.main-button:active { background-color: #ee7511ff; }
+
+/* Botões de ação */
+.edit-btn,
+.delete-btn,
+.title-link {
+  text-decoration: none;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  transition: 0.3s;
 }
 
-.back-btn:active {
-  background-color: #c95b0eff; /* pressionado laranja */
-}
+.edit-btn:hover { background-color: #28a745; color: #fff; }
+.edit-btn:active { background-color: #218838; color: #fff; }
 
-/* ==========================
-Footer
-========================= */
+.delete-btn:hover { background-color: #dc3545; color: #fff; }
+.delete-btn:active { background-color: #c82333; color: #fff; }
+
+.title-link:hover { background-color: #fd7e14; color: #fff; }
+.title-link:active { background-color: #ee7511ff; color: #fff; }
+
+/* =========================================================
+FOOTER
+========================================================= */
 footer {
   background: var(--card-bg);
   text-align: center;
@@ -349,26 +286,35 @@ footer {
   margin-top: auto;
 }
 
-/* ==========================
-Responsividade
-========================= */
+/* =========================================================
+RESPONSIVIDADE
+========================================================= */
 @media (max-width: 600px) {
-  nav a {
-    display: block;
-    margin: 8px 0;
-  }
+  nav a { display: block; margin: 8px 0; }
 
-  main {
-    padding: 15px;
-  }
+  main { padding: 15px; }
 
-  .search-container .main-button,
+  .top-actions { flex-direction: column; align-items: stretch; }
+
+  .search-form { width: 100%; justify-content: space-between; }
+
   .search-form input[type="text"],
   .search-form button,
   .confirm-btn,
   .cancel-btn,
   .save-btn,
-  .back-btn {
-    width: 100%;
-  }
+  .back-btn { width: 100%; }
+
+  .form-card { padding: 20px; }
+}
+
+/* =========================================================
+TÍTULOS DE SEÇÕES
+========================================================= */
+.page-title {
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin: 10px 0 25px 0;
 }

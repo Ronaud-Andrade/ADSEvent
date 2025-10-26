@@ -7,13 +7,15 @@
         Tem certeza que deseja cancelar sua inscrição no evento "<strong>{{ object.events.title }}</strong>"?
     </p>
 
-    <div class="confirm-btn-container">
+    <div style="text-align:center; margin-top:10px;" class="confirm-btn-container">
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="save-btn">Confirmar Cancelamento</button>
+    
+            <a href="{% url 'subscribe_list' %}" class="back-btn">Voltar</a>
         </form>
 
-        <a href="{% url 'subscribe_list' %}" class="back-btn">Voltar</a>
+        
     </div>
 </div>
 {% endblock %}

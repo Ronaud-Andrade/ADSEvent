@@ -7,13 +7,14 @@
         Tem certeza que deseja excluir "<strong>{{ object.name }}</strong>"?
     </p>
 
-    <div class="confirm-btn-container">
+    <div style="text-align:center; margin-top:10px;" class="confirm-btn-container">
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="save-btn">Confirmar</button>
+            <a href="{% url 'category_list' %}" class="back-btn">Cancelar</a>
         </form>
 
-        <a href="{% url 'category_list' %}" class="back-btn">Cancelar</a>
+        
     </div>
 </div>
 {% endblock %}

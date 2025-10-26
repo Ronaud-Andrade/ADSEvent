@@ -2,22 +2,21 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
-<!-- ===== Caixa centralizada para o cadastro ===== -->
-<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
-    <h2 style="text-align:center;">Criar Conta</h2>
+<div class="form-card">
+    <h2 class="form-title">Criar Conta</h2>
 
-    <!-- Formulário de cadastro -->
-    <form method="post">
+    <form method="post" class="form-container">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" style="width:100%; padding:10px; background:#2196F3; color:white; border:none; border-radius:5px;">
-            Cadastrar
-        </button>
+
+        <!-- Botão centralizado -->
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="submit" class="save-btn">Cadastrar</button>
+        </div>
     </form>
 
-    <!-- Link para login -->
     <p style="text-align:center; margin-top:10px;">
-        Já possui conta? <a href="{% url 'login' %}">Entrar</a>.
+        Já possui conta? <a class="title-link" href="{% url 'login' %}">Cadastrar</a>
     </p>
 </div>
 {% endblock %}
