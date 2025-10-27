@@ -1,12 +1,21 @@
 {% extends "eventos/base.html" %}
+
 {% block content %}
-<h2>Cancelar Inscrição</h2>
-<p>Tem certeza que deseja cancelar sua inscrição no evento "{{ object.events.title }}"?</p>
+<div class="form-card">
+    <h2 class="form-title delete-title">Cancelar Inscrição</h2>
+    <p class="confirm-text">
+        Tem certeza que deseja cancelar sua inscrição no evento "<strong>{{ object.events.title }}</strong>"?
+    </p>
 
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Confirmar Cancelamento</button>
-</form>
+    <div style="text-align:center; margin-top:10px;" class="confirm-btn-container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="save-btn">Confirmar Cancelamento</button>
+    
+            <a href="{% url 'subscribe_list' %}" class="back-btn">Voltar</a>
+        </form>
 
-<a href="{% url 'subscribe_list' %}">Voltar</a>
+        
+    </div>
+</div>
 {% endblock %}

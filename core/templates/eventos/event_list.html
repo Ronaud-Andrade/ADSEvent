@@ -1,40 +1,113 @@
 {% extends "eventos/base.html" %}
 {% block title %}Eventos{% endblock %}
+
 {% block content %}
-<h2>Lista de Eventos</h2>
+<h2 style="text-align:center; margin-bottom:20px;">Lista de Eventos</h2>
 
-{%if user.is_superuser%}
-<a class="button" href="{% url 'event_create' %}">Novo Evento</a>
-{%endif%}
+<div class="search-container">
+  <!-- Botão de Novo Evento (visível apenas para superusuário) -->
+  {% if user.is_superuser %}
+    <a href="{% url 'event_create' %}" class="button main-button">Novo Evento</a>
+  {% endif %}
 
-<form method="get" style="margin-top:15px;">
-  <input type="text" name="q" placeholder="Buscar por título..." value="{{ request.GET.q }}">
-  <button type="submit">Buscar</button>
-</form>
+  <!-- Campo de busca -->
+  <form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Buscar por título..." value="{{ request.GET.q }}">
+    <button type="submit">Buscar</button>
+  </form>
+</div>
 
-<table>
-  <tr>
-    <th>Título</th>
-    <th>Data</th>
-    <th>Local</th>
-    {%if user.is_superuser%}
-    <th>Ações</th>
-    {%endif%}
-  </tr>
-  {% for event in events %}
-  <tr>
-    <td><a href="{% url 'event_detail' event.pk %}">{{ event.title }}</a></td>
-    <td>{{ event.date_time|date:"d/m/Y H:i" }}</td>
-    <td>{{ event.local }}</td>
-    {%if user.is_superuser%}
-    <td>
-      <a href="{% url 'event_edit' event.pk %}">Editar</a> |
-      <a href="{% url 'event_delete' event.pk %}">Excluir</a>
-    </td>
-    {%endif%}
-  </tr>
-  {% empty %}
-  <tr><td colspan="4">Nenhum evento encontrado.</td></tr>
-  {% endfor %}
+<!-- Tabela de listagem dos eventos -->
+<table class="table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Data</th>
+      <th>Local</th>
+      {% if user.is_superuser %}
+        <th>Ações</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+      <tr>
+        <td><a href="{% url 'event_detail' event.pk %}" class="title-link">{{ event.title }}</a></td>
+        <td>{{ event.date_time|date:"d/m/Y H:i" }}</td>
+        <td>{{ event.local }}</td>
+        {% if user.is_superuser %}
+          <td>
+            <a href="{% url 'event_edit' event.pk %}" class="edit-btn">Editar</a> |
+            <a href="{% url 'event_delete' event.pk %}" class="delete-btn">Excluir</a>
+          </td>
+        {% endif %}
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="4" style="text-align:center;">Nenhum evento encontrado.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
 </table>
+
+
+
+<!-- PAGINAÇÃO ESTILIZADA -->
+{% if is_paginated %}
+<div class="pagination-container d-flex row row-cols-2 justify-content-center mt-4">
+  <nav aria-label="Navegação de páginas">
+    <ul class="pagination shadow-sm d-flex row row-cols-2">
+
+      <!-- Primeira / Anterior -->
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="Primeira">
+            &laquo;
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+            &lsaquo;
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        <li class="page-item disabled"><span class="page-link">&lsaquo;</span></li>
+      {% endif %}
+
+      <!-- Números de página -->
+      {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+          <li class="page-item active">
+            <span class="page-link">{{ num }}</span>
+          </li>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <li class="page-item">
+            <a class="page-link" href="?q={{ request.GET.q }}&page={{ num }}">{{ num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Próxima / Última -->
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}" aria-label="Próxima">
+            &rsaquo;
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.paginator.num_pages }}" aria-label="Última">
+            &raquo;
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">&rsaquo;</span></li>
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% endif %}
+<!-- FIM PAGINAÇÃO -->
+ 
 {% endblock %}

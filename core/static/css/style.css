@@ -1,0 +1,368 @@
+/* =========================================================
+PAGINAÇÃO PERSONALIZADA
+========================================================= */
+.pagination-container {
+  margin-top: 25px;
+}
+
+.pagination {
+  border-radius: var(--radius);
+  background-color: var(--card-bg);
+  padding: 8px 12px;
+}
+
+.pagination .page-item {
+  margin: 0 3px;
+}
+
+.pagination .page-link {
+  border-radius: var(--radius);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background-color: #fff;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination .page-link:hover {
+  background-color: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #aaa;
+  background-color: #f8f9fa;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+VARIÁVEIS (cores, bordas, radius)
+========================================================= */
+:root {
+  --primary: #17196dff;
+  --primary-dark: #17196dff;
+  --bg: #0e0f3fff;
+  --text: #333;
+  --card-bg: #fff;
+  --border: #e0e0e0;
+  --radius: 10px;
+}
+
+/* =========================================================
+RESET BÁSICO
+========================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================================================
+LAYOUT BASE
+========================================================= */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* =========================================================
+HEADER E NAVEGAÇÃO
+========================================================= */
+header {
+  background: var(--card-bg);
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+header h1 {
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+nav {
+  text-align: center;
+}
+
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover { background: var(--primary); color: #fff; }
+nav a:active { background: var(--primary-dark); color: #fff; }
+
+/* =========================================================
+TABELAS
+========================================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+}
+
+th { background: var(--primary); color: #fff; }
+
+.table-striped tbody tr:nth-child(odd),
+.table-striped tbody tr:nth-child(even) { background-color: #dcdcdc; }
+
+/* =========================================================
+FORMULÁRIOS E CARDS
+========================================================= */
+.form-card {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #dcdcdc;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-title { 
+  font-weight: 600; 
+  margin-bottom: 25px; 
+  color: var(--primary); 
+  text-align: center;
+}
+
+.form-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+/* Labels à esquerda */
+.form-container label {
+  display: block;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+/* Campos de formulário */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Botões centralizados */
+.button-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button-container button,
+.button-container a.back-btn {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* =========================================================
+CONFIRMAÇÃO DE EXCLUSÃO
+========================================================= */
+.confirm-text {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+SEÇÃO DE BUSCA + BOTÃO "NOVO"
+========================================================= */
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-form input[type="text"] {
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.search-form button {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-form button:hover { background-color: #fd7e14; }
+
+/* =========================================================
+BOTÕES
+========================================================= */
+button,
+input[type="submit"],
+.button,
+.save-btn,
+.back-btn,
+.main-button {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.save-btn,
+.back-btn { width: 150px; height: 45px; padding: 0; }
+.main-button { width: 250px; height: 45px; padding: 0 10px; font-weight: 500; }
+
+button:hover,
+input[type="submit"]:hover,
+.button:hover,
+.save-btn:hover,
+.back-btn:hover,
+.main-button:hover { filter: brightness(1.1); }
+
+button:active,
+input[type="submit"]:active,
+.button:active,
+.save-btn:active,
+.back-btn:active,
+.main-button:active { filter: brightness(0.9); }
+
+/* Cores específicas */
+.save-btn { background-color: var(--primary); }
+.save-btn:hover { background-color: #28a745; }
+.save-btn:active { background-color: #19692d; }
+
+.back-btn { background-color: var(--primary); }
+.back-btn:hover { background-color: #fd7e14; }
+.back-btn:active { background-color: #c95b0e; }
+
+.main-button { background-color: var(--primary); }
+.main-button:hover { background-color: #fd7e14; }
+.main-button:active { background-color: #ee7511ff; }
+
+/* Botões de ação */
+.edit-btn,
+.delete-btn,
+.title-link {
+  text-decoration: none;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  transition: 0.3s;
+}
+
+.edit-btn:hover { background-color: #28a745; color: #fff; }
+.edit-btn:active { background-color: #218838; color: #fff; }
+
+.delete-btn:hover { background-color: #dc3545; color: #fff; }
+.delete-btn:active { background-color: #c82333; color: #fff; }
+
+.title-link:hover { background-color: #fd7e14; color: #fff; }
+.title-link:active { background-color: #ee7511ff; color: #fff; }
+
+/* =========================================================
+FOOTER
+========================================================= */
+footer {
+  background: var(--card-bg);
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: auto;
+}
+
+/* =========================================================
+RESPONSIVIDADE
+========================================================= */
+@media (max-width: 600px) {
+  nav a { display: block; margin: 8px 0; }
+
+  main { padding: 15px; }
+
+  .top-actions { flex-direction: column; align-items: stretch; }
+
+  .search-form { width: 100%; justify-content: space-between; }
+
+  .search-form input[type="text"],
+  .search-form button,
+  .confirm-btn,
+  .cancel-btn,
+  .save-btn,
+  .back-btn { width: 100%; }
+
+  .form-card { padding: 20px; }
+}
+
+/* =========================================================
+TÍTULOS DE SEÇÕES
+========================================================= */
+.page-title {
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin: 10px 0 25px 0;
+}
+
+

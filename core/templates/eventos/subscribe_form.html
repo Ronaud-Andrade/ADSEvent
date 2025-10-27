@@ -1,12 +1,19 @@
 {% extends "eventos/base.html" %}
 {% block content %}
-<h2>Inscrever-se em um Evento</h2>
+<div class="form-card">
+  <h2 class="form-title">Inscrever-se em um Evento</h2>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Confirmar</button>
-</form>
+  <form method="post" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
 
-<a href="{% url 'subscribe_list' %}">Voltar</a>
+    <div style="text-align:center; margin-top:10px;" class="confirm-btn-container">
+      <!-- Botão Confirmar: hover verde, efeito pressionado -->
+      <button type="submit" class="save-btn">Confirmar</button>
+
+      <!-- Botão Voltar: hover laranja, efeito pressionado -->
+      <a href="{% url 'subscribe_list' %}" class="back-btn">Voltar</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

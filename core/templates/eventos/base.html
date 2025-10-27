@@ -1,119 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Sistema de Eventos{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- ===== Estilos básicos (fáceis de trocar depois) ===== -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fafafa;
-            color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px 20px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .links a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-
-        nav .links a:hover {
-            text-decoration: underline;
-        }
-
-        nav .user-area {
-            display: flex;
-            align-items: center;
-        }
-
-        nav form {
-            display: inline;
-            margin: 0;
-        }
-
-        nav button {
-            background: none;
-            border: none;
-            color: #ffb3b3;
-            cursor: pointer;
-            font-size: 1em;
-            text-decoration: underline;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
-            color: #666;
-            border-top: 1px solid #ddd;
-            margin-top: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Sistema de Eventos{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
-
-<header>
+  <header>
+    <h1>Sistema de Eventos</h1>
     <nav>
-        <!-- ===== Links principais do sistema ===== -->
-        <div class="links">
-            {% if user.is_authenticated %}
-                <a href="{% url 'event_list' %}">Eventos</a>
-                <a href="{% url 'category_list' %}">Categorias</a>
-                <a href="{% url 'subscribe_list' %}">Inscrições</a>
-            {% endif %}
-        </div>
-
-        <!-- ===== Área do usuário ===== -->
-        <div class="user-area">
-            {% if user.is_authenticated %}
-                <!-- Mostra o nome do usuário logado -->
-                <span>Olá, {{ user.username }}!</span>
-
-                <!-- Formulário POST para logout (seguro) -->
-                <form action="{% url 'logout' %}" method="post" style="margin-left:10px;">
-                    {% csrf_token %}
-                    <button type="submit">Sair</button>
-                </form>
-
-            {% else %}
-                <!-- Mostra os links de login e cadastro quando o usuário não está logado -->
-                <a href="{% url 'login' %}">Entrar</a>
-                <a href="{% url 'signup' %}">Cadastrar</a>
-            {% endif %}
-        </div>
+      <a href="{% url 'event_list' %}">Eventos</a> |
+      <a href="{% url 'category_list' %}">Categorias</a> |
+      <a href="{% url 'subscribe_list' %}">Minhas Inscrições</a> |
+      {% if user.is_authenticated %}
+        <!-- Logout via POST para segurança -->
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" style="background:none; border:none; color:#007bff; cursor:pointer; text-decoration:underline;">Sair</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}">Entrar</a>
+      {% endif %}
     </nav>
-</header>
+  </header>
 
-<!-- ===== Conteúdo principal (muda em cada página) ===== -->
-<main>
+  <main>
     {% block content %}{% endblock %}
-</main>
+  </main>
 
-<!-- ===== Rodapé simples ===== -->
-<footer>
-    <small>Sistema de Eventos - Feito com 💕 e Django</small>
-</footer>
-
+  <footer>
+    <p>© {{ now|date:"Y" }} - Sistema de Eventos</p>
+  </footer>
 </body>
 </html>

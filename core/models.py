@@ -51,7 +51,6 @@ class SubsQuerySet(models.QuerySet):
         return self.filter(is_deleted = True)
     
     def by_events(self, event):
-
         if isinstance(event, Events):
             return self.filter(events = event)
         return self.filter(events_id = event)
@@ -74,8 +73,11 @@ class SubsManager(models.Manager):
     def deleted(self):
         return self.get_queryset().deleted()
     
-    def client_by(self):
-        return self.get_queryset().by_client()
+    def by_client(self, client):
+        return self.get_queryset().by_client(client)
+    
+    def by_events(self, event):
+        return self.get_queryset().by_events(event)
     
     def order_by_date_time(self):
         return self.get_queryset().order_by_event_date()
@@ -84,6 +86,9 @@ class SubsManager(models.Manager):
 class Subscribe(BaseModel):
     client = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     events = models.ForeignKey(Events, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+    #is_deleted = models.BooleanField(default=False) # Adiccionar
+    objects = SubsManager() # Adicionar
 
     def __str__(self):
         return f"{self.client.username} _ {self.events.title}"

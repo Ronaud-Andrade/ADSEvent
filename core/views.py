@@ -73,6 +73,19 @@ class EventListView(LoginRequiredMixin, ListView):
     template_name = 'eventos/event_list.html'
     context_object_name = 'events'
     extra_context = {'page_title': _('Lista de Eventos')}
+    paginate_by = 1
+
+    def get_queryset(self):
+        query = self.request.GET.get('q', '')
+        if query:
+            return Events.objects.filter(title__icontains = query)
+
+        return Events.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['seach_query'] = self.request.GET.get('q', '')
+        return context 
 
 
 class EventCreateView(LoginRequiredMixin, CreateView):
