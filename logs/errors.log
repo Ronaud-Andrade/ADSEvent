@@ -1,0 +1,12 @@
+WARNING 2025-10-28 17:09:34,267 views 13344 18332 Tentativa de cadastro falhou ó usu·rio: joaosilva123, erros: * password2
+  * Os dois campos de senha n„o correspondem.
+WARNING 2025-10-28 17:09:58,282 views 13344 21852 Tentativa de cadastro falhou ó usu·rio: joaosilva123, erros: * password2
+  * A senha È muito parecida com usu·rio
+WARNING 2025-10-28 17:13:55,172 views 14696 18544 Tentativa de cadastro falhou ‚Äî usu√°rio: marcos, erros: * password2
+  * A senha √© muito parecida com usu√°rio
+WARNING 2025-10-28 17:22:13,880 log 26428 11948 Not Found: /favicon.ico
+WARNING 2025-10-28 17:22:13,881 basehttp 26428 11948 "GET /favicon.ico HTTP/1.1" 404 6789
+WARNING 2025-10-29 13:24:28,027 views 15816 49936 Tentativa de cadastro falhou ‚Äî usu√°rio: funcionario1, erros: * password2
+  * A senha √© muito parecida com usu√°rio
+WARNING 2025-10-29 13:24:55,516 views 15816 49936 Tentativa de cadastro falhou ‚Äî usu√°rio: funcionario1, erros: * password2
+  * Os dois campos de senha n√£o correspondem.

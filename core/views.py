@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _ #marque strings para o I18N
 from .mixins import NotSuperUserMixin
+import logging
 
 # Create your views here.
 
@@ -30,7 +31,7 @@ from .mixins import NotSuperUserMixin
 # class IndexView(TemplateView):
 #     template_name = 'index.html'
     
-
+logger = logging.getLogger('core')
 
 # -------- CATEGORY CRUD --------
 
@@ -48,6 +49,15 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('category_list')
     # Cria uma nova categoria
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        logger.info(
+            f'Nova categoria criada\n'
+            f'Nome: {self.object.name}\n'
+            f'Criada por: {self.request.user.username}\n'
+            f'Data de criação: {self.object.created_at}'
+        )
+        return response
 
 
 
@@ -58,12 +68,27 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('category_list')
     # Edita uma categoria existente
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        logger.info(
+            f'Categoria atualizada: {self.object.name}\n'
+            f'Editada por: {self.request.user.username}\n'
+            f'Data da atualização: {self.object.updated_at}'
+        )
+        return response
+
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = CategoryEvent
     template_name = 'eventos/category_confirm_delete.html'
     success_url = reverse_lazy('category_list')
     # Exclui uma categoria
+
+    def delete(self, request, *args, **kwargs):
+        category = self.get_object()
+        logger.warning(
+            f'Categoria sendo excluída: {category.name}, por {request.user.username}')
+        return super().delete(request, *args, **kwargs)
 
 
 # -------- EVENT CRUD --------
@@ -94,10 +119,27 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     template_name = 'eventos/event_form.html'
     success_url = reverse_lazy('event_list')
 
+    def form_valid(self, form):
+        logger.debug(f'Usuário {self.request.user.username} submeteu o formulário de evento: {form.cleaned_data}')
+        response = super().form_valid(form)
+        logger.info(
+    f'Novo evento criado: {self.object.title}\n'
+    f'Criado por: {self.request.user.username}\n'
+    f'Data do evento: {self.object.date_time}\n'
+    f'Local: {self.object.local}\n'
+    f'Vagas disponíveis: {self.object.vagas}\n'
+    f'Categorias: {", ".join(cat.name for cat in self.object.category.all())}'
+)
+        return response
+
 class EventDetailView(LoginRequiredMixin, DetailView):
     model = Events
     template_name = 'eventos/event_detail.html'
     context_object_name = 'event'
+
+    def get(self, request, *args, **kwargs):
+        logger.info(f'Usuário {request.user.username} acessou detalhes do evento {self.get_object().title}')
+        return super().get(request, *args, **kwargs)
 
 class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Events
@@ -105,11 +147,25 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'eventos/event_form.html'
     success_url = reverse_lazy('event_list')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        logger.info(
+            f'Evento atualizado: {self.object.title}\n'
+            f'Editado por: {self.request.user.username}\n'
+            f'Data da atualização: {self.object.updated_at}'
+        )
+        return response
+
 
 class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Events
     template_name = 'eventos/event_confirm_delete.html'
     success_url = reverse_lazy('event_list')
+
+    def delete(self, request, *args, **kwargs):
+        event = self.get_object()
+        logger.warning(f'Evento sendo excluído: {event.title} por {request.user.username}')
+        return super().delete(request, *args, **kwargs)
 
 
 # -------- SUBSCRIBE CRUD --------
@@ -131,6 +187,18 @@ class SubscribeCreateView(NotSuperUserMixin, LoginRequiredMixin, CreateView):
         if not user.is_superuser:
             form.fields.pop('client', None)
         return form
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        logger.info(
+    f'Nova inscrição criada\n'
+    f'Usuário: {self.request.user.username}\n'
+    f'Evento: {self.object.events.title}\n'
+    f'Data do evento: {self.object.events.date_time}\n'
+    f'Local do evento: {self.object.events.local}\n'
+    f'Data da inscrição: {self.object.created_at}'
+)
+        return response
 
 
 
@@ -139,6 +207,16 @@ class SubscribeUpdateView(LoginRequiredMixin, UpdateView):
     form_class = SubscribeForm
     template_name = 'eventos/subscribe_form.html'
     success_url = reverse_lazy('subscribe_list')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        logger.info(
+            f'Inscrição atualizada: Usuário {self.object.client.username} '
+            f'no evento {self.object.events.title}\n'
+            f'Editada por: {self.request.user.username}\n'
+            f'Data da atualização: {self.object.updated_at if hasattr(self.object, "updated_at") else "não disponível"}'
+        )
+        return response
 
 
 class SubscribeDeleteView(LoginRequiredMixin, DeleteView):
@@ -155,3 +233,13 @@ class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('event_list')  # redireciona pra página principal após cadastro
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        logger.info(f"Novo usuário cadastrado com sucesso: {self.object.username}")
+        return response
+
+    def form_invalid(self, form):
+        username = self.request.POST.get('username', 'não informado')
+        logger.warning(f"Tentativa de cadastro falhou — usuário: {username}, erros: {form.errors.as_text()}")
+        return super().form_invalid(form)
