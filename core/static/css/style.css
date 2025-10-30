@@ -1,47 +1,104 @@
-/* =========================================================
-PAGINAÇÃO PERSONALIZADA
-========================================================= */
-/* .pagination-container {
-  margin-top: 25px;
+/* PAGINAÇÃO — ALINHADA, UNIFORME (ANEL EXTERNO CONSTANTE + PONTO INTERNO) */
+.pagination-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pagination {
-  border-radius: var(--radius);
-  background-color: var(--card-bg);
-  padding: 8px 12px;
-}
-
-.pagination .page-item {
-  margin: 0 3px;
-}
-
-.pagination .page-link {
-  border-radius: var(--radius);
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  background-color: #fff;
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
-}
-
-.pagination .page-link:hover {
-  background-color: var(--primary);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.pagination .page-item.active .page-link {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
-}
-
-.pagination .page-item.disabled .page-link {
-  color: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;                 /* espaçamento uniforme entre os anéis */
   background-color: #f8f9fa;
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* garante que nada do bootstrap adicione margens inesperadas */
+.pagination .page-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
+/* anel externo — MESMO para todos, sempre */
+.pagination .page-link {
+  position: relative;        /* para o pseudo-elemento */
+  box-sizing: border-box;    /* inclui borda na largura */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;               /* fixo */
+  height: 44px;              /* fixo */
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background-color: #fff;    /* mantemos o fundo branco do anel */
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform 0.18s ease, color 0.18s ease;
+  transform: none;           /* remove qualquer deslocamento */
+  outline: none;
+  padding: 0;                /* evita variação interna */
+}
+
+/* ponto interno que indica ativo/hover — NÃO altera o anel externo */
+.pagination .page-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transition: width 0.18s ease, height 0.18s ease, background 0.18s ease;
+  pointer-events: none;
+}
+
+/* hover: mostra um ponto pequeno interno (suave) */
+.pagination .page-link:hover::after {
+  width: 22px;
+  height: 22px;
+  background: rgba(23,25,109,0.12); /* leve realce */
+}
+
+/* estado ativo: ponto interno preenchido — anel externo preservado */
+.pagination .page-item.active .page-link::after {
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+}
+
+/* se quiser texto branco sobre o ponto ativo, usa cor clara no anterior */
+.pagination .page-item.active .page-link {
+  color: #fff; /* se for legível sobre o ponto interno escuro */
+}
+
+/* botões desabilitados */
+.pagination .page-item.disabled .page-link {
+  color: #999;
   border-color: #ddd;
+  background: #fff;
   cursor: not-allowed;
-} */
+}
+
+/* espaçamento extra entre grupos (setas e números) — mantendo anéis iguais */
+.pagination .page-item.first-group { margin-right: 10px; }
+.pagination .page-item.last-group  { margin-left: 10px; }
+
+/* evita qualquer deslocamento indesejado em telas pequenas */
+@media (max-width:480px) {
+  .pagination { gap: 6px; padding: 8px 12px; }
+  .pagination .page-link { width: 36px; height: 36px; }
+  .pagination .page-link::after { /* reduz o ponto interno em mobile */
+    width: 0; height: 0;
+  }
+  .pagination .page-item.active .page-link::after { width: 16px; height: 16px; }
+}
+
 
 
 /* =========================================================
@@ -364,5 +421,3 @@ TÍTULOS DE SEÇÕES
   font-size: 1.8rem;
   margin: 10px 0 25px 0;
 }
-
-

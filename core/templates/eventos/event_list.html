@@ -60,18 +60,14 @@
 
       <!-- Primeira / Anterior -->
       {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="Primeira">
-            &laquo;
-          </a>
+        <li class="page-item first-group">
+          <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="Primeira">&laquo;</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" aria-label="Anterior">
-            &lsaquo;
-          </a>
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" aria-label="Anterior">&lsaquo;</a>
         </li>
       {% else %}
-        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        <li class="page-item disabled first-group"><span class="page-link">&laquo;</span></li>
         <li class="page-item disabled"><span class="page-link">&lsaquo;</span></li>
       {% endif %}
 
@@ -91,18 +87,14 @@
       <!-- Próxima / Última -->
       {% if page_obj.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}" aria-label="Próxima">
-            &rsaquo;
-          </a>
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}" aria-label="Próxima">&rsaquo;</a>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.paginator.num_pages }}" aria-label="Última">
-            &raquo;
-          </a>
+        <li class="page-item last-group">
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.paginator.num_pages }}" aria-label="Última">&raquo;</a>
         </li>
       {% else %}
         <li class="page-item disabled"><span class="page-link">&rsaquo;</span></li>
-        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        <li class="page-item disabled last-group"><span class="page-link">&raquo;</span></li>
       {% endif %}
     </ul>
   </nav>

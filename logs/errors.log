@@ -10,3 +10,5 @@ WARNING 2025-10-29 13:24:28,027 views 15816 49936 Tentativa de cadastro falhou �
   * A senha é muito parecida com usuário
 WARNING 2025-10-29 13:24:55,516 views 15816 49936 Tentativa de cadastro falhou — usuário: funcionario1, erros: * password2
   * Os dois campos de senha não correspondem.
+WARNING 2025-10-30 12:40:36,965 log 51556 56464 Not Found: /favicon.ico
+WARNING 2025-10-30 12:40:36,967 basehttp 51556 56464 "GET /favicon.ico HTTP/1.1" 404 6789

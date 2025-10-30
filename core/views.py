@@ -98,7 +98,7 @@ class EventListView(LoginRequiredMixin, ListView):
     template_name = 'eventos/event_list.html'
     context_object_name = 'events'
     extra_context = {'page_title': _('Lista de Eventos')}
-    paginate_by = 1
+    paginate_by = 2
 
     def get_queryset(self):
         query = self.request.GET.get('q', '')
