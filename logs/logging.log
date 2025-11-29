@@ -355,3 +355,416 @@ INFO 2025-10-30 13:03:08,089 basehttp 57716 57540 "GET /events/?q=&page=1 HTTP/1
 INFO 2025-10-30 13:03:09,820 basehttp 57716 57540 "GET /events/?q=&page=2 HTTP/1.1" 200 3755
 INFO 2025-10-30 13:03:09,889 basehttp 57716 57540 "GET /static/css/style.css HTTP/1.1" 304 0
 INFO 2025-10-30 13:03:11,411 basehttp 57716 57540 "GET /events/?q=&page=1 HTTP/1.1" 200 3641
+INFO 2025-10-31 18:28:12,231 autoreload 12156 14384 Watching for file changes with StatReloader
+INFO 2025-10-31 18:28:25,357 basehttp 12156 15684 "GET / HTTP/1.1" 302 0
+INFO 2025-10-31 18:28:26,097 basehttp 12156 15736 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2025-10-31 18:28:26,489 basehttp 12156 15736 "GET /static/css/style.css HTTP/1.1" 304 0
+WARNING 2025-10-31 18:28:27,956 log 12156 15736 Not Found: /favicon.ico
+WARNING 2025-10-31 18:28:27,964 basehttp 12156 15736 "GET /favicon.ico HTTP/1.1" 404 6789
+INFO 2025-10-31 18:29:06,574 basehttp 12156 11748 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:29:06,896 basehttp 12156 11748 "GET /events/ HTTP/1.1" 200 3641
+INFO 2025-10-31 18:29:09,655 basehttp 12156 11748 "GET /events/?q=&page=2 HTTP/1.1" 200 3755
+INFO 2025-10-31 18:29:10,679 basehttp 12156 11748 "GET /events/?q=&page=3 HTTP/1.1" 200 3287
+INFO 2025-10-31 18:29:11,573 basehttp 12156 11748 "GET /events/?q=&page=1 HTTP/1.1" 200 3641
+INFO 2025-10-31 18:29:33,676 autoreload 12156 14384 C:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\core\views.py changed, reloading.
+INFO 2025-10-31 18:29:34,794 autoreload 12668 12672 Watching for file changes with StatReloader
+INFO 2025-10-31 18:29:37,261 autoreload 12668 12672 C:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\core\views.py changed, reloading.
+INFO 2025-10-31 18:29:38,496 autoreload 1816 7780 Watching for file changes with StatReloader
+INFO 2025-10-31 18:29:42,354 basehttp 1816 12176 "GET /events/?q=&page=1 HTTP/1.1" 200 4231
+INFO 2025-10-31 18:29:43,994 basehttp 1816 12176 "GET /events/?q=&page=2 HTTP/1.1" 200 3156
+INFO 2025-10-31 18:29:45,378 basehttp 1816 12176 "GET /events/?q=&page=1 HTTP/1.1" 200 4231
+INFO 2025-10-31 18:29:47,845 basehttp 1816 12176 "GET /events/?q=&page=2 HTTP/1.1" 200 3156
+INFO 2025-10-31 18:29:48,705 basehttp 1816 12176 "GET /events/?q=&page=1 HTTP/1.1" 200 4231
+INFO 2025-10-31 18:29:58,450 basehttp 1816 3468 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:29:59,516 basehttp 1816 3468 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:30:01,838 basehttp 1816 3468 "GET /subs/ HTTP/1.1" 200 2278
+INFO 2025-10-31 18:30:04,852 basehttp 1816 3468 "GET /subs/1/delete/ HTTP/1.1" 200 1651
+INFO 2025-10-31 18:30:06,160 basehttp 1816 3468 "POST /subs/1/delete/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:30:06,257 basehttp 1816 3468 "GET /subs/ HTTP/1.1" 200 2049
+INFO 2025-10-31 18:30:11,663 basehttp 1816 16184 "GET /subs/2/delete/ HTTP/1.1" 200 1666
+INFO 2025-10-31 18:30:12,416 basehttp 1816 16184 "POST /subs/2/delete/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:30:12,506 basehttp 1816 16184 "GET /subs/ HTTP/1.1" 200 1805
+INFO 2025-10-31 18:30:15,423 basehttp 1816 16184 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:30:16,273 basehttp 1816 16184 "GET /categories/new/ HTTP/1.1" 200 1616
+INFO 2025-10-31 18:30:17,706 basehttp 1816 16184 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:30:19,418 basehttp 1816 16184 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:30:21,513 basehttp 1816 16184 "GET /events/new/ HTTP/1.1" 200 2598
+INFO 2025-10-31 18:30:28,540 basehttp 1816 16184 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:30:28,549 basehttp 1816 16184 "GET /categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:30:28,564 basehttp 1816 16184 "GET /accounts/login/?next=/categories/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:30:32,140 basehttp 1816 16184 "POST /accounts/login/?next=/categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:30:32,324 basehttp 1816 16184 "GET /categories/ HTTP/1.1" 200 1436
+INFO 2025-10-31 18:30:34,101 basehttp 1816 16184 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:30:37,253 basehttp 1816 16184 "GET /subs/ HTTP/1.1" 200 1805
+INFO 2025-10-31 18:30:40,731 basehttp 1816 16184 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:30:45,098 basehttp 1816 16184 "GET /subs/ HTTP/1.1" 200 1805
+INFO 2025-10-31 18:30:46,561 basehttp 1816 16184 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:30:47,824 basehttp 1816 16184 "GET /subs/ HTTP/1.1" 200 1805
+INFO 2025-10-31 18:30:49,647 basehttp 1816 16184 "GET /subs/3/edit/ HTTP/1.1" 200 2331
+INFO 2025-10-31 18:30:50,825 basehttp 1816 16184 "GET /subs/ HTTP/1.1" 200 1805
+INFO 2025-10-31 18:30:54,457 basehttp 1816 16184 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:30:57,213 basehttp 1816 16184 "GET /events/?q=&page=2 HTTP/1.1" 200 2872
+INFO 2025-10-31 18:30:58,799 basehttp 1816 16184 "GET /events/?q=&page=1 HTTP/1.1" 200 3410
+INFO 2025-10-31 18:31:03,209 views 1816 16184 Usuário funcionario2 acessou detalhes do evento BGS 2030
+INFO 2025-10-31 18:31:03,215 basehttp 1816 16184 "GET /events/2/ HTTP/1.1" 200 1287
+INFO 2025-10-31 18:31:04,540 basehttp 1816 16184 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:37:03,616 autoreload 6468 14028 Watching for file changes with StatReloader
+INFO 2025-10-31 18:37:09,812 basehttp 6468 15716 "GET / HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:10,342 basehttp 6468 15716 "GET /accounts/login/ HTTP/1.1" 200 2013
+WARNING 2025-10-31 18:37:15,083 log 6468 12420 Not Found: /favicon.ico
+WARNING 2025-10-31 18:37:15,085 basehttp 6468 12420 "GET /favicon.ico HTTP/1.1" 404 6789
+INFO 2025-10-31 18:37:40,401 basehttp 6468 13212 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:37:41,274 basehttp 6468 13212 "GET /categories/ HTTP/1.1" 200 1436
+INFO 2025-10-31 18:37:42,187 basehttp 6468 13212 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:42,206 basehttp 6468 13212 "GET /categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:42,221 basehttp 6468 13212 "GET /accounts/login/?next=/categories/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:37:43,166 basehttp 6468 13212 "GET /events/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:43,187 basehttp 6468 13212 "GET /accounts/login/?next=/events/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:37:44,513 basehttp 6468 13212 "GET /subs/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:44,529 basehttp 6468 13212 "GET /accounts/login/?next=/subs/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:37:47,464 basehttp 6468 13212 "GET /events/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:47,475 basehttp 6468 13212 "GET /accounts/login/?next=/events/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:37:47,950 basehttp 6468 13212 "GET /categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:47,964 basehttp 6468 13212 "GET /accounts/login/?next=/categories/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:37:48,387 basehttp 6468 13212 "GET /subs/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:37:48,405 basehttp 6468 13212 "GET /accounts/login/?next=/subs/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:38:30,564 basehttp 6468 13212 "POST /accounts/login/?next=/subs/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:38:30,637 basehttp 6468 13212 "GET /subs/ HTTP/1.1" 200 1805
+INFO 2025-10-31 18:38:32,354 basehttp 6468 13212 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:38:32,960 basehttp 6468 13212 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:38:34,752 basehttp 6468 13212 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:38:34,765 basehttp 6468 13212 "GET /categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:38:34,776 basehttp 6468 13212 "GET /accounts/login/?next=/categories/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:39:21,852 basehttp 6468 13212 "GET /events/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:39:21,871 basehttp 6468 13212 "GET /accounts/login/?next=/events/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:51:42,946 basehttp 6468 13416 "GET /events/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:51:42,953 basehttp 6468 13416 "GET /accounts/login/?next=/events/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:52:19,000 basehttp 6468 14272 "GET /accounts/signup/ HTTP/1.1" 200 2541
+WARNING 2025-10-31 18:53:45,380 views 6468 14244 Tentativa de cadastro falhou — usuário: funcionario3, erros: * password2
+  * A senha é muito parecida com usuário
+INFO 2025-10-31 18:53:45,380 basehttp 6468 14244 "POST /accounts/signup/ HTTP/1.1" 200 2699
+WARNING 2025-10-31 18:54:19,496 views 6468 7356 Tentativa de cadastro falhou — usuário: funcionario3, erros: * password2
+  * A senha é muito parecida com usuário
+INFO 2025-10-31 18:54:19,496 basehttp 6468 7356 "POST /accounts/signup/ HTTP/1.1" 200 2699
+INFO 2025-10-31 18:54:38,506 views 6468 12828 Novo usuário cadastrado com sucesso: funcionario3
+INFO 2025-10-31 18:54:38,506 basehttp 6468 12828 "POST /accounts/signup/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:54:38,523 basehttp 6468 12828 "GET /events/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:54:38,539 basehttp 6468 12828 "GET /accounts/login/?next=/events/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:54:46,333 basehttp 6468 12828 "POST /accounts/login/?next=/events/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:54:46,401 basehttp 6468 12828 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:54:59,532 views 6468 12284 Usuário funcionario3 acessou detalhes do evento Bilada
+INFO 2025-10-31 18:54:59,532 basehttp 6468 12284 "GET /events/1/ HTTP/1.1" 200 1288
+INFO 2025-10-31 18:55:06,727 basehttp 6468 12544 "GET /subs/new/ HTTP/1.1" 200 2072
+INFO 2025-10-31 18:55:11,244 views 6468 12544 Nova inscrição criada
+Usuário: funcionario3
+Evento: Welcome to the Django
+Data do evento: 2001-09-11 00:00:00+00:00
+Local do evento: Cacimbas-PB
+Data da inscrição: 2025-10-31 21:55:11.242989+00:00
+INFO 2025-10-31 18:55:11,244 basehttp 6468 12544 "POST /subs/new/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:55:11,329 basehttp 6468 12544 "GET /subs/ HTTP/1.1" 200 2049
+INFO 2025-10-31 18:55:14,745 basehttp 6468 12544 "GET /categories/ HTTP/1.1" 200 1436
+INFO 2025-10-31 18:55:20,838 basehttp 6468 14236 "GET /subs/ HTTP/1.1" 200 2049
+INFO 2025-10-31 18:55:25,131 basehttp 6468 14236 "GET /subs/3/delete/ HTTP/1.1" 200 1665
+INFO 2025-10-31 18:55:26,464 basehttp 6468 7044 "POST /subs/3/delete/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:55:26,534 basehttp 6468 7044 "GET /subs/ HTTP/1.1" 200 1806
+INFO 2025-10-31 18:55:29,496 basehttp 6468 7044 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:55:38,284 basehttp 6468 9888 "GET /categories/ HTTP/1.1" 200 1436
+INFO 2025-10-31 18:55:42,345 basehttp 6468 9888 "GET /events/ HTTP/1.1" 200 3410
+INFO 2025-10-31 18:55:44,394 basehttp 6468 9888 "GET /events/?q=&page=2 HTTP/1.1" 200 2872
+INFO 2025-10-31 18:55:53,901 autoreload 6468 14028 C:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\core\views.py changed, reloading.
+INFO 2025-10-31 18:55:55,107 autoreload 13236 11508 Watching for file changes with StatReloader
+INFO 2025-10-31 18:55:55,486 basehttp 13236 14736 "GET /events/?q=&page=2 HTTP/1.1" 200 3292
+INFO 2025-10-31 18:55:57,548 basehttp 13236 11608 "GET /events/?q=&page=1 HTTP/1.1" 200 3178
+INFO 2025-10-31 18:55:59,104 basehttp 13236 11608 "GET /events/?q=&page=3 HTTP/1.1" 200 3003
+INFO 2025-10-31 18:56:05,285 autoreload 13236 11508 C:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\core\views.py changed, reloading.
+INFO 2025-10-31 18:56:06,159 autoreload 13936 6604 Watching for file changes with StatReloader
+WARNING 2025-10-31 18:56:07,593 log 13936 9516 Not Found: /events/
+WARNING 2025-10-31 18:56:07,593 basehttp 13936 9516 "GET /events/?q=&page=3 HTTP/1.1" 404 4130
+WARNING 2025-10-31 18:56:09,735 log 13936 9516 Not Found: /events/
+WARNING 2025-10-31 18:56:09,735 basehttp 13936 9516 "GET /events/?q=&page=3 HTTP/1.1" 404 4130
+WARNING 2025-10-31 18:56:10,767 log 13936 9516 Not Found: /events/
+WARNING 2025-10-31 18:56:10,767 basehttp 13936 9516 "GET /events/?q=&page=3 HTTP/1.1" 404 4130
+INFO 2025-10-31 18:56:25,717 basehttp 13936 13452 "GET / HTTP/1.1" 302 0
+INFO 2025-10-31 18:56:25,822 basehttp 13936 13452 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2025-10-31 18:56:31,432 basehttp 13936 80 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:56:31,453 basehttp 13936 80 "GET /categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:56:31,465 basehttp 13936 80 "GET /accounts/login/?next=/categories/ HTTP/1.1" 200 1640
+INFO 2025-10-31 18:56:36,793 basehttp 13936 80 "POST /accounts/login/?next=/categories/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:56:36,860 basehttp 13936 80 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:56:40,972 basehttp 13936 80 "GET /categories/new/ HTTP/1.1" 200 1616
+INFO 2025-10-31 18:56:43,770 basehttp 13936 80 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:56:45,331 basehttp 13936 80 "GET /categories/new/ HTTP/1.1" 200 1616
+INFO 2025-10-31 18:56:49,470 views 13936 12292 Nova categoria criada
+Nome: Faz o L
+Criada por: ronaud
+Data de criação: 2025-10-31 21:56:49.463352+00:00
+INFO 2025-10-31 18:56:49,470 basehttp 13936 12292 "POST /categories/new/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:56:49,548 basehttp 13936 12292 "GET /categories/ HTTP/1.1" 200 2347
+INFO 2025-10-31 18:56:51,928 basehttp 13936 12292 "GET /categories/4/delete/ HTTP/1.1" 200 1613
+INFO 2025-10-31 18:56:53,140 basehttp 13936 12292 "POST /categories/4/delete/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:56:53,316 basehttp 13936 12292 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:56:54,377 basehttp 13936 12292 "GET /categories/2/edit/ HTTP/1.1" 200 1635
+INFO 2025-10-31 18:56:55,625 basehttp 13936 12292 "GET /categories/ HTTP/1.1" 200 2116
+INFO 2025-10-31 18:56:57,767 basehttp 13936 6964 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:57:02,095 basehttp 13936 6964 "GET /events/1/edit/ HTTP/1.1" 200 2683
+INFO 2025-10-31 18:57:05,199 basehttp 13936 6964 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:57:14,455 basehttp 13936 9624 "GET /events/new/ HTTP/1.1" 200 2598
+DEBUG 2025-10-31 18:57:49,028 views 13936 2724 Usuário ronaud submeteu o formulário de evento: {'date_time': datetime.datetime(1240, 1, 22, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'title': 'Witcher', 'vagas': 30, 'descriptions': 'Lobo Branco', 'local': 'Pombal-PB', 'category': <QuerySet [<CategoryEvent: Tecnologia>]>}
+INFO 2025-10-31 18:57:49,060 views 13936 2724 Novo evento criado: Witcher
+Criado por: ronaud
+Data do evento: 1240-01-22 00:00:00+00:00
+Local: Pombal-PB
+Vagas disponíveis: 30
+Categorias: Tecnologia
+INFO 2025-10-31 18:57:49,060 basehttp 13936 2724 "POST /events/new/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:57:49,139 basehttp 13936 2724 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:57:53,429 basehttp 13936 2724 "GET /events/?q=&page=2 HTTP/1.1" 200 3502
+INFO 2025-10-31 18:57:57,836 basehttp 13936 12260 "GET /events/7/edit/ HTTP/1.1" 200 2682
+INFO 2025-10-31 18:58:04,643 views 13936 12260 Evento atualizado: Witcher
+Editado por: ronaud
+Data da atualização: 2025-10-31 21:58:04.624659+00:00
+INFO 2025-10-31 18:58:04,643 basehttp 13936 12260 "POST /events/7/edit/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:58:04,706 basehttp 13936 12260 "GET /events/ HTTP/1.1" 200 4231
+INFO 2025-10-31 18:58:09,935 basehttp 13936 16224 "GET /events/2/delete/ HTTP/1.1" 200 1607
+INFO 2025-10-31 18:58:11,351 basehttp 13936 16224 "POST /events/2/delete/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:58:11,532 basehttp 13936 16224 "GET /events/ HTTP/1.1" 200 4224
+INFO 2025-10-31 18:58:14,947 basehttp 13936 16224 "GET /events/?q=&page=2 HTTP/1.1" 200 3160
+INFO 2025-10-31 18:58:23,562 basehttp 13936 15616 "GET /subs/ HTTP/1.1" 200 1806
+INFO 2025-10-31 18:58:25,208 basehttp 13936 15616 "GET /subs/new/ HTTP/1.1" 200 2373
+INFO 2025-10-31 18:58:36,763 views 13936 9988 Nova inscrição criada
+Usuário: ronaud
+Evento: Witcher
+Data do evento: 1240-01-22 00:00:00+00:00
+Local do evento: Pombal-PB
+Data da inscrição: 2025-10-31 21:58:36.763848+00:00
+INFO 2025-10-31 18:58:36,763 basehttp 13936 9988 "POST /subs/new/ HTTP/1.1" 302 0
+INFO 2025-10-31 18:58:36,860 basehttp 13936 9988 "GET /subs/ HTTP/1.1" 200 2036
+INFO 2025-11-22 15:31:16,071 autoreload 32904 31504 Watching for file changes with StatReloader
+INFO 2025-11-22 15:31:26,651 basehttp 32904 2772 "GET / HTTP/1.1" 302 0
+INFO 2025-11-22 15:31:27,004 basehttp 32904 2772 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2025-11-22 15:31:27,497 basehttp 32904 8688 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2025-11-22 15:31:27,703 log 32904 8688 Not Found: /favicon.ico
+WARNING 2025-11-22 15:31:27,705 basehttp 32904 8688 "GET /favicon.ico HTTP/1.1" 404 6939
+WARNING 2025-11-22 15:31:35,876 log 32904 13052 Not Found: /accounts/login/api/v1
+WARNING 2025-11-22 15:31:35,878 basehttp 32904 13052 "GET /accounts/login/api/v1 HTTP/1.1" 404 6969
+INFO 2025-11-22 15:31:48,964 basehttp 32904 25460 "GET /api/v1 HTTP/1.1" 301 0
+INFO 2025-11-22 15:31:48,998 basehttp 32904 12752 "GET /api/v1/ HTTP/1.1" 200 5589
+INFO 2025-11-22 15:31:49,070 basehttp 32904 12752 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-11-22 15:31:49,126 basehttp 32904 33576 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-11-22 15:31:49,126 basehttp 32904 10304 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-11-22 15:31:49,130 basehttp 32904 9396 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-11-22 15:31:49,132 basehttp 32904 18488 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-11-22 15:31:49,168 basehttp 32904 33576 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-11-22 15:31:49,178 basehttp 32904 12752 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-11-22 15:31:49,183 basehttp 32904 10304 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-11-22 15:31:49,194 basehttp 32904 23500 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-11-22 15:31:49,241 basehttp 32904 18488 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-11-22 15:31:49,315 basehttp 32904 33576 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-11-22 15:31:49,389 basehttp 32904 23500 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-11-22 15:32:17,687 basehttp 32904 33448 "GET /api/v1/categories/ HTTP/1.1" 200 9873
+INFO 2025-11-22 15:32:32,884 basehttp 32904 33304 "GET /api/v1/events/ HTTP/1.1" 200 13707
+INFO 2025-11-22 15:32:33,139 basehttp 32904 33304 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,209 basehttp 32904 29632 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,259 basehttp 32904 29664 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,498 basehttp 32904 29664 "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,506 basehttp 32904 29632 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,506 basehttp 32904 33304 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,534 basehttp 32904 29664 "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,542 basehttp 32904 29632 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,578 basehttp 32904 10500 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,608 basehttp 32904 29632 "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,618 basehttp 32904 24180 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:33,690 basehttp 32904 26828 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2025-11-22 15:32:55,604 basehttp 32904 1648 "GET /api/v1/subscribes/ HTTP/1.1" 200 11302
+INFO 2025-11-22 15:37:40,655 basehttp 32904 24348 "GET / HTTP/1.1" 302 0
+INFO 2025-11-22 15:37:40,668 basehttp 32904 24348 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2025-11-22 15:37:40,750 basehttp 32904 24348 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2025-11-22 15:37:41,048 log 32904 24348 Not Found: /favicon.ico
+WARNING 2025-11-22 15:37:41,051 basehttp 32904 24348 "GET /favicon.ico HTTP/1.1" 404 6939
+INFO 2025-11-22 15:38:10,802 basehttp 32904 31720 "GET /api/v1 HTTP/1.1" 301 0
+INFO 2025-11-22 15:38:11,066 basehttp 32904 136 "GET /api/v1/ HTTP/1.1" 200 5589
+INFO 2025-11-22 15:38:11,132 basehttp 32904 136 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-11-22 15:38:11,134 basehttp 32904 32216 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-11-22 15:38:11,163 basehttp 32904 32216 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-11-22 15:38:11,166 basehttp 32904 136 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-11-22 15:38:11,191 basehttp 32904 32216 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-11-22 15:38:11,192 basehttp 32904 136 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-11-22 15:38:11,236 basehttp 32904 136 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-11-22 15:38:11,261 basehttp 32904 136 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-11-22 15:38:11,318 basehttp 32904 32216 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-11-22 15:38:11,342 basehttp 32904 136 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-11-22 15:38:11,360 basehttp 32904 32216 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-11-22 15:38:11,378 basehttp 32904 136 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-11-22 15:38:16,864 basehttp 32904 3872 "GET /api/v1/categories/ HTTP/1.1" 200 9873
+INFO 2025-11-22 15:38:32,013 basehttp 32904 14516 "GET /api/v1/categories/ HTTP/1.1" 200 528
+INFO 2025-11-22 15:55:50,529 basehttp 32904 14516 "GET /api/v1/categories/1/ HTTP/1.1" 200 174
+INFO 2025-11-22 15:56:13,328 basehttp 32904 14516 "GET /api/v1/categories/ HTTP/1.1" 200 528
+INFO 2025-11-22 15:57:33,762 basehttp 32904 3732 "GET /api/v1/categories/ HTTP/1.1" 200 9873
+INFO 2025-11-22 15:57:54,482 basehttp 32904 14516 "GET /api/v1/categories/ HTTP/1.1" 200 528
+WARNING 2025-11-22 15:58:42,298 log 32904 14516 Bad Request: /api/v1/categories/
+WARNING 2025-11-22 15:58:42,299 basehttp 32904 14516 "POST /api/v1/categories/ HTTP/1.1" 400 40
+INFO 2025-11-22 15:59:22,329 basehttp 32904 14516 "GET /api/v1/categories/ HTTP/1.1" 200 528
+INFO 2025-11-22 15:59:28,785 basehttp 32904 14516 "GET /api/v1/categories/1 HTTP/1.1" 301 0
+INFO 2025-11-22 15:59:29,150 basehttp 32904 2492 "GET /api/v1/categories/1/ HTTP/1.1" 200 174
+WARNING 2025-11-22 16:01:39,947 log 32904 2492 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-22 16:01:39,948 basehttp 32904 2492 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-22 16:02:23,118 log 32904 2492 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-22 16:02:23,119 basehttp 32904 2492 "POST /api/v1/categories/ HTTP/1.1" 415 71
+INFO 2025-11-22 16:05:28,751 basehttp 32904 2492 "POST /api/v1/categories/ HTTP/1.1" 201 170
+INFO 2025-11-22 16:05:49,629 basehttp 32904 2492 "GET /api/v1/categories/ HTTP/1.1" 200 699
+ERROR 2025-11-22 16:06:36,137 log 32904 2492 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:06:36,165 basehttp 32904 2492 "PUT /api/v1/categories/5 HTTP/1.1" 500 73211
+INFO 2025-11-22 16:06:55,348 basehttp 32904 1352 "GET /api/v1/categories/5 HTTP/1.1" 301 0
+INFO 2025-11-22 16:06:55,439 basehttp 32904 13104 "GET /api/v1/categories/5/ HTTP/1.1" 200 170
+ERROR 2025-11-22 16:07:16,818 log 32904 13104 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:07:16,821 basehttp 32904 13104 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+INFO 2025-11-22 16:07:22,647 basehttp 32904 26392 "GET /api/v1/categories/5 HTTP/1.1" 301 0
+INFO 2025-11-22 16:07:22,788 basehttp 32904 2040 "GET /api/v1/categories/5/ HTTP/1.1" 200 170
+ERROR 2025-11-22 16:07:37,704 log 32904 2040 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:07:37,706 basehttp 32904 2040 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+ERROR 2025-11-22 16:08:01,974 log 32904 11272 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:08:01,976 basehttp 32904 11272 "PUT /api/v1/categories/5 HTTP/1.1" 500 73211
+ERROR 2025-11-22 16:08:44,330 log 32904 32816 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:08:44,333 basehttp 32904 32816 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+ERROR 2025-11-22 16:09:40,364 log 32904 28700 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:09:40,368 basehttp 32904 28700 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+INFO 2025-11-22 16:09:51,263 basehttp 32904 12916 "PUT /api/v1/categories/5/ HTTP/1.1" 200 174
+INFO 2025-11-22 16:10:31,326 basehttp 32904 12916 "PUT /api/v1/categories/5/ HTTP/1.1" 200 175
+INFO 2025-11-22 16:10:54,305 basehttp 32904 12916 "PATCH /api/v1/categories/5/ HTTP/1.1" 200 180
+INFO 2025-11-22 16:11:08,836 basehttp 32904 12916 "DELETE /api/v1/categories/5/ HTTP/1.1" 204 0
+INFO 2025-11-22 16:11:16,559 basehttp 32904 12916 "GET /api/v1/categories/ HTTP/1.1" 200 528
+INFO 2025-11-22 16:11:40,994 basehttp 32904 27536 "GET /admin HTTP/1.1" 301 0
+INFO 2025-11-22 16:11:41,256 basehttp 32904 4916 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:11:41,288 basehttp 32904 4916 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4204
+INFO 2025-11-22 16:11:41,365 basehttp 32904 4916 "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2025-11-22 16:11:41,365 basehttp 32904 32024 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2025-11-22 16:11:41,391 basehttp 32904 4916 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-11-22 16:11:41,392 basehttp 32904 32024 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-11-22 16:11:41,409 basehttp 32904 4916 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2025-11-22 16:11:41,422 basehttp 32904 32024 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-11-22 16:11:41,567 basehttp 32904 32024 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-11-22 16:11:45,790 basehttp 32904 1664 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:11:45,921 basehttp 32904 1664 "GET /admin/ HTTP/1.1" 200 8492
+INFO 2025-11-22 16:11:45,993 basehttp 32904 1664 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-11-22 16:11:46,036 basehttp 32904 22736 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-11-22 16:11:46,036 basehttp 32904 1664 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-11-22 16:11:57,146 basehttp 32904 8628 "GET /admin/core/categoryevent/ HTTP/1.1" 200 11220
+INFO 2025-11-22 16:11:57,223 basehttp 32904 8628 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-11-22 16:11:57,296 basehttp 32904 8628 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-11-22 16:11:57,390 basehttp 32904 2732 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2025-11-22 16:11:57,420 basehttp 32904 2732 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-11-22 16:11:57,687 basehttp 32904 2732 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-11-22 16:11:57,694 basehttp 32904 14604 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-11-22 16:11:57,722 basehttp 32904 8628 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-11-22 16:11:57,751 basehttp 32904 22328 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-11-22 16:11:57,774 basehttp 32904 29080 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-11-22 16:11:57,777 basehttp 32904 4636 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-11-22 16:11:57,820 basehttp 32904 29080 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-11-22 16:11:57,977 basehttp 32904 8628 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-11-22 16:14:19,473 basehttp 32904 12916 "POST /api/v1/categories/ HTTP/1.1" 201 180
+INFO 2025-11-22 16:14:24,994 basehttp 32904 28088 "GET /admin/core/categoryevent/ HTTP/1.1" 200 11507
+INFO 2025-11-22 16:14:25,127 basehttp 32904 28088 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2025-11-22 16:14:28,186 basehttp 32904 28088 "GET /admin/core/categoryevent/6/change/ HTTP/1.1" 200 11074
+INFO 2025-11-22 16:14:28,244 basehttp 32904 28088 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-11-22 16:14:28,245 basehttp 32904 1064 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-11-22 16:14:28,282 basehttp 32904 1064 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2025-11-22 16:14:28,304 basehttp 32904 1064 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-11-22 16:14:28,353 basehttp 32904 28088 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+WARNING 2025-11-22 16:15:03,393 log 32904 12916 Method Not Allowed: /api/v1/categories/
+WARNING 2025-11-22 16:15:03,395 basehttp 32904 12916 "PATCH /api/v1/categories/ HTTP/1.1" 405 49
+WARNING 2025-11-22 16:15:17,415 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:15:17,417 basehttp 32904 12916 "PATCH /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:15:34,100 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:15:34,103 basehttp 32904 12916 "PATCH /api/v1/categories/5/ HTTP/1.1" 404 54
+INFO 2025-11-22 16:16:34,325 basehttp 32904 32412 "GET /admin/core/categoryevent/6/change/ HTTP/1.1" 200 11074
+INFO 2025-11-22 16:16:34,611 basehttp 32904 32412 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2025-11-22 16:16:41,641 basehttp 32904 28308 "POST /admin/core/categoryevent/6/change/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:16:41,799 basehttp 32904 28308 "GET /admin/core/categoryevent/ HTTP/1.1" 200 11726
+INFO 2025-11-22 16:16:41,958 basehttp 32904 28308 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2025-11-22 16:16:42,006 basehttp 32904 28308 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+WARNING 2025-11-22 16:16:49,037 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:16:49,037 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:16:51,240 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:16:51,240 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:16:51,818 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:16:51,818 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
+INFO 2025-11-22 16:16:59,071 basehttp 32904 12916 "GET /api/v1/categories/ HTTP/1.1" 200 708

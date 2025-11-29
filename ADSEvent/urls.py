@@ -20,8 +20,11 @@ from django.contrib.auth import views as auth_views
 from core import views
 from django.views.generic import RedirectView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/v1/', include('core.api.v1.router')), # Incluindo as rotas da API v1
 
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='category_list'), name='logout'),
@@ -41,6 +44,8 @@ urlpatterns = [
 
     # ✅ Cadastro (signup)
     path('accounts/signup/', views.SignUpView.as_view(), name='signup'),
+
+
 
     # ✅ Redirecionar raiz (/) para o login
     path('', RedirectView.as_view(pattern_name='login', permanent=False)),

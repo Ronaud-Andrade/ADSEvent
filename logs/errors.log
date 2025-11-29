@@ -12,3 +12,131 @@ WARNING 2025-10-29 13:24:55,516 views 15816 49936 Tentativa de cadastro falhou �
   * Os dois campos de senha não correspondem.
 WARNING 2025-10-30 12:40:36,965 log 51556 56464 Not Found: /favicon.ico
 WARNING 2025-10-30 12:40:36,967 basehttp 51556 56464 "GET /favicon.ico HTTP/1.1" 404 6789
+WARNING 2025-10-31 18:28:27,956 log 12156 15736 Not Found: /favicon.ico
+WARNING 2025-10-31 18:28:27,964 basehttp 12156 15736 "GET /favicon.ico HTTP/1.1" 404 6789
+WARNING 2025-10-31 18:37:15,083 log 6468 12420 Not Found: /favicon.ico
+WARNING 2025-10-31 18:37:15,085 basehttp 6468 12420 "GET /favicon.ico HTTP/1.1" 404 6789
+WARNING 2025-10-31 18:53:45,380 views 6468 14244 Tentativa de cadastro falhou — usuário: funcionario3, erros: * password2
+  * A senha é muito parecida com usuário
+WARNING 2025-10-31 18:54:19,496 views 6468 7356 Tentativa de cadastro falhou — usuário: funcionario3, erros: * password2
+  * A senha é muito parecida com usuário
+WARNING 2025-10-31 18:56:07,593 log 13936 9516 Not Found: /events/
+WARNING 2025-10-31 18:56:07,593 basehttp 13936 9516 "GET /events/?q=&page=3 HTTP/1.1" 404 4130
+WARNING 2025-10-31 18:56:09,735 log 13936 9516 Not Found: /events/
+WARNING 2025-10-31 18:56:09,735 basehttp 13936 9516 "GET /events/?q=&page=3 HTTP/1.1" 404 4130
+WARNING 2025-10-31 18:56:10,767 log 13936 9516 Not Found: /events/
+WARNING 2025-10-31 18:56:10,767 basehttp 13936 9516 "GET /events/?q=&page=3 HTTP/1.1" 404 4130
+WARNING 2025-11-22 15:31:27,703 log 32904 8688 Not Found: /favicon.ico
+WARNING 2025-11-22 15:31:27,705 basehttp 32904 8688 "GET /favicon.ico HTTP/1.1" 404 6939
+WARNING 2025-11-22 15:31:35,876 log 32904 13052 Not Found: /accounts/login/api/v1
+WARNING 2025-11-22 15:31:35,878 basehttp 32904 13052 "GET /accounts/login/api/v1 HTTP/1.1" 404 6969
+WARNING 2025-11-22 15:37:41,048 log 32904 24348 Not Found: /favicon.ico
+WARNING 2025-11-22 15:37:41,051 basehttp 32904 24348 "GET /favicon.ico HTTP/1.1" 404 6939
+WARNING 2025-11-22 15:58:42,298 log 32904 14516 Bad Request: /api/v1/categories/
+WARNING 2025-11-22 15:58:42,299 basehttp 32904 14516 "POST /api/v1/categories/ HTTP/1.1" 400 40
+WARNING 2025-11-22 16:01:39,947 log 32904 2492 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-22 16:01:39,948 basehttp 32904 2492 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-22 16:02:23,118 log 32904 2492 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-22 16:02:23,119 basehttp 32904 2492 "POST /api/v1/categories/ HTTP/1.1" 415 71
+ERROR 2025-11-22 16:06:36,137 log 32904 2492 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:06:36,165 basehttp 32904 2492 "PUT /api/v1/categories/5 HTTP/1.1" 500 73211
+ERROR 2025-11-22 16:07:16,818 log 32904 13104 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:07:16,821 basehttp 32904 13104 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+ERROR 2025-11-22 16:07:37,704 log 32904 2040 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:07:37,706 basehttp 32904 2040 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+ERROR 2025-11-22 16:08:01,974 log 32904 11272 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:08:01,976 basehttp 32904 11272 "PUT /api/v1/categories/5 HTTP/1.1" 500 73211
+ERROR 2025-11-22 16:08:44,330 log 32904 32816 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:08:44,333 basehttp 32904 32816 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+ERROR 2025-11-22 16:09:40,364 log 32904 28700 Internal Server Error: /api/v1/categories/5
+Traceback (most recent call last):
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\.venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/v1/categories/5/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2025-11-22 16:09:40,368 basehttp 32904 28700 "PUT /api/v1/categories/5 HTTP/1.1" 500 73212
+WARNING 2025-11-22 16:15:03,393 log 32904 12916 Method Not Allowed: /api/v1/categories/
+WARNING 2025-11-22 16:15:03,395 basehttp 32904 12916 "PATCH /api/v1/categories/ HTTP/1.1" 405 49
+WARNING 2025-11-22 16:15:17,415 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:15:17,417 basehttp 32904 12916 "PATCH /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:15:34,100 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:15:34,103 basehttp 32904 12916 "PATCH /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:16:49,037 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:16:49,037 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:16:51,240 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:16:51,240 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-22 16:16:51,818 log 32904 12916 Not Found: /api/v1/categories/5/
+WARNING 2025-11-22 16:16:51,818 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
