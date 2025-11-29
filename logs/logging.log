@@ -768,3 +768,47 @@ WARNING 2025-11-22 16:16:51,240 basehttp 32904 12916 "GET /api/v1/categories/5/ 
 WARNING 2025-11-22 16:16:51,818 log 32904 12916 Not Found: /api/v1/categories/5/
 WARNING 2025-11-22 16:16:51,818 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
 INFO 2025-11-22 16:16:59,071 basehttp 32904 12916 "GET /api/v1/categories/ HTTP/1.1" 200 708
+INFO 2025-11-29 15:35:45,296 autoreload 8236 8280 Watching for file changes with StatReloader
+INFO 2025-11-29 15:36:02,428 basehttp 8236 15084 "GET / HTTP/1.1" 302 0
+INFO 2025-11-29 15:36:02,676 basehttp 8236 15084 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2025-11-29 15:36:02,920 basehttp 8236 15084 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2025-11-29 15:36:04,164 log 8236 15084 Not Found: /favicon.ico
+WARNING 2025-11-29 15:36:04,178 basehttp 8236 15084 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2025-11-29 15:36:19,292 basehttp 8236 15084 "GET / HTTP/1.1" 302 0
+INFO 2025-11-29 15:36:19,323 basehttp 8236 15084 "GET /accounts/login/ HTTP/1.1" 200 1640
+WARNING 2025-11-29 15:36:28,632 log 8236 15084 Not Found: /api
+WARNING 2025-11-29 15:36:28,633 basehttp 8236 15084 "GET /api HTTP/1.1" 404 7435
+INFO 2025-11-29 15:37:21,005 basehttp 8236 15084 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2025-11-29 15:37:21,867 basehttp 8236 15084 "GET /api/schema/ HTTP/1.1" 200 44975
+INFO 2025-11-29 15:39:13,181 autoreload 7012 13840 Watching for file changes with StatReloader
+INFO 2025-11-29 15:42:28,778 basehttp 7012 14040 "GET / HTTP/1.1" 302 0
+INFO 2025-11-29 15:42:28,934 basehttp 7012 14040 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2025-11-29 15:42:29,016 basehttp 7012 14040 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2025-11-29 15:42:47,642 basehttp 7012 3976 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2025-11-29 15:42:48,035 basehttp 7012 3976 "GET /api/schema/ HTTP/1.1" 200 44975
+INFO 2025-11-29 15:46:09,677 basehttp 7012 15024 "GET /api/v1/categories/ HTTP/1.1" 200 226
+WARNING 2025-11-29 15:48:19,895 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:19,896 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:20,648 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:20,648 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:29,793 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:29,794 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:31,786 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:31,786 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:32,808 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:32,808 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+INFO 2025-11-29 15:49:11,797 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 201 179
+INFO 2025-11-29 15:49:38,718 basehttp 7012 15024 "GET /api/v1/categories/ HTTP/1.1" 200 406
+INFO 2025-11-29 15:49:45,416 basehttp 7012 15024 "GET /api/v1/categories/ HTTP/1.1" 200 406
+INFO 2025-11-29 15:50:58,003 autoreload 7012 13840 C:\Users\IagoNascimento\Documents\ADSevent\ADSEvent\ADSEvent\settings.py changed, reloading.
+INFO 2025-11-29 15:50:59,315 autoreload 13172 6412 Watching for file changes with StatReloader
+INFO 2025-11-29 15:51:04,488 basehttp 13172 2244 "GET /api/v1/categories/ HTTP/1.1" 200 271
+INFO 2025-11-29 15:53:51,780 basehttp 13172 2244 "GET /api/v1/categories/?page=2 HTTP/1.1" 200 269
+INFO 2025-11-29 15:54:40,922 basehttp 13172 7080 "GET /accounts/login/ HTTP/1.1" 200 1640
+WARNING 2025-11-29 15:55:00,565 log 13172 7080 Not Found: /api/redoc
+WARNING 2025-11-29 15:55:00,567 basehttp 13172 7080 "GET /api/redoc HTTP/1.1" 404 7453
+INFO 2025-11-29 15:55:13,001 basehttp 13172 7080 "GET /api/docs/redoc HTTP/1.1" 301 0
+INFO 2025-11-29 15:55:13,425 basehttp 13172 9452 "GET /api/docs/redoc/ HTTP/1.1" 200 728
+INFO 2025-11-29 15:55:14,180 basehttp 13172 9452 "GET /api/schema/ HTTP/1.1" 200 20183
+INFO 2025-11-29 15:56:14,177 basehttp 13172 9452 "GET /api/schema HTTP/1.1" 301 0
+INFO 2025-11-29 15:56:14,216 basehttp 13172 14304 "GET /api/schema/ HTTP/1.1" 200 20183

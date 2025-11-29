@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     #'django-extensions',
     'core',
     'rest_framework',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +82,15 @@ WSGI_APPLICATION = 'ADSEvent.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 import environ
 from pathlib import Path
 
@@ -110,7 +121,6 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -222,4 +232,16 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 1,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "ADSEvent API",
+    "DESCRIPTION": "API para o sistema de gerenciamento de eventos ADSEvent.",
+    "VERSION": "1.0.0",
 }

@@ -140,3 +140,19 @@ WARNING 2025-11-22 16:16:51,240 log 32904 12916 Not Found: /api/v1/categories/5/
 WARNING 2025-11-22 16:16:51,240 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
 WARNING 2025-11-22 16:16:51,818 log 32904 12916 Not Found: /api/v1/categories/5/
 WARNING 2025-11-22 16:16:51,818 basehttp 32904 12916 "GET /api/v1/categories/5/ HTTP/1.1" 404 54
+WARNING 2025-11-29 15:36:04,164 log 8236 15084 Not Found: /favicon.ico
+WARNING 2025-11-29 15:36:04,178 basehttp 8236 15084 "GET /favicon.ico HTTP/1.1" 404 7459
+WARNING 2025-11-29 15:36:28,632 log 8236 15084 Not Found: /api
+WARNING 2025-11-29 15:36:28,633 basehttp 8236 15084 "GET /api HTTP/1.1" 404 7435
+WARNING 2025-11-29 15:48:19,895 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:19,896 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:20,648 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:20,648 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:29,793 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:29,794 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:31,786 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:31,786 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:48:32,808 log 7012 15024 Unsupported Media Type: /api/v1/categories/
+WARNING 2025-11-29 15:48:32,808 basehttp 7012 15024 "POST /api/v1/categories/ HTTP/1.1" 415 71
+WARNING 2025-11-29 15:55:00,565 log 13172 7080 Not Found: /api/redoc
+WARNING 2025-11-29 15:55:00,567 basehttp 13172 7080 "GET /api/redoc HTTP/1.1" 404 7453
