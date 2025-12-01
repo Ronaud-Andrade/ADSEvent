@@ -812,3 +812,94 @@ INFO 2025-11-29 15:55:13,425 basehttp 13172 9452 "GET /api/docs/redoc/ HTTP/1.1"
 INFO 2025-11-29 15:55:14,180 basehttp 13172 9452 "GET /api/schema/ HTTP/1.1" 200 20183
 INFO 2025-11-29 15:56:14,177 basehttp 13172 9452 "GET /api/schema HTTP/1.1" 301 0
 INFO 2025-11-29 15:56:14,216 basehttp 13172 14304 "GET /api/schema/ HTTP/1.1" 200 20183
+INFO 2025-11-29 19:14:37,338 autoreload 51480 64784 Watching for file changes with StatReloader
+INFO 2025-11-29 19:18:08,696 autoreload 47800 17936 Watching for file changes with StatReloader
+INFO 2025-11-29 19:18:14,663 basehttp 47800 11460 "GET / HTTP/1.1" 302 0
+INFO 2025-11-29 19:18:15,028 basehttp 47800 11460 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2025-11-29 19:18:16,123 basehttp 47800 11460 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2025-11-29 19:18:16,552 log 47800 11460 Not Found: /favicon.ico
+WARNING 2025-11-29 19:18:16,554 basehttp 47800 11460 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2025-12-01 13:22:56,504 autoreload 42092 32188 Watching for file changes with StatReloader
+INFO 2025-12-01 13:23:00,155 basehttp 42092 36368 "GET / HTTP/1.1" 302 0
+INFO 2025-12-01 13:23:00,305 basehttp 42092 36368 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2025-12-01 13:23:00,794 basehttp 42092 36368 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2025-12-01 13:23:01,026 log 42092 36368 Not Found: /favicon.ico
+WARNING 2025-12-01 13:23:01,029 basehttp 42092 36368 "GET /favicon.ico HTTP/1.1" 404 7459
+WARNING 2025-12-01 13:23:10,851 log 42092 36368 Not Found: /api
+WARNING 2025-12-01 13:23:10,853 basehttp 42092 36368 "GET /api HTTP/1.1" 404 7435
+INFO 2025-12-01 13:23:15,743 basehttp 42092 36368 "GET /api/v1 HTTP/1.1" 301 0
+INFO 2025-12-01 13:23:15,798 basehttp 42092 44868 "GET /api/v1/ HTTP/1.1" 200 5589
+INFO 2025-12-01 13:23:15,883 basehttp 42092 44868 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-12-01 13:23:15,893 basehttp 42092 52744 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-12-01 13:23:15,900 basehttp 42092 5344 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-12-01 13:23:15,907 basehttp 42092 45688 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-12-01 13:23:15,974 basehttp 42092 52744 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-12-01 13:23:15,984 basehttp 42092 23012 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-12-01 13:23:15,995 basehttp 42092 64412 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-12-01 13:23:16,044 basehttp 42092 45688 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-12-01 13:23:16,059 basehttp 42092 44868 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-12-01 13:23:16,077 basehttp 42092 5344 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-12-01 13:23:16,092 basehttp 42092 52744 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-12-01 13:23:16,166 basehttp 42092 23012 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2025-12-01 13:23:20,934 log 42092 64412 Not Found: /api
+WARNING 2025-12-01 13:23:20,936 basehttp 42092 64412 "GET /api HTTP/1.1" 404 7435
+INFO 2025-12-01 13:23:44,850 basehttp 42092 64412 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2025-12-01 13:23:45,779 basehttp 42092 64412 "GET /api/schema/ HTTP/1.1" 200 44853
+INFO 2025-12-01 13:25:43,307 basehttp 42092 64412 "GET /api/docs/redoc/ HTTP/1.1" 200 728
+INFO 2025-12-01 13:25:43,882 basehttp 42092 64412 "GET /api/schema/ HTTP/1.1" 200 20099
+INFO 2025-12-01 13:26:02,477 basehttp 42092 64412 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2025-12-01 13:26:02,904 basehttp 42092 64412 "GET /api/schema/ HTTP/1.1" 200 44853
+INFO 2025-12-01 13:26:24,231 basehttp 42092 64412 "GET /api/schema HTTP/1.1" 301 0
+INFO 2025-12-01 13:26:24,270 basehttp 42092 23012 "GET /api/schema/ HTTP/1.1" 200 20099
+INFO 2025-12-01 13:29:44,546 autoreload 52772 4904 Watching for file changes with StatReloader
+INFO 2025-12-01 13:29:53,380 basehttp 52772 62636 "GET /api/v1/categories/ HTTP/1.1" 200 271
+INFO 2025-12-01 13:30:03,479 basehttp 52772 63192 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2025-12-01 13:30:03,996 basehttp 52772 63192 "GET /api/schema/ HTTP/1.1" 200 44853
+INFO 2025-12-01 13:31:19,088 basehttp 52772 62636 "GET /api/v1/categories/?page=2 HTTP/1.1" 200 309
+INFO 2025-12-01 13:31:40,283 autoreload 52772 4904 C:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\ADSEvent\settings.py changed, reloading.
+INFO 2025-12-01 13:31:41,789 autoreload 60932 58456 Watching for file changes with StatReloader
+INFO 2025-12-01 13:31:47,335 basehttp 60932 53232 "GET /api/v1/categories/ HTTP/1.1" 200 446
+INFO 2025-12-01 13:31:59,521 basehttp 60932 53232 "GET /api/v1/categories/?page=2 HTTP/1.1" 200 446
+INFO 2025-12-01 13:33:52,215 basehttp 60932 33788 "GET /api/v1/events/%20 HTTP/1.1" 301 0
+WARNING 2025-12-01 13:33:52,226 log 60932 19928 Not Found: /api/v1/events/ /
+WARNING 2025-12-01 13:33:52,227 basehttp 60932 19928 "GET /api/v1/events/%20/ HTTP/1.1" 404 29
+INFO 2025-12-01 13:34:05,823 basehttp 60932 19928 "GET /api/v1/events/%20 HTTP/1.1" 301 0
+WARNING 2025-12-01 13:34:05,832 log 60932 49384 Not Found: /api/v1/events/ /
+WARNING 2025-12-01 13:34:05,833 basehttp 60932 49384 "GET /api/v1/events/%20/ HTTP/1.1" 404 29
+INFO 2025-12-01 13:34:07,543 basehttp 60932 49384 "GET /api/v1/events/%20 HTTP/1.1" 301 0
+WARNING 2025-12-01 13:34:07,549 log 60932 62676 Not Found: /api/v1/events/ /
+WARNING 2025-12-01 13:34:07,552 basehttp 60932 62676 "GET /api/v1/events/%20/ HTTP/1.1" 404 29
+INFO 2025-12-01 13:34:27,322 basehttp 60932 25460 "GET / HTTP/1.1" 302 0
+INFO 2025-12-01 13:34:27,469 basehttp 60932 25460 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2025-12-01 13:34:27,792 basehttp 60932 25460 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2025-12-01 13:34:27,888 log 60932 25460 Not Found: /favicon.ico
+WARNING 2025-12-01 13:34:27,893 basehttp 60932 25460 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2025-12-01 13:34:33,379 basehttp 60932 25460 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-12-01 13:34:33,548 basehttp 60932 25460 "GET /events/ HTTP/1.1" 200 4224
+INFO 2025-12-01 13:35:47,575 basehttp 60932 62676 "GET /api/v1/events/1 HTTP/1.1" 301 0
+INFO 2025-12-01 13:35:47,677 basehttp 60932 33788 "GET /api/v1/events/1/ HTTP/1.1" 200 285
+INFO 2025-12-01 13:35:52,113 basehttp 60932 33788 "GET /api/v1/events HTTP/1.1" 301 0
+INFO 2025-12-01 13:35:52,189 basehttp 60932 58684 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:36:05,458 basehttp 60932 25460 "GET / HTTP/1.1" 302 0
+INFO 2025-12-01 13:36:05,571 basehttp 60932 25460 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2025-12-01 13:36:16,486 basehttp 60932 53232 "GET /api/v1/events HTTP/1.1" 301 0
+INFO 2025-12-01 13:36:16,710 basehttp 60932 56232 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:36:33,630 basehttp 60932 56232 "GET /api/v1/events HTTP/1.1" 301 0
+INFO 2025-12-01 13:36:33,721 basehttp 60932 28520 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:40:54,001 autoreload 64852 45604 Watching for file changes with StatReloader
+INFO 2025-12-01 13:40:57,477 basehttp 64852 60876 "GET /api/v1/events HTTP/1.1" 301 0
+INFO 2025-12-01 13:40:57,568 basehttp 64852 51844 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:41:34,146 basehttp 64852 51844 "GET /api/v1/events/1 HTTP/1.1" 301 0
+INFO 2025-12-01 13:41:34,234 basehttp 64852 55180 "GET /api/v1/events/1/ HTTP/1.1" 200 285
+INFO 2025-12-01 13:41:48,226 basehttp 64852 55180 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:41:53,591 basehttp 64852 55180 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:41:54,266 basehttp 64852 55180 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:42:09,536 basehttp 64852 55180 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:42:21,811 basehttp 64852 55180 "GET /api/v1/events HTTP/1.1" 301 0
+INFO 2025-12-01 13:42:22,017 basehttp 64852 62888 "GET /api/v1/events/ HTTP/1.1" 200 878
+INFO 2025-12-01 13:42:47,573 basehttp 64852 62888 "GET /api/v1/subscribes/ HTTP/1.1" 200 482
+INFO 2025-12-01 13:43:03,715 basehttp 64852 62888 "GET /api/v1/subscribes/ HTTP/1.1" 200 482
+INFO 2025-12-01 13:43:59,613 autoreload 64852 45604 C:\Users\Ronaud\Desktop\Projetos em Python\ADSEvent\core\api\v1\viewsets.py changed, reloading.
+INFO 2025-12-01 13:44:01,124 autoreload 56456 60572 Watching for file changes with StatReloader
+INFO 2025-12-01 13:44:06,095 basehttp 56456 62744 "GET /api/v1/subscribes/ HTTP/1.1" 200 482
+INFO 2025-12-01 13:44:38,809 basehttp 56456 62744 "GET /api/v1/subscribes/ HTTP/1.1" 200 482
