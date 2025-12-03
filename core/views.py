@@ -8,6 +8,8 @@ from django.utils.translation import gettext_lazy as _ #marque strings para o I1
 from .mixins import NotSuperUserMixin
 import logging
 
+
+
 # Create your views here.
 
 
@@ -189,16 +191,65 @@ class SubscribeCreateView(NotSuperUserMixin, LoginRequiredMixin, CreateView):
         return form
     
     def form_valid(self, form):
+        from django.contrib import messages
+
         response = super().form_valid(form)
+
+        # NOTIFICAÇÃO (agora funciona!)
+        event_title = self.object.events.title
+        messages.success(
+            self.request,
+            f"Inscrição realizada com sucesso no evento: {event_title}!"
+        )
+
+        # LOG
         logger.info(
-    f'Nova inscrição criada\n'
-    f'Usuário: {self.request.user.username}\n'
-    f'Evento: {self.object.events.title}\n'
-    f'Data do evento: {self.object.events.date_time}\n'
-    f'Local do evento: {self.object.events.local}\n'
-    f'Data da inscrição: {self.object.created_at}'
-)
+            f'Nova inscrição criada\n'
+            f'Usuário: {self.request.user.username}\n'
+            f'Evento: {self.object.events.title}\n'
+            f'Data do evento: {self.object.events.date_time}\n'
+            f'Local do evento: {self.object.events.local}\n'
+            f'Data da inscrição: {self.object.created_at}'
+        )
+
         return response
+    
+    # def form_valid(self, form):
+    #     from django.contrib import messages
+    #     response = super().form_valid(form)
+
+    #     event_title = self.object.events.title
+
+    #     messages.success(
+    #         self.request,
+    #         f"Inscrição realizada com sucesso no evento: {event_title}!"
+    #     )
+
+    #     return response        
+        # response = super().form_valid(form)
+        # event_title = self.object.events.title
+
+        # messages.success(
+        #     self.request,
+        #     f"Inscrição realizada com sucesso no evento: {event_title}!"
+        # )
+        # return response
+        # response = super().form_valid(form)
+        # messages.success(self.request, f"Inscrição realizada com sucesso no evento: {self.object.events.title}!")
+        # return response
+
+    
+#     def form_valid(self, form):
+#         response = super().form_valid(form)
+#         logger.info(
+#     f'Nova inscrição criada\n'
+#     f'Usuário: {self.request.user.username}\n'
+#     f'Evento: {self.object.events.title}\n'
+#     f'Data do evento: {self.object.events.date_time}\n'
+#     f'Local do evento: {self.object.events.local}\n'
+#     f'Data da inscrição: {self.object.created_at}'
+# )
+#         return response
 
 
 
