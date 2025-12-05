@@ -25,8 +25,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('core.Api.v1.router')),
-    path('api/v1/', include('core.api.v1.router')), # Incluindo as rotas da API v1
+    path('api/v1/', include('core.api.v1.router')),
+    #path('api/v1/', include('core.api.v1.router')), # Incluindo as rotas da API v1
 
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='category_list'), name='logout'),
