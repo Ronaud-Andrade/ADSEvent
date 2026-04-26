@@ -7,7 +7,7 @@ class CategoryViewSet(viewsets.ModelViewSet):  # Cria um ViewSet completo para C
     serializer_class = CategorySerializer  # Define o serializer que converte os dados.
 
 class EventViewSet(viewsets.ModelViewSet):  # Cria um ViewSet completo para Events.
-    queryset = Events.objects.all().order_by("id") # Define o conjunto de dados da tabela Events.
+    queryset = Events.objects.all().order_by("-created_at") # Define o conjunto de dados da tabela Events.
     serializer_class = EventSerializer  # Define o serializer responsável pelos eventos.
 
 class SubscribeViewSet(viewsets.ModelViewSet):  # Cria um ViewSet completo para Subscribe.
