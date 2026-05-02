@@ -903,3 +903,178 @@ INFO 2025-12-01 13:43:59,613 autoreload 64852 45604 C:\Users\Ronaud\Desktop\Proj
 INFO 2025-12-01 13:44:01,124 autoreload 56456 60572 Watching for file changes with StatReloader
 INFO 2025-12-01 13:44:06,095 basehttp 56456 62744 "GET /api/v1/subscribes/ HTTP/1.1" 200 482
 INFO 2025-12-01 13:44:38,809 basehttp 56456 62744 "GET /api/v1/subscribes/ HTTP/1.1" 200 482
+INFO 2026-04-26 10:30:09,841 autoreload 10076 8988 Watching for file changes with StatReloader
+INFO 2026-04-26 10:32:51,962 autoreload 12636 1180 Watching for file changes with StatReloader
+INFO 2026-04-26 10:46:43,726 autoreload 15076 6300 Watching for file changes with StatReloader
+INFO 2026-04-26 10:46:47,532 basehttp 15076 12732 "GET / HTTP/1.1" 302 0
+INFO 2026-04-26 10:46:47,609 basehttp 15076 12732 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2026-04-26 10:46:47,729 basehttp 15076 12732 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2026-04-26 10:46:47,906 log 15076 12732 Not Found: /favicon.ico
+WARNING 2026-04-26 10:46:47,910 basehttp 15076 12732 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2026-04-26 10:48:34,693 autoreload 14480 11240 Watching for file changes with StatReloader
+INFO 2026-04-26 10:48:35,138 basehttp 14480 6628 "GET /accounts/login/ HTTP/1.1" 200 1640
+WARNING 2026-04-26 10:48:35,370 log 14480 6628 Not Found: /favicon.ico
+WARNING 2026-04-26 10:48:35,385 basehttp 14480 6628 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2026-04-26 10:48:51,427 basehttp 14480 6628 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2026-04-26 10:48:51,533 basehttp 14480 6628 "GET /events/ HTTP/1.1" 200 1861
+INFO 2026-04-26 15:10:35,554 autoreload 17184 15496 Watching for file changes with StatReloader
+INFO 2026-04-26 15:10:43,501 basehttp 17184 9744 "GET / HTTP/1.1" 302 0
+INFO 2026-04-26 15:10:43,578 basehttp 17184 9744 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:10:43,635 basehttp 17184 9744 "GET /static/css/style.css HTTP/1.1" 304 0
+WARNING 2026-04-26 15:10:43,812 log 17184 9744 Not Found: /favicon.ico
+WARNING 2026-04-26 15:10:43,814 basehttp 17184 9744 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2026-04-26 15:11:00,261 basehttp 17184 9744 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:11:02,176 basehttp 17184 9744 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:11:02,469 basehttp 17184 9744 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:11:02,782 basehttp 17184 9744 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:11:02,978 basehttp 17184 9744 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:12:07,281 autoreload 17184 15496 C:\Users\User\Desktop\Projetos_Faculdade\Web2\FullStack\ADSEvent\core\api\v1\router.py changed, reloading.
+INFO 2026-04-26 15:12:09,079 autoreload 14460 17156 Watching for file changes with StatReloader
+INFO 2026-04-26 15:25:19,067 autoreload 17800 964 Watching for file changes with StatReloader
+INFO 2026-04-26 15:25:21,600 basehttp 17800 12492 "GET / HTTP/1.1" 302 0
+INFO 2026-04-26 15:25:21,694 basehttp 17800 12492 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:25:50,733 basehttp 17800 1324 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:25:51,426 basehttp 17800 1324 "POST /api/v1/auth/login/ HTTP/1.1" 200 150
+INFO 2026-04-26 15:26:00,121 basehttp 17800 1324 "OPTIONS /api/v1/events/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:26:00,127 basehttp 17800 15468 "OPTIONS /api/v1/events/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:26:00,304 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:26:00,349 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:26:02,168 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:26:02,211 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:26:04,107 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:26:04,145 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:27:13,944 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:27:14,098 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:27:16,154 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:27:16,199 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:27:18,120 basehttp 17800 15468 "OPTIONS /api/v1/auth/logout/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:27:18,186 basehttp 17800 15468 "POST /api/v1/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-04-26 15:27:36,637 basehttp 17800 15468 "POST /api/v1/auth/login/ HTTP/1.1" 200 150
+INFO 2026-04-26 15:27:40,547 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:27:40,592 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+WARNING 2026-04-26 15:28:38,443 log 17800 1324 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:28:38,443 basehttp 17800 1324 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-04-26 15:28:48,383 log 17800 1324 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:28:48,384 basehttp 17800 1324 "POST /api/v1/events/ HTTP/1.1" 400 50
+INFO 2026-04-26 15:28:52,143 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:28:52,187 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:29:03,969 basehttp 17800 15468 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:29:04,012 basehttp 17800 1324 "GET /api/v1/events/ HTTP/1.1" 200 688
+INFO 2026-04-26 15:32:22,286 autoreload 18096 1840 Watching for file changes with StatReloader
+INFO 2026-04-26 15:32:35,313 basehttp 18096 17568 "OPTIONS /api/v1/auth/user/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:32:35,319 basehttp 18096 4004 "OPTIONS /api/v1/auth/user/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:32:35,379 basehttp 18096 17568 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:32:35,438 basehttp 18096 4004 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+WARNING 2026-04-26 15:33:44,097 log 18096 4004 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:33:44,098 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-04-26 15:33:49,376 log 18096 4004 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:33:49,377 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-04-26 15:33:49,799 log 18096 4004 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:33:49,799 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-04-26 15:33:50,000 log 18096 4004 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:33:50,001 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-04-26 15:33:50,312 log 18096 4004 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:33:50,313 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-04-26 15:34:01,057 log 18096 4004 Bad Request: /api/v1/events/
+WARNING 2026-04-26 15:34:01,058 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+INFO 2026-04-26 15:35:06,394 autoreload 18096 1840 C:\Users\User\Desktop\Projetos_Faculdade\Web2\FullStack\ADSEvent\core\models.py changed, reloading.
+INFO 2026-04-26 15:35:07,447 autoreload 14284 9852 Watching for file changes with StatReloader
+INFO 2026-04-26 15:35:43,614 autoreload 14284 9852 C:\Users\User\Desktop\Projetos_Faculdade\Web2\FullStack\ADSEvent\core\models.py changed, reloading.
+INFO 2026-04-26 15:35:44,345 autoreload 1636 1832 Watching for file changes with StatReloader
+INFO 2026-04-26 15:38:54,309 basehttp 1636 13792 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:38:54,360 basehttp 1636 10112 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:38:55,499 basehttp 1636 10112 "OPTIONS /api/v1/categories/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:38:55,499 basehttp 1636 13792 "OPTIONS /api/v1/categories/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:38:55,550 basehttp 1636 13792 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:38:55,593 basehttp 1636 10112 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:40:10,778 basehttp 1636 10112 "POST /api/v1/events/ HTTP/1.1" 201 294
+INFO 2026-04-26 15:40:10,944 basehttp 1636 10112 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:10,987 basehttp 1636 13792 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:15,661 basehttp 1636 13792 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:40:15,814 basehttp 1636 10112 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:40:15,872 basehttp 1636 13792 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:15,925 basehttp 1636 10112 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:21,005 basehttp 1636 10112 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:40:21,041 basehttp 1636 13792 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:40:22,248 basehttp 1636 13792 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:22,391 basehttp 1636 10112 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:25,438 basehttp 1636 10112 - Broken pipe from ('127.0.0.1', 51812)
+INFO 2026-04-26 15:40:25,542 basehttp 1636 13792 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:40:25,644 basehttp 1636 12052 "GET /api/v1/auth/user/ HTTP/1.1" 200 90
+INFO 2026-04-26 15:40:25,662 basehttp 1636 13792 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:25,749 basehttp 1636 12052 "GET /api/v1/events/ HTTP/1.1" 200 729
+INFO 2026-04-26 15:40:28,538 basehttp 1636 12052 "OPTIONS /api/v1/events/1/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:40:28,578 basehttp 1636 12052 "DELETE /api/v1/events/1/ HTTP/1.1" 204 0
+INFO 2026-04-26 15:40:41,199 basehttp 1636 15452 "GET / HTTP/1.1" 302 0
+INFO 2026-04-26 15:40:41,246 basehttp 1636 15452 "GET /accounts/login/ HTTP/1.1" 200 2013
+INFO 2026-04-26 15:40:50,485 basehttp 1636 15452 "GET /admin HTTP/1.1" 301 0
+INFO 2026-04-26 15:40:50,650 basehttp 1636 16100 "GET /admin/ HTTP/1.1" 200 9646
+INFO 2026-04-26 15:40:50,792 basehttp 1636 16100 "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2026-04-26 15:40:50,793 basehttp 1636 5104 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-04-26 15:40:50,820 basehttp 1636 14204 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2026-04-26 15:40:50,836 basehttp 1636 1932 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2026-04-26 15:40:50,837 basehttp 1636 9048 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-04-26 15:40:50,840 basehttp 1636 15672 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2026-04-26 15:40:50,851 basehttp 1636 15672 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-04-26 15:40:50,854 basehttp 1636 1932 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2026-04-26 15:40:50,856 basehttp 1636 9048 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2026-04-26 15:40:53,904 basehttp 1636 9048 "GET /admin/core/events/ HTTP/1.1" 200 11907
+INFO 2026-04-26 15:40:53,951 basehttp 1636 14204 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-04-26 15:40:53,952 basehttp 1636 9048 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2026-04-26 15:40:53,952 basehttp 1636 16100 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-04-26 15:40:53,954 basehttp 1636 15672 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-04-26 15:40:53,956 basehttp 1636 5104 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2026-04-26 15:40:53,964 basehttp 1636 14204 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-04-26 15:40:53,966 basehttp 1636 16100 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-04-26 15:40:53,967 basehttp 1636 9048 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-04-26 15:40:53,970 basehttp 1636 5104 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-04-26 15:40:53,993 basehttp 1636 5104 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-04-26 15:40:54,043 basehttp 1636 1932 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2026-04-26 15:40:54,094 basehttp 1636 1932 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2026-04-26 15:40:56,069 basehttp 1636 1932 "GET /admin/core/events/3/change/ HTTP/1.1" 200 16285
+INFO 2026-04-26 15:40:56,116 basehttp 1636 1932 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2026-04-26 15:40:56,116 basehttp 1636 5104 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2026-04-26 15:40:56,128 basehttp 1636 9048 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-04-26 15:40:56,129 basehttp 1636 16100 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2026-04-26 15:40:56,140 basehttp 1636 16100 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2026-04-26 15:40:56,146 basehttp 1636 16100 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-04-26 15:40:56,199 basehttp 1636 15672 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2026-04-26 15:40:56,278 basehttp 1636 15672 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2026-04-26 15:40:56,278 basehttp 1636 16100 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2026-04-26 15:43:30,104 autoreload 1636 1832 C:\Users\User\Desktop\Projetos_Faculdade\Web2\FullStack\ADSEvent\core\api\v1\viewsets.py changed, reloading.
+INFO 2026-04-26 15:43:31,129 autoreload 17940 17660 Watching for file changes with StatReloader
+INFO 2026-04-26 15:43:42,258 basehttp 17940 18252 "OPTIONS /api/v1/events/?page=1 HTTP/1.1" 200 0
+INFO 2026-04-26 15:43:42,326 basehttp 17940 18252 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674
+INFO 2026-04-26 15:44:44,244 autoreload 17940 17660 C:\Users\User\Desktop\Projetos_Faculdade\Web2\FullStack\ADSEvent\core\api\v1\viewsets.py changed, reloading.
+INFO 2026-04-26 15:44:45,110 autoreload 15896 12500 Watching for file changes with StatReloader
+INFO 2026-04-26 15:44:45,497 basehttp 15896 15944 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674
+INFO 2026-04-26 15:51:56,641 basehttp 15896 3312 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674
+INFO 2026-04-26 15:51:56,683 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674
+INFO 2026-04-26 15:52:00,264 basehttp 15896 1440 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:52:00,416 basehttp 15896 3312 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:52:13,081 basehttp 15896 3312 "POST /api/v1/events/ HTTP/1.1" 201 276
+INFO 2026-04-26 15:52:13,255 basehttp 15896 3312 "GET /api/v1/events/?page=1 HTTP/1.1" 200 664
+INFO 2026-04-26 15:52:13,301 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTTP/1.1" 200 664
+INFO 2026-04-26 15:52:16,813 basehttp 15896 1440 "OPTIONS /api/v1/events/4/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:52:16,856 basehttp 15896 1440 "DELETE /api/v1/events/4/ HTTP/1.1" 204 0
+INFO 2026-04-26 15:52:17,010 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674
+INFO 2026-04-26 15:52:21,594 basehttp 15896 1440 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:52:21,634 basehttp 15896 3312 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:52:32,524 basehttp 15896 3312 "POST /api/v1/events/ HTTP/1.1" 201 274
+INFO 2026-04-26 15:52:32,691 basehttp 15896 3312 "GET /api/v1/events/?page=1 HTTP/1.1" 200 662
+INFO 2026-04-26 15:52:32,754 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTTP/1.1" 200 662
+INFO 2026-04-26 15:52:35,178 basehttp 15896 1440 "OPTIONS /api/v1/events/5/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:52:35,179 basehttp 15896 3312 "OPTIONS /api/v1/events/5/ HTTP/1.1" 200 0
+INFO 2026-04-26 15:52:35,227 basehttp 15896 10664 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:52:35,237 basehttp 15896 3312 "GET /api/v1/events/5/ HTTP/1.1" 200 274
+INFO 2026-04-26 15:52:35,296 basehttp 15896 10664 "GET /api/v1/events/5/ HTTP/1.1" 200 274
+INFO 2026-04-26 15:52:35,371 basehttp 15896 1440 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:52:40,584 basehttp 15896 1440 "PUT /api/v1/events/5/ HTTP/1.1" 200 285
+INFO 2026-04-26 15:52:40,754 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTTP/1.1" 200 673
+INFO 2026-04-26 15:52:40,794 basehttp 15896 10664 "GET /api/v1/events/?page=1 HTTP/1.1" 200 673
+INFO 2026-04-26 15:53:05,542 basehttp 15896 10664 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:53:05,602 basehttp 15896 1440 "GET /api/v1/categories/ HTTP/1.1" 200 403
+INFO 2026-04-26 15:53:08,675 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTTP/1.1" 200 673
+INFO 2026-04-26 15:53:08,725 basehttp 15896 10664 "GET /api/v1/events/?page=1 HTTP/1.1" 200 673
+INFO 2026-04-26 15:53:17,644 basehttp 15896 10664 "DELETE /api/v1/events/5/ HTTP/1.1" 204 0
+INFO 2026-04-26 15:53:17,706 basehttp 15896 10664 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674

@@ -37,8 +37,8 @@ class Events(BaseModel):
     title = models.CharField(max_length=50)
     vagas = models.IntegerField(default=30)
     descriptions = models.TextField()
-    local = models.CharField()
-    category = models.ManyToManyField(CategoryEvent)
+    local = models.CharField(max_length=100)
+    category = models.ManyToManyField(CategoryEvent, blank=True)
 
     def __str__(self):
         return f"{self.title} - {self.date_time.strftime('%d/%m/%Y')}"
