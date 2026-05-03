@@ -35,7 +35,7 @@ export interface Event {
   date_time: string;
   local: string;
   vagas: number;
-  category: number[];
+  category: number[] | Category[];
 }
 
 export interface PaginatedResponse<T> {

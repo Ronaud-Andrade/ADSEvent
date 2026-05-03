@@ -194,3 +194,11 @@ WARNING 2026-04-26 15:33:50,312 log 18096 4004 Bad Request: /api/v1/events/
 WARNING 2026-04-26 15:33:50,313 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
 WARNING 2026-04-26 15:34:01,057 log 18096 4004 Bad Request: /api/v1/events/
 WARNING 2026-04-26 15:34:01,058 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-05-03 16:33:37,009 log 12968 276 Not Found: /favicon.ico
+WARNING 2026-05-03 16:33:37,010 basehttp 12968 276 "GET /favicon.ico HTTP/1.1" 404 7459
+WARNING 2026-05-03 16:37:20,977 log 12968 6000 Unauthorized: /api/v1/auth/user/
+WARNING 2026-05-03 16:37:20,978 basehttp 12968 6000 "GET /api/v1/auth/user/ HTTP/1.1" 401 29
+WARNING 2026-05-03 16:37:21,025 log 12968 12600 Unauthorized: /api/v1/auth/user/
+WARNING 2026-05-03 16:37:21,026 basehttp 12968 12600 "GET /api/v1/auth/user/ HTTP/1.1" 401 29
+WARNING 2026-05-03 16:37:50,764 log 12968 12600 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-03 16:37:50,765 basehttp 12968 12600 "POST /api/v1/auth/login/ HTTP/1.1" 400 68

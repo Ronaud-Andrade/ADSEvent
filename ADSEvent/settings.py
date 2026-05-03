@@ -23,10 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m_b9gp_c)5v#qg#wnbjc&h-p=u&p14!y%z=#$p1%p)&knpko6%'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# These values are loaded from .env below.
 
 ALLOWED_HOSTS = []
 
@@ -86,7 +83,6 @@ WSGI_APPLICATION = 'ADSEvent.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -94,22 +90,11 @@ WSGI_APPLICATION = 'ADSEvent.wsgi.application'
 #     }
 # }
 
-import environ
-from pathlib import Path
-
-
-# Inicializa o ambiente
+# Inicializa o ambiente e carrega as variáveis do .env
 env = environ.Env(
     DEBUG=(bool, False)
 )
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = environ.Env()
-environ.Env.read_env(BASE_DIR / '.env')
-
-# Lê o arquivo .env
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
@@ -117,11 +102,11 @@ DEBUG = env('DEBUG')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'NAME': 'ADS_EVENT',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

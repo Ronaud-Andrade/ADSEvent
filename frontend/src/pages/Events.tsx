@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { eventsAPI, Event, PaginatedResponse } from '../lib/api';
+import { categoryAPI, eventsAPI, Category, Event, PaginatedResponse } from '../lib/api';
 
 const Events: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
@@ -21,6 +22,18 @@ const Events: React.FC = () => {
     loadEvents(page);
   }, [page]);
 
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await categoryAPI.getCategories();
+        setCategories(data);
+      } catch (err) {
+        console.error('Failed to load categories', err);
+      }
+    };
+    loadCategories();
+  }, []);
+
   const loadEvents = async (pageNumber: number) => {
     setLoading(true);
     try {
@@ -34,6 +47,39 @@ const Events: React.FC = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getCategoryNames = (categoryField: number[] | Category[]) => {
+    if (!categoryField || categoryField.length === 0) {
+      return 'No category';
+    }
+
+    return categoryField
+      .map((item) => {
+        if (typeof item === 'object' && item !== null) {
+          return item.name;
+        }
+        const categoryId = Number(item);
+        return categories.find((category) => category.id === categoryId)?.name || `ID ${categoryId}`;
+      })
+      .join(', ');
+  };
+
+  const formatEventDateTime = (dateTime: string) => {
+    if (!dateTime) return '';
+
+    const normalized = dateTime.replace(/Z$/, '').split('.')[0];
+    const [datePart, timePart] = normalized.split('T');
+    if (!datePart || !timePart) return dateTime.replace('T', ' ');
+
+    const [year, month, day] = datePart.split('-').map(Number);
+    const [hour = 0, minute = 0] = timePart.split(':').map(Number);
+    if ([year, month, day, hour, minute].some((value) => Number.isNaN(value))) {
+      return dateTime.replace('T', ' ');
+    }
+
+    const date = new Date(year, month - 1, day, hour, minute);
+    return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
   };
 
   const handleDelete = async (id: number) => {
@@ -69,9 +115,10 @@ const Events: React.FC = () => {
             <div key={event.id} style={{ border: '1px solid #ddd', padding: '1rem', marginBottom: '1rem', borderRadius: '8px' }}>
               <h3>{event.title}</h3>
               <p>{event.descriptions}</p>
-              <p><strong>Date:</strong> {new Date(event.date_time).toLocaleString()}</p>
+              <p><strong>Date:</strong> {formatEventDateTime(event.date_time)}</p>
               <p><strong>Location:</strong> {event.local}</p>
               <p><strong>Capacity:</strong> {event.vagas}</p>
+              <p><strong>Category:</strong> {getCategoryNames(event.category)}</p>
               <div style={{ marginTop: '1rem' }}>
                 <Link to={`/events/${event.id}/edit`} style={{ marginRight: '1rem', padding: '0.25rem 0.5rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
                   Edit
