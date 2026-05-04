@@ -25,7 +25,7 @@ const Events: React.FC = () => {
   useEffect(() => {
     const loadCategories = async () => {
       try {
-        const data = await categoryAPI.getCategories();
+        const data = await categoryAPI.getAllCategories();
         setCategories(data);
       } catch (err) {
         console.error('Failed to load categories', err);
@@ -104,9 +104,11 @@ const Events: React.FC = () => {
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Events</h1>
-      <Link to="/events/new" style={{ display: 'inline-block', marginBottom: '1rem', padding: '0.5rem 1rem', backgroundColor: '#28a745', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
-        Add New Event
-      </Link>
+      <div style={{ marginBottom: '1rem' }}>
+        <Link to="/events/new" style={{ marginRight: '1rem', padding: '0.5rem 1rem', backgroundColor: '#28a745', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
+          Add New Event
+        </Link>
+      </div>
       <div>
         {events.length === 0 ? (
           <p>No events found.</p>
@@ -141,7 +143,7 @@ const Events: React.FC = () => {
           Previous
         </button>
         <div>
-          Page {page} of {Math.max(1, Math.ceil(count / 2))}
+          Page {page} of {Math.max(1, count)}
         </div>
         <button
           type="button"

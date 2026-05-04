@@ -202,3 +202,350 @@ WARNING 2026-05-03 16:37:21,025 log 12968 12600 Unauthorized: /api/v1/auth/user/
 WARNING 2026-05-03 16:37:21,026 basehttp 12968 12600 "GET /api/v1/auth/user/ HTTP/1.1" 401 29
 WARNING 2026-05-03 16:37:50,764 log 12968 12600 Bad Request: /api/v1/auth/login/
 WARNING 2026-05-03 16:37:50,765 basehttp 12968 12600 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-03 17:25:41,519 base 11972 14320 Session data corrupted
+WARNING 2026-05-03 17:26:06,203 base 11972 14320 Session data corrupted
+WARNING 2026-05-03 17:26:06,330 base 11972 14320 Session data corrupted
+WARNING 2026-05-03 17:26:11,517 base 11972 14320 Session data corrupted
+ERROR 2026-05-03 17:52:42,616 log 32556 33728 Internal Server Error: /api/v1/auth/user/
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR 2026-05-03 17:52:42,635 basehttp 32556 33728 "GET /api/v1/auth/user/ HTTP/1.1" 500 188575
+ERROR 2026-05-03 17:52:42,722 log 32556 15540 Internal Server Error: /api/v1/auth/user/
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR 2026-05-03 17:52:42,726 basehttp 32556 15540 "GET /api/v1/auth/user/ HTTP/1.1" 500 188575
+ERROR 2026-05-03 17:52:55,994 log 32556 15540 Internal Server Error: /api/v1/auth/login/
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\core\api\v1\views.py", line 16, in login_view
+    token, created = Token.objects.get_or_create(user=user)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 946, in get_or_create
+    return self.get(**kwargs), False
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR 2026-05-03 17:52:55,999 basehttp 32556 15540 "POST /api/v1/auth/login/ HTTP/1.1" 500 174324
+ERROR 2026-05-03 17:59:37,726 log 32180 32300 Internal Server Error: /api/v1/subscribes/
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.NotNullViolation: ERRO:  o valor nulo na coluna "events_id" da relação "core_subscribe" viola a restrição de não-nulo
+DETAIL:  Registro que falhou contém (1, null, 3, 2026-05-03 20:59:37.163546+00, 2026-05-03 20:59:37.163546+00, f, 2026-05-03 20:59:37.163546+00, t).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\core\api\v1\serializers.py", line 33, in create
+    return super().create(validated_data)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ERRO:  o valor nulo na coluna "events_id" da relação "core_subscribe" viola a restrição de não-nulo
+DETAIL:  Registro que falhou contém (1, null, 3, 2026-05-03 20:59:37.163546+00, 2026-05-03 20:59:37.163546+00, f, 2026-05-03 20:59:37.163546+00, t).
+
+ERROR 2026-05-03 17:59:37,740 basehttp 32180 32300 "POST /api/v1/subscribes/ HTTP/1.1" 500 211854
+ERROR 2026-05-03 18:04:34,899 log 32180 33376 Internal Server Error: /api/v1/subscribes/
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.NotNullViolation: ERRO:  o valor nulo na coluna "events_id" da relação "core_subscribe" viola a restrição de não-nulo
+DETAIL:  Registro que falhou contém (1, null, 4, 2026-05-03 21:04:34.853371+00, 2026-05-03 21:04:34.853371+00, f, 2026-05-03 21:04:34.853371+00, t).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\core\api\v1\serializers.py", line 33, in create
+    return super().create(validated_data)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\IagoNascimento\Documents\Repositorios\ADSEvent\.venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: ERRO:  o valor nulo na coluna "events_id" da relação "core_subscribe" viola a restrição de não-nulo
+DETAIL:  Registro que falhou contém (1, null, 4, 2026-05-03 21:04:34.853371+00, 2026-05-03 21:04:34.853371+00, f, 2026-05-03 21:04:34.853371+00, t).
+
+ERROR 2026-05-03 18:04:34,901 basehttp 32180 33376 "POST /api/v1/subscribes/ HTTP/1.1" 500 211833
+WARNING 2026-05-03 18:20:01,474 log 15836 30124 Bad Request: /api/v1/subscribes/7/
+WARNING 2026-05-03 18:20:01,475 basehttp 15836 30124 "PUT /api/v1/subscribes/7/ HTTP/1.1" 400 45
+WARNING 2026-05-03 18:20:07,359 log 15836 30124 Bad Request: /api/v1/subscribes/7/
+WARNING 2026-05-03 18:20:07,360 basehttp 15836 30124 "PUT /api/v1/subscribes/7/ HTTP/1.1" 400 45
+WARNING 2026-05-03 18:20:08,758 log 15836 30124 Bad Request: /api/v1/subscribes/7/
+WARNING 2026-05-03 18:20:08,759 basehttp 15836 30124 "PUT /api/v1/subscribes/7/ HTTP/1.1" 400 45
+WARNING 2026-05-03 18:20:32,991 log 15836 30124 Bad Request: /api/v1/subscribes/7/
+WARNING 2026-05-03 18:20:32,991 basehttp 15836 30124 "PUT /api/v1/subscribes/7/ HTTP/1.1" 400 45
+WARNING 2026-05-03 21:41:51,860 log 15836 28636 Not Found: /api/v1/categories/
+WARNING 2026-05-03 21:41:51,862 basehttp 15836 28636 "GET /api/v1/categories/?page=2 HTTP/1.1" 404 31

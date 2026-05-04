@@ -47,7 +47,7 @@ const EventForm: React.FC = () => {
 
   const loadCategories = async () => {
     try {
-      const data = await categoryAPI.getCategories();
+      const data = await categoryAPI.getAllCategories();
       setCategories(data);
     } catch (err) {
       console.error('Failed to load categories', err);
