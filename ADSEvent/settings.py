@@ -90,11 +90,19 @@ WSGI_APPLICATION = 'ADSEvent.wsgi.application'
 #     }
 # }
 
-# Inicializa o ambiente e carrega as variáveis do .env
+import environ
+from pathlib import Path
+
+
+# Inicializa o ambiente
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
-env.read_env(BASE_DIR / '.env')
+
+# Lê o arquivo .env
+environ.Env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
@@ -102,11 +110,11 @@ DEBUG = env('DEBUG')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ADS_Events',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='5432'),
     }
 }
 

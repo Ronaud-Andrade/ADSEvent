@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "Frontend React/TypeScript para o sistema ADSEvent - gerenciamento de eventos",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

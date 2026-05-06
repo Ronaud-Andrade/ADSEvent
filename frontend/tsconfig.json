@@ -1,25 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+    "target": "ES2020",                    // Compila para ES2020
+    "useDefineForClassFields": true,       // Usa campos de classe definidos
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Bibliotecas incluídas
+    "module": "ESNext",                    // Módulos ESNext
+    "skipLibCheck": true,                  // Pula verificação de libs
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "moduleResolution": "bundler",         // Resolução de módulos para bundler
+    "allowImportingTsExtensions": true,    // Permite importar .ts/.tsx
+    "resolveJsonModule": true,             // Resolve módulos JSON
+    "isolatedModules": true,               // Módulos isolados
+    "noEmit": true,                        // Não emite arquivos (Vite cuida)
+    "jsx": "react-jsx",                    // JSX transform para React
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "strict": true,                        // Modo strict ativado
+    "noUnusedLocals": true,                // Erro em variáveis não usadas
+    "noUnusedParameters": true,            // Erro em parâmetros não usados
+    "noFallthroughCasesInSwitch": true     // Erro em fallthrough em switch
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"],                       // Inclui apenas diretório src
+  "references": [{ "path": "./tsconfig.node.json" }] // Referência ao config Node
 }
