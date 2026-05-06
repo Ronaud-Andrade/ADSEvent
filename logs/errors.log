@@ -549,3 +549,5 @@ WARNING 2026-05-03 18:20:32,991 log 15836 30124 Bad Request: /api/v1/subscribes/
 WARNING 2026-05-03 18:20:32,991 basehttp 15836 30124 "PUT /api/v1/subscribes/7/ HTTP/1.1" 400 45
 WARNING 2026-05-03 21:41:51,860 log 15836 28636 Not Found: /api/v1/categories/
 WARNING 2026-05-03 21:41:51,862 basehttp 15836 28636 "GET /api/v1/categories/?page=2 HTTP/1.1" 404 31
+WARNING 2026-05-04 18:34:02,173 log 11412 17228 Not Found: /favicon.ico
+WARNING 2026-05-04 18:34:02,178 basehttp 11412 17228 "GET /favicon.ico HTTP/1.1" 404 7459
