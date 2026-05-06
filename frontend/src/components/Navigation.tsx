@@ -18,8 +18,8 @@ const Navigation: React.FC = () => {
           <>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/events">Events</Link></li>
-            <li><Link to="/events/new">New Event</Link></li>
-            <li>Welcome, {user.username}!</li>
+            <li><Link to="/categories">Categories</Link></li>
+            <li><Link to="/subscriptions">My Subscriptions</Link></li>
             <li><button onClick={handleLogout}>Logout</button></li>
           </>
         ) : (

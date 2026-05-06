@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { categoryAPI, eventsAPI, Category, Event } from '../lib/api';
+import { categoryAPI, eventsAPI, Category } from '../lib/api';
 
 const EventForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,7 +12,7 @@ const EventForm: React.FC = () => {
     date_time: '',
     local: '',
     vagas: 30,
-    category: [] as number[],
+    category: [] as string[],
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -38,7 +38,7 @@ const EventForm: React.FC = () => {
         date_time: event.date_time.slice(0, 16), // Remove seconds for datetime-local input
         local: event.local,
         vagas: event.vagas,
-        category: event.category.map((item: any) => (typeof item === 'object' ? item.id : item)),
+        category: event.category.map((item: any) => String(typeof item === 'object' ? item.id : item)),
       });
     } catch (err) {
       setError('Failed to load event');
@@ -47,7 +47,7 @@ const EventForm: React.FC = () => {
 
   const loadCategories = async () => {
     try {
-      const data = await categoryAPI.getCategories();
+      const data = await categoryAPI.getAllCategories();
       setCategories(data);
     } catch (err) {
       console.error('Failed to load categories', err);
@@ -55,7 +55,7 @@ const EventForm: React.FC = () => {
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => Number(option.value));
+    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
     setFormData(prev => ({
       ...prev,
       category: selectedOptions,
@@ -65,11 +65,15 @@ const EventForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const payload = {
+      ...formData,
+      category: formData.category.map(Number),
+    };
     try {
       if (isEditing) {
-        await eventsAPI.updateEvent(Number(id), formData);
+        await eventsAPI.updateEvent(Number(id), payload);
       } else {
-        await eventsAPI.createEvent(formData);
+        await eventsAPI.createEvent(payload);
       }
       navigate('/events?page=1');
     } catch (err) {
