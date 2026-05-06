@@ -1078,3 +1078,157 @@ INFO 2026-04-26 15:53:08,675 basehttp 15896 1440 "GET /api/v1/events/?page=1 HTT
 INFO 2026-04-26 15:53:08,725 basehttp 15896 10664 "GET /api/v1/events/?page=1 HTTP/1.1" 200 673
 INFO 2026-04-26 15:53:17,644 basehttp 15896 10664 "DELETE /api/v1/events/5/ HTTP/1.1" 204 0
 INFO 2026-04-26 15:53:17,706 basehttp 15896 10664 "GET /api/v1/events/?page=1 HTTP/1.1" 200 674
+INFO 2026-05-02 20:01:49,588 autoreload 11088 12992 Watching for file changes with StatReloader
+INFO 2026-05-02 20:03:02,760 autoreload 12952 5552 Watching for file changes with StatReloader
+INFO 2026-05-02 20:04:33,622 basehttp 12952 11408 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+INFO 2026-05-02 20:04:35,058 basehttp 12952 11408 "POST /api/v1/auth/login/ HTTP/1.1" 200 146
+INFO 2026-05-02 20:04:37,079 basehttp 12952 14180 "OPTIONS /api/v1/categories/ HTTP/1.1" 200 0
+INFO 2026-05-02 20:04:37,084 basehttp 12952 12748 "OPTIONS /api/v1/categories/ HTTP/1.1" 200 0
+INFO 2026-05-02 20:04:37,459 basehttp 12952 14180 "GET /api/v1/categories/ HTTP/1.1" 200 406
+INFO 2026-05-02 20:04:37,466 basehttp 12952 14180 "GET /api/v1/categories/ HTTP/1.1" 200 406
+INFO 2026-05-02 20:04:39,981 basehttp 12952 14180 "OPTIONS /api/v1/events/?page=1 HTTP/1.1" 200 0
+INFO 2026-05-02 20:04:40,001 basehttp 12952 14180 "GET /api/v1/events/?page=1 HTTP/1.1" 200 615
+INFO 2026-05-02 20:04:40,016 basehttp 12952 14180 "GET /api/v1/events/?page=1 HTTP/1.1" 200 615
+INFO 2026-05-02 20:04:42,019 basehttp 12952 11016 "OPTIONS /api/v1/auth/logout/ HTTP/1.1" 200 0
+INFO 2026-05-02 20:04:42,241 basehttp 12952 11016 "POST /api/v1/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-05-02 20:11:34,255 autoreload 6248 6552 Watching for file changes with StatReloader
+WARNING 2026-05-02 20:13:14,798 log 6248 1880 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:14,801 log 6248 17284 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:14,801 log 6248 13492 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:14,848 basehttp 6248 17284 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:14,849 basehttp 6248 13492 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:14,848 basehttp 6248 1880 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:15,447 log 6248 6260 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:15,448 basehttp 6248 6260 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:16,955 log 6248 6260 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:16,956 basehttp 6248 6260 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:23,039 log 6248 6260 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:23,040 basehttp 6248 6260 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+INFO 2026-05-02 20:14:30,559 autoreload 6044 17560 Watching for file changes with StatReloader
+INFO 2026-05-02 20:15:03,290 basehttp 6044 1196 "POST /api/v1/auth/login/ HTTP/1.1" 200 152
+INFO 2026-05-02 20:15:03,507 basehttp 6044 10756 "POST /api/v1/auth/login/ HTTP/1.1" 200 152
+INFO 2026-05-02 20:15:09,155 basehttp 6044 10756 "GET /api/v1/categories/ HTTP/1.1" 200 52
+INFO 2026-05-02 20:15:09,236 basehttp 6044 10756 "GET /api/v1/categories/ HTTP/1.1" 200 52
+INFO 2026-05-02 20:15:10,123 basehttp 6044 10756 "POST /api/v1/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-05-02 20:33:45,906 autoreload 6152 1008 Watching for file changes with StatReloader
+INFO 2026-05-02 20:35:17,150 autoreload 6152 1008 D:\Usuários\Usuário\Downloads\Documentos\VsCode\WEB II\ADSEvent\ADSEvent\settings.py changed, reloading.
+INFO 2026-05-02 20:35:42,212 autoreload 17644 3104 Watching for file changes with StatReloader
+INFO 2026-05-02 20:39:01,807 basehttp 17644 16256 "POST /api/v1/auth/login/ HTTP/1.1" 200 152
+INFO 2026-05-02 20:39:02,540 basehttp 17644 3528 "POST /api/v1/auth/login/ HTTP/1.1" 200 152
+INFO 2026-05-02 20:39:03,393 basehttp 17644 3876 "POST /api/v1/auth/login/ HTTP/1.1" 200 152
+INFO 2026-05-02 20:39:03,592 basehttp 17644 3428 "POST /api/v1/auth/login/ HTTP/1.1" 200 152
+INFO 2026-05-05 11:42:32,195 autoreload 2844 15304 Watching for file changes with StatReloader
+INFO 2026-05-05 11:44:18,311 autoreload 10248 13008 Watching for file changes with StatReloader
+WARNING 2026-05-05 11:54:43,078 log 10248 2416 Not Found: /api/docs/
+WARNING 2026-05-05 11:54:43,107 basehttp 10248 2416 "GET /api/docs/ HTTP/1.1" 404 7453
+WARNING 2026-05-05 11:54:44,570 log 10248 2416 Not Found: /favicon.ico
+WARNING 2026-05-05 11:54:44,574 basehttp 10248 2416 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2026-05-05 11:56:21,147 basehttp 10248 2416 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2026-05-05 11:56:23,021 basehttp 10248 2416 "GET /api/schema/ HTTP/1.1" 200 46376
+INFO 2026-05-05 12:05:04,135 autoreload 15448 15532 Watching for file changes with StatReloader
+INFO 2026-05-05 12:05:19,235 basehttp 15448 4656 "OPTIONS /api/v1/auth/user/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:05:19,236 basehttp 15448 9948 "OPTIONS /api/v1/auth/user/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:05:19,753 basehttp 15448 4656 "GET /api/v1/auth/user/ HTTP/1.1" 200 92
+INFO 2026-05-05 12:05:19,980 basehttp 15448 4656 "GET /api/v1/auth/user/ HTTP/1.1" 200 92
+INFO 2026-05-05 12:05:22,311 basehttp 15448 4656 "OPTIONS /api/v1/auth/logout/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:05:22,513 basehttp 15448 4656 "POST /api/v1/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-05-05 12:05:30,455 basehttp 15448 3840 "OPTIONS /api/v1/auth/login/ HTTP/1.1" 200 0
+WARNING 2026-05-05 12:05:31,976 log 15448 3840 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-05 12:05:32,079 basehttp 15448 3840 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-05 12:05:33,053 log 15448 16408 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-05 12:05:33,054 basehttp 15448 16408 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+INFO 2026-05-05 12:06:47,343 autoreload 17604 18368 Watching for file changes with StatReloader
+INFO 2026-05-05 12:07:12,569 basehttp 17604 14180 "POST /api/v1/auth/login/ HTTP/1.1" 200 148
+INFO 2026-05-05 12:07:12,680 basehttp 17604 15372 "POST /api/v1/auth/login/ HTTP/1.1" 200 148
+INFO 2026-05-05 12:07:14,614 basehttp 17604 2120 "OPTIONS /api/v1/events/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:07:14,642 basehttp 17604 17320 "OPTIONS /api/v1/events/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:07:14,869 basehttp 17604 2120 "GET /api/v1/events/ HTTP/1.1" 200 52
+INFO 2026-05-05 12:07:15,073 basehttp 17604 2120 "GET /api/v1/events/ HTTP/1.1" 200 52
+WARNING 2026-05-05 12:07:22,372 log 17604 2120 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:07:22,470 basehttp 17604 2120 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:07:26,604 log 17604 16140 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:07:26,607 basehttp 17604 16140 "POST /api/v1/events/ HTTP/1.1" 400 239
+INFO 2026-05-05 12:07:32,460 basehttp 17604 7524 "GET /api/v1/events/ HTTP/1.1" 200 52
+INFO 2026-05-05 12:07:32,564 basehttp 17604 7524 "GET /api/v1/events/ HTTP/1.1" 200 52
+WARNING 2026-05-05 12:08:19,885 log 17604 3456 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:08:19,890 basehttp 17604 3456 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:09:44,997 log 17604 12448 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:09:45,024 basehttp 17604 12448 "POST /api/v1/events/ HTTP/1.1" 400 239
+INFO 2026-05-05 12:10:37,714 basehttp 17604 16880 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+INFO 2026-05-05 12:10:37,909 basehttp 17604 16880 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+WARNING 2026-05-05 12:10:51,396 log 17604 8448 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:10:51,517 basehttp 17604 8448 "POST /api/v1/events/ HTTP/1.1" 400 239
+INFO 2026-05-05 12:18:08,163 basehttp 17604 1436 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+INFO 2026-05-05 12:18:08,481 basehttp 17604 1436 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+WARNING 2026-05-05 12:18:36,145 log 17604 8796 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:18:36,161 basehttp 17604 8796 "POST /api/v1/events/ HTTP/1.1" 400 57
+INFO 2026-05-05 12:20:41,750 basehttp 17604 5928 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+INFO 2026-05-05 12:20:41,963 basehttp 17604 5928 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+WARNING 2026-05-05 12:21:52,171 log 17604 8564 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:21:52,199 basehttp 17604 8564 "POST /api/v1/events/ HTTP/1.1" 400 57
+INFO 2026-05-05 12:21:59,784 basehttp 17604 12872 "GET /api/v1/events/ HTTP/1.1" 200 52
+INFO 2026-05-05 12:21:59,961 basehttp 17604 12872 "GET /api/v1/events/ HTTP/1.1" 200 52
+INFO 2026-05-05 12:23:41,349 basehttp 17604 5844 "GET /api/docs/swagger/ HTTP/1.1" 200 4645
+INFO 2026-05-05 12:26:36,275 basehttp 17604 13384 "GET / HTTP/1.1" 302 0
+INFO 2026-05-05 12:26:37,559 basehttp 17604 13384 "GET /accounts/login/ HTTP/1.1" 200 1640
+INFO 2026-05-05 12:26:39,407 basehttp 17604 13384 "GET /static/css/style.css HTTP/1.1" 200 10721
+WARNING 2026-05-05 12:26:39,608 log 17604 13384 Not Found: /favicon.ico
+WARNING 2026-05-05 12:26:39,652 basehttp 17604 13384 "GET /favicon.ico HTTP/1.1" 404 7459
+INFO 2026-05-05 12:26:44,604 basehttp 17604 12356 "GET /admin HTTP/1.1" 301 0
+INFO 2026-05-05 12:26:44,630 basehttp 17604 16008 "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-05-05 12:26:45,831 basehttp 17604 16008 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4204
+INFO 2026-05-05 12:26:46,032 basehttp 17604 16008 "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2026-05-05 12:26:46,044 basehttp 17604 7380 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-05-05 12:26:46,045 basehttp 17604 15560 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-05-05 12:26:46,046 basehttp 17604 6384 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2026-05-05 12:26:46,047 basehttp 17604 11184 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2026-05-05 12:26:46,207 basehttp 17604 16008 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-05-05 12:26:46,209 basehttp 17604 1436 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-05-05 12:26:56,252 basehttp 17604 11156 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-05-05 12:26:56,538 basehttp 17604 11156 "GET /admin/ HTTP/1.1" 200 9648
+INFO 2026-05-05 12:26:56,607 basehttp 17604 11156 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2026-05-05 12:26:56,770 basehttp 17604 16608 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2026-05-05 12:26:56,770 basehttp 17604 11156 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2026-05-05 12:27:00,871 basehttp 17604 11156 "GET /admin/core/categoryevent/add/ HTTP/1.1" 200 11803
+INFO 2026-05-05 12:27:01,047 basehttp 17604 11156 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2026-05-05 12:27:01,205 basehttp 17604 11156 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-05-05 12:27:01,232 basehttp 17604 12936 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-05-05 12:27:01,289 basehttp 17604 11548 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-05-05 12:27:01,326 basehttp 17604 11156 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2026-05-05 12:27:01,349 basehttp 17604 12936 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-05-05 12:27:01,405 basehttp 17604 11548 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-05-05 12:27:01,461 basehttp 17604 12936 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-05-05 12:27:01,640 basehttp 17604 8568 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2026-05-05 12:27:01,642 basehttp 17604 11820 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2026-05-05 12:27:01,699 basehttp 17604 15156 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-05-05 12:27:01,711 basehttp 17604 11156 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-05-05 12:27:01,874 basehttp 17604 11156 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-05-05 12:27:14,752 basehttp 17604 9096 "POST /admin/core/categoryevent/add/ HTTP/1.1" 302 0
+INFO 2026-05-05 12:27:15,168 basehttp 17604 9096 "GET /admin/core/categoryevent/ HTTP/1.1" 200 11866
+INFO 2026-05-05 12:27:15,351 basehttp 17604 9096 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2026-05-05 12:27:15,399 basehttp 17604 9096 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-05-05 12:27:15,452 basehttp 17604 15332 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2026-05-05 12:27:15,526 basehttp 17604 9096 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2026-05-05 12:27:15,528 basehttp 17604 15332 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2026-05-05 12:27:28,106 basehttp 17604 11944 "GET /admin/core/categoryevent/1/change/ HTTP/1.1" 200 12042
+INFO 2026-05-05 12:27:28,400 basehttp 17604 11944 "GET /admin/jsi18n/ HTTP/1.1" 200 8514
+INFO 2026-05-05 12:27:32,146 basehttp 17604 11944 "GET /admin/core/categoryevent/ HTTP/1.1" 200 11645
+INFO 2026-05-05 12:27:33,492 basehttp 17604 11944 "GET /admin/core/categoryevent/add/ HTTP/1.1" 200 11803
+INFO 2026-05-05 12:27:38,157 basehttp 17604 11248 "GET /admin/ HTTP/1.1" 200 10047
+INFO 2026-05-05 12:28:09,814 basehttp 17604 10808 "POST /api/v1/events/ HTTP/1.1" 201 260
+INFO 2026-05-05 12:44:46,795 autoreload 16896 18232 Watching for file changes with StatReloader
+INFO 2026-05-05 12:45:10,710 basehttp 16896 9252 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+INFO 2026-05-05 12:45:10,874 basehttp 16896 9252 "GET /api/v1/auth/user/ HTTP/1.1" 200 88
+INFO 2026-05-05 12:45:15,541 basehttp 16896 9252 "OPTIONS /api/v1/categories/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:45:15,552 basehttp 16896 9252 "OPTIONS /api/v1/categories/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:45:15,854 basehttp 16896 7032 "GET /api/v1/categories/ HTTP/1.1" 200 232
+INFO 2026-05-05 12:45:16,084 basehttp 16896 7032 "GET /api/v1/categories/ HTTP/1.1" 200 232
+INFO 2026-05-05 12:45:37,777 basehttp 16896 18060 "POST /api/v1/events/ HTTP/1.1" 201 259
+INFO 2026-05-05 12:45:41,064 basehttp 16896 18060 "GET /api/v1/events/ HTTP/1.1" 200 572
+INFO 2026-05-05 12:45:41,195 basehttp 16896 18060 "GET /api/v1/events/ HTTP/1.1" 200 572
+INFO 2026-05-05 12:45:44,656 basehttp 16896 18060 "OPTIONS /api/v1/events/1/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:45:44,898 basehttp 16896 18060 "DELETE /api/v1/events/1/ HTTP/1.1" 204 0
+INFO 2026-05-05 12:45:45,050 basehttp 16896 18060 "GET /api/v1/events/ HTTP/1.1" 200 311
+INFO 2026-05-05 12:45:46,858 basehttp 16896 18060 "OPTIONS /api/v1/events/2/ HTTP/1.1" 200 0
+INFO 2026-05-05 12:45:47,046 basehttp 16896 18060 "DELETE /api/v1/events/2/ HTTP/1.1" 204 0
+INFO 2026-05-05 12:45:47,179 basehttp 16896 18060 "GET /api/v1/events/ HTTP/1.1" 200 52

@@ -1,203 +1,144 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import { categoryAPI, eventsAPI, Category, Event } from '../lib/api';
+/* Importa o useState do React */
+import { useState, useEffect } from "react";
+/* Importa funções da API */
+import { createEvent, updateEvent } from "../services/eventsService";
+/* Importa funções de categoria */
+import { getCategories } from "../services/categoryService";
+/* Importa o tipo Event */
+import { Event } from "../types/events";
+/* Importa o tipo Category */
+import { Category } from "../types/events";
 
-const EventForm: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    title: '',
-    descriptions: '',
-    date_time: '',
-    local: '',
-    vagas: 30,
-    category: [] as number[],
+export default function EventForm() {
+  /* Estado do formulário (dados do evento) */
+  const [event, setEvent] = useState<Event>({
+    title: "",
+    descriptions: "",
+    date_time: "",
+    vagas: 0,
+    local: "",
+    category: [], // Inicializa como array vazio para categorias
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+
+  /* Estado para armazenar as categorias */
   const [categories, setCategories] = useState<Category[]>([]);
-  const isEditing = !!id;
-
-  useEffect(() => {
-    loadCategories();
-  }, []);
-
-  useEffect(() => {
-    if (isEditing) {
-      loadEvent();
-    }
-  }, [id]);
-
-  const loadEvent = async () => {
-    try {
-      const event = await eventsAPI.getEvent(Number(id));
-      setFormData({
-        title: event.title,
-        descriptions: event.descriptions,
-        date_time: event.date_time.slice(0, 16), // Remove seconds for datetime-local input
-        local: event.local,
-        vagas: event.vagas,
-        category: event.category.map((item: any) => (typeof item === 'object' ? item.id : item)),
-      });
-    } catch (err) {
-      setError('Failed to load event');
-    }
-  };
-
+  
+  
+useEffect(() => {
   const loadCategories = async () => {
     try {
-      const data = await categoryAPI.getCategories();
+      const data = await getCategories();
       setCategories(data);
-    } catch (err) {
-      console.error('Failed to load categories', err);
+    } catch (error) {
+      console.error("Erro ao buscar categorias", error);
     }
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => Number(option.value));
-    setFormData(prev => ({
-      ...prev,
-      category: selectedOptions,
-    }));
-  };
+  loadCategories();
+}, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      if (isEditing) {
-        await eventsAPI.updateEvent(Number(id), formData);
-      } else {
-        await eventsAPI.createEvent(formData);
+    /* Define se está editando ou criando */
+    const [isEditing, setIsEditing] = useState(false);
+
+/* Função chamada ao enviar formulário */
+const handleSubmit = async () => {
+  try {
+    /* Monta o payload que será enviado para API */
+    const payload = {
+      ...event,
+      category: event.category?.length ? event.category : [],
+      vagas: Number(event.vagas),
+    };
+
+    /* Verifica se está editando ou criando */
+    if (isEditing) {
+      /* Garante que existe ID antes de atualizar */
+      if (!event.id) {
+        alert("Evento sem ID!");
+        return;
       }
-      navigate('/events?page=1');
-    } catch (err) {
-      if (axios.isAxiosError(err) && err.response) {
-        const data = err.response.data;
-        if (data && typeof data === 'object') {
-          setError(JSON.stringify(data));
-        } else {
-          setError(err.response.statusText || 'Failed to save event');
-        }
-      } else {
-        setError('Failed to save event');
-      }
-    } finally {
-      setLoading(false);
+
+      /* Atualiza evento existente (usando o payload) */
+      await updateEvent(event.id, payload);
+
+      alert("Evento atualizado!");
+    } else {
+      /* Cria novo evento (usando o payload) */
+      await createEvent(payload);
+
+      alert("Evento criado!");
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: name === 'vagas' ? Number(value) : value,
-    }));
-  };
-
-  return (
-    <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h1>{isEditing ? 'Edit Event' : 'Create New Event'}</h1>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-          />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="descriptions">Description:</label>
-          <textarea
-            id="descriptions"
-            name="descriptions"
-            value={formData.descriptions}
-            onChange={handleChange}
-            required
-            rows={4}
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-          />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="date_time">Date & Time:</label>
-          <input
-            type="datetime-local"
-            id="date_time"
-            name="date_time"
-            value={formData.date_time}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-          />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="local">Location:</label>
-          <input
-            type="text"
-            id="local"
-            name="local"
-            value={formData.local}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-          />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="category">Categories:</label>
-          <select
-            id="category"
-            name="category"
-            multiple
-            value={formData.category}
-            onChange={handleCategoryChange}
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-          >
-            {categories.map(category => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="vagas">Capacity:</label>
-          <input
-            type="number"
-            id="vagas"
-            name="vagas"
-            value={formData.vagas}
-            onChange={handleChange}
-            min="1"
-            required
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-          />
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{ flex: 1, padding: '0.75rem', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}
-          >
-            {loading ? 'Saving...' : (isEditing ? 'Update Event' : 'Create Event')}
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate('/events')}
-            style={{ flex: 1, padding: '0.75rem', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px' }}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao salvar evento");
+  }
 };
 
-export default EventForm;
+return (
+    <div>
+      <h1>{isEditing ? "Editar Evento" : "Criar Evento"}</h1>
+
+      {/* Título do Evento */}
+      <input
+        type="text"
+        placeholder="Título"
+        value={event.title}
+        onChange={(e) => setEvent({ ...event, title: e.target.value })}
+      />
+
+
+      {/* Descrição do Evento */}
+      <textarea
+        placeholder="Descrição"
+        value={event.descriptions}
+        onChange={(e) => setEvent({ ...event, descriptions: e.target.value })}
+      />
+
+      {/* Data e Hora do Evento */}
+      <input
+        type="datetime-local"
+        value={event.date_time}
+        onChange={(e) => setEvent({ ...event, date_time: e.target.value })}
+      />
+
+      {/* Vagas do Evento */}
+      <input
+        type="number"
+        placeholder="Vagas"
+        value={event.vagas}
+        onChange={(e) => setEvent({ ...event, vagas: Number(e.target.value) })}
+      />
+
+      {/* Local do Evento */}
+      <input
+        type="text"
+        placeholder="Local"
+        value={event.local}
+        onChange={(e) => setEvent({ ...event, local: e.target.value })}
+      />
+
+      {/* Categoria do Evento */}
+      <select
+      onChange={(e) =>
+        setEvent({
+          ...event,
+          category: [Number(e.target.value)],
+        })
+        }
+        >
+  <option value="">Selecione uma categoria</option>
+
+  {categories.map((cat) => (
+    <option key={cat.id} value={cat.id}>
+      {cat.name}
+    </option>
+  ))}
+</select>
+
+      {/* Botão salvar */}
+      <button onClick={handleSubmit}>
+        Salvar
+      </button>
+    </div>
+  );
+}

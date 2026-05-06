@@ -194,3 +194,39 @@ WARNING 2026-04-26 15:33:50,312 log 18096 4004 Bad Request: /api/v1/events/
 WARNING 2026-04-26 15:33:50,313 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
 WARNING 2026-04-26 15:34:01,057 log 18096 4004 Bad Request: /api/v1/events/
 WARNING 2026-04-26 15:34:01,058 basehttp 18096 4004 "POST /api/v1/events/ HTTP/1.1" 400 50
+WARNING 2026-05-02 20:13:14,798 log 6248 1880 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:14,801 log 6248 17284 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:14,801 log 6248 13492 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:14,848 basehttp 6248 17284 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:14,849 basehttp 6248 13492 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:14,848 basehttp 6248 1880 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:15,447 log 6248 6260 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:15,448 basehttp 6248 6260 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:16,955 log 6248 6260 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:16,956 basehttp 6248 6260 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-02 20:13:23,039 log 6248 6260 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-02 20:13:23,040 basehttp 6248 6260 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-05 11:54:43,078 log 10248 2416 Not Found: /api/docs/
+WARNING 2026-05-05 11:54:43,107 basehttp 10248 2416 "GET /api/docs/ HTTP/1.1" 404 7453
+WARNING 2026-05-05 11:54:44,570 log 10248 2416 Not Found: /favicon.ico
+WARNING 2026-05-05 11:54:44,574 basehttp 10248 2416 "GET /favicon.ico HTTP/1.1" 404 7459
+WARNING 2026-05-05 12:05:31,976 log 15448 3840 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-05 12:05:32,079 basehttp 15448 3840 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-05 12:05:33,053 log 15448 16408 Bad Request: /api/v1/auth/login/
+WARNING 2026-05-05 12:05:33,054 basehttp 15448 16408 "POST /api/v1/auth/login/ HTTP/1.1" 400 68
+WARNING 2026-05-05 12:07:22,372 log 17604 2120 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:07:22,470 basehttp 17604 2120 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:07:26,604 log 17604 16140 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:07:26,607 basehttp 17604 16140 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:08:19,885 log 17604 3456 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:08:19,890 basehttp 17604 3456 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:09:44,997 log 17604 12448 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:09:45,024 basehttp 17604 12448 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:10:51,396 log 17604 8448 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:10:51,517 basehttp 17604 8448 "POST /api/v1/events/ HTTP/1.1" 400 239
+WARNING 2026-05-05 12:18:36,145 log 17604 8796 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:18:36,161 basehttp 17604 8796 "POST /api/v1/events/ HTTP/1.1" 400 57
+WARNING 2026-05-05 12:21:52,171 log 17604 8564 Bad Request: /api/v1/events/
+WARNING 2026-05-05 12:21:52,199 basehttp 17604 8564 "POST /api/v1/events/ HTTP/1.1" 400 57
+WARNING 2026-05-05 12:26:39,608 log 17604 13384 Not Found: /favicon.ico
+WARNING 2026-05-05 12:26:39,652 basehttp 17604 13384 "GET /favicon.ico HTTP/1.1" 404 7459
