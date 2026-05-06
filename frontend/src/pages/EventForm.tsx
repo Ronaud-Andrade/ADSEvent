@@ -1,7 +1,9 @@
 /* Importa o useState do React */
 import { useState, useEffect } from "react";
+/* Importa useParams do React Router */
+import { useParams } from 'react-router-dom';
 /* Importa funções da API */
-import { createEvent, updateEvent } from "../services/eventsService";
+import { createEvent, updateEvent, getEvent } from "../services/eventsService";
 /* Importa funções de categoria */
 import { getCategories } from "../services/categoryService";
 /* Importa o tipo Event */
@@ -23,7 +25,12 @@ export default function EventForm() {
   /* Estado para armazenar as categorias */
   const [categories, setCategories] = useState<Category[]>([]);
   
-  
+  /* Pega o ID da URL (para edição) */
+  const { id } = useParams<{ id: string }>();
+
+  /* Define se está editando ou criando */
+  const [isEditing, setIsEditing] = useState(false);
+
 useEffect(() => {
   const loadCategories = async () => {
     try {
@@ -37,8 +44,22 @@ useEffect(() => {
   loadCategories();
 }, []);
 
-    /* Define se está editando ou criando */
-    const [isEditing, setIsEditing] = useState(false);
+useEffect(() => {
+    if (id) {
+        setIsEditing(true);
+        loadEvent();
+    }
+}, [id]);
+
+/* Função para carregar evento (para edição) */
+const loadEvent = async () => {
+    try {
+        const data = await getEvent(Number(id));
+        setEvent(data);
+    } catch (error) {
+        alert("Erro ao carregar evento");
+    }
+};
 
 /* Função chamada ao enviar formulário */
 const handleSubmit = async () => {

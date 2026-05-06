@@ -1,5 +1,7 @@
 /* Importa hooks do React */
 import { useEffect, useState } from "react";
+/* Importa Link do React Router */
+import { Link } from 'react-router-dom';
 /* Importa funções do serviço */
 import { getEvents, deleteEvent } from "../services/eventsService";
 /* Importa tipo Event */
@@ -60,11 +62,17 @@ export default function Events() {
     <div>
       <h1>Eventos</h1>
 
+      {/* Link para criar novo evento */}
+      <Link to="/events/new">Criar Novo Evento</Link>
+
       {/* Percorre a lista de eventos */}
       {events.map((event) => (
         <div key={event.id}>
           <h3>{event.title}</h3>
           <p>{event.descriptions}</p>
+
+          {/* Botão de editar */}
+          <Link to={`/events/${event.id}/edit`}>Editar</Link>
 
           {/* Botão de deletar */}
           <button onClick={() => handleDelete(event.id!)}>

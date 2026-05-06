@@ -21,6 +21,23 @@ export const getEvents = async (): Promise<Event[]> => {
     }
 };
 
+/* Função para buscar um evento específico */
+export const getEvent = async (id: number): Promise<Event> => {
+    try {
+        /* Faz requisição GET para /events/{id}/ */
+        const response = await api.get<Event>(`events/${id}/`);
+
+        /* Retorna o evento */
+        return response.data;
+    } catch (error) {
+        /* Log de erro */
+        console.error("Erro ao buscar evento:", error);
+
+        /* Propaga o erro */
+        throw error;
+    }
+};
+
 /* Função para criar evento*/
 export const createEvent = async (data: Event): Promise<Event> => {
     try {
