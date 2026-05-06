@@ -8,20 +8,34 @@ class CategorySerializer(serializers.ModelSerializer):  # Cria um serializer bas
         model = CategoryEvent  # Indica qual modelo o serializer representa.
         fields = '__all__'  # No caso de categoria, só vai ser pego um campo.
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
 class EventSerializer(serializers.ModelSerializer):  # Cria um serializer para o modelo Events.
     class Meta:  # Configurações internas do serializer.
         model = Events  # Modelo vinculado ao serializer.
         fields = '__all__'  # Usa todos os campos do modelo.
 
 class SubscribeSerializer(serializers.ModelSerializer):  # Cria um serializer para o modelo Subscribe.
+    events = EventSerializer(read_only=True)  # Inclui os dados completos do evento
+    events_id = serializers.PrimaryKeyRelatedField(
+        queryset=Events.objects.all(),
+        write_only=True,
+        source='events'
+    )
+    client = UserSerializer(read_only=True)  # Inclui os dados do cliente
+
     class Meta:  # Configurações internas do serializer.
         model = Subscribe  # Define o modelo usado.
-        fields = '__all__'  # Inclui todos os campos automaticamente.
+        fields = ['id', 'client', 'events', 'events_id', 'active', 'created_at', 'updated_at']  # Campos específicos
+        read_only_fields = ['id', 'client', 'created_at', 'updated_at']  # Campos que não podem ser definidos na criação
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+    def create(self, validated_data):
+        # Define o cliente como o usuário autenticado
+        validated_data['client'] = self.context['request'].user
+        return super().create(validated_data)
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()

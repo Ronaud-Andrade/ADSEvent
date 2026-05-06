@@ -23,10 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m_b9gp_c)5v#qg#wnbjc&h-p=u&p14!y%z=#$p1%p)&knpko6%'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# These values are loaded from .env below.
 
 ALLOWED_HOSTS = []
 
@@ -84,7 +81,6 @@ WSGI_APPLICATION = 'ADSEvent.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 
 
 # DATABASES = {
@@ -237,7 +233,7 @@ LOGGING = {
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 2,
+    "PAGE_SIZE": 1,
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',

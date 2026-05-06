@@ -20,6 +20,21 @@ export default function EventForm() {
     vagas: 0,
     local: "",
     category: [], // Inicializa como array vazio para categorias
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+import { categoryAPI, eventsAPI, Category } from '../lib/api';
+
+const EventForm: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    title: '',
+    descriptions: '',
+    date_time: '',
+    local: '',
+    vagas: 30,
+    category: [] as string[],
   });
 
   /* Estado para armazenar as categorias */
