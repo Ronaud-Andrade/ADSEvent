@@ -28,11 +28,11 @@ const SubscribeEdit: React.FC = () => {
       if (foundSubscribe) {
         setSubscribe(foundSubscribe);
       } else {
-        setError('Subscription not found');
+        setError('Inscrição não encontrada');
       }
     } catch (err) {
-      console.error('Error loading subscription:', err);
-      setError('Failed to load subscription');
+      console.error('Erro ao carregar inscrição:', err);
+      setError('Falha ao carregar inscrição');
     } finally {
       setLoading(false);
     }
@@ -48,8 +48,8 @@ const SubscribeEdit: React.FC = () => {
       await subscribeAPI.updateSubscribe(Number(id), { active: subscribe.active });
       navigate('/subscriptions');
     } catch (err) {
-      console.error('Error updating subscription:', err);
-      setError('Failed to update subscription');
+      console.error('Erro ao atualizar inscrição:', err);
+      setError('Falha ao atualizar inscrição');
     } finally {
       setSaving(false);
     }
@@ -81,21 +81,21 @@ const SubscribeEdit: React.FC = () => {
     return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error && !subscribe) return <div>Error: {error}</div>;
-  if (!subscribe) return <div>Subscription not found</div>;
+  if (loading) return <div>Carregando...</div>;
+  if (error && !subscribe) return <div>Erro: {error}</div>;
+  if (!subscribe) return <div>Inscrição não encontrada</div>;
 
   return (
     <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h1>Edit Subscription</h1>
+      <h1>Editar Inscrição</h1>
 
       <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
         <h3>{subscribe.events.title}</h3>
         <p>{subscribe.events.descriptions}</p>
-        <p><strong>Date:</strong> {formatEventDateTime(subscribe.events.date_time)}</p>
-        <p><strong>Location:</strong> {subscribe.events.local}</p>
-        <p><strong>Capacity:</strong> {subscribe.events.vagas}</p>
-        <p><strong>Subscribed on:</strong> {new Date(subscribe.created_at).toLocaleDateString('pt-BR')}</p>
+        <p><strong>Data:</strong> {formatEventDateTime(subscribe.events.date_time)}</p>
+        <p><strong>Local:</strong> {subscribe.events.local}</p>
+        <p><strong>Capacidade:</strong> {subscribe.events.vagas}</p>
+        <p><strong>Inscrito em:</strong> {new Date(subscribe.created_at).toLocaleDateString('pt-BR')}</p>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -107,10 +107,10 @@ const SubscribeEdit: React.FC = () => {
               onChange={handleChange}
               style={{ width: 'auto' }}
             />
-            <span>Active Subscription</span>
+            <span>Inscrição Ativa</span>
           </label>
           <p style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.25rem' }}>
-            Uncheck to temporarily deactivate this subscription
+            Desmarque para desativar temporariamente esta inscrição
           </p>
         </div>
 
@@ -122,14 +122,14 @@ const SubscribeEdit: React.FC = () => {
             disabled={saving}
             style={{ flex: 1, padding: '0.75rem', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}
           >
-            {saving ? 'Saving...' : 'Save Changes'}
+            {saving ? 'Salvando...' : 'Salvar Alterações'}
           </button>
           <button
             type="button"
             onClick={() => navigate('/subscriptions')}
             style={{ flex: 1, padding: '0.75rem', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px' }}
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </form>

@@ -47,7 +47,7 @@ const Navigation: React.FC = () => {
         }}>
           {user ? (
             <>
-              <li><Link to="/" style={navLinkStyle}>Home</Link></li>
+              <li><Link to="/" style={navLinkStyle}>Início</Link></li>
               <li><Link to="/events" style={navLinkStyle}>Eventos</Link></li>
               <li><Link to="/categories" style={navLinkStyle}>Categorias</Link></li>
               <li><Link to="/subscriptions" style={navLinkStyle}>Inscrições</Link></li>
@@ -64,7 +64,7 @@ const Navigation: React.FC = () => {
                     fontWeight: 'bold'
                   }}
                 >
-                  Logout
+                  Sair
                 </button>
               </li>
             </>
@@ -81,7 +81,7 @@ const Navigation: React.FC = () => {
                   fontWeight: 'bold'
                 }}
               >
-                Login
+                Entrar
               </Link>
             </li>
           )}

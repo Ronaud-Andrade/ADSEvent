@@ -20,8 +20,8 @@ const CategoryForm: React.FC = () => {
         name: category.name
       });
     } catch (err) {
-      console.error('Error loading category:', err);
-      setError('Failed to load category');
+      console.error('Erro ao carregar categoria:', err);
+      setError('Falha ao carregar categoria');
     }
   };
 
@@ -55,8 +55,8 @@ const CategoryForm: React.FC = () => {
       }
       navigate('/categories');
     } catch (err) {
-      console.error('Error saving category:', err);
-      setError('Failed to save category');
+      console.error('Erro ao salvar categoria:', err);
+      setError('Falha ao salvar categoria');
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ const CategoryForm: React.FC = () => {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1>{isEditing ? 'Edit Category' : 'Create New Category'}</h1>
+      <h1>{isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}</h1>
 
       {error && (
         <div style={{ marginBottom: '1rem', color: '#dc3545', fontWeight: 'bold' }}>
@@ -75,7 +75,7 @@ const CategoryForm: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Name:
+            Nome:
           </label>
           <input
             type="text"
@@ -108,7 +108,7 @@ const CategoryForm: React.FC = () => {
               cursor: loading ? 'not-allowed' : 'pointer'
             }}
           >
-            {loading ? 'Saving...' : (isEditing ? 'Update Category' : 'Create Category')}
+            {loading ? 'Salvando...' : (isEditing ? 'Atualizar Categoria' : 'Criar Categoria')}
           </button>
 
           <button
@@ -124,7 +124,7 @@ const CategoryForm: React.FC = () => {
               cursor: 'pointer'
             }}
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </form>

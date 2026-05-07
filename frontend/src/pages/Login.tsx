@@ -15,17 +15,17 @@ const Login: React.FC = () => {
       await login(username, password);
       navigate('/');
     } catch (err) {
-      setError('Invalid credentials');
+      setError('Credenciais inválidas');
     }
   };
 
   return (
     <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '2rem', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Login</h2>
+      <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Entrar</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Username:
+            Usuário:
           </label>
           <input
             type="text"
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
         </div>
         <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Password:
+            Senha:
           </label>
           <input
             type="password"
@@ -82,11 +82,11 @@ const Login: React.FC = () => {
             cursor: 'pointer'
           }}
         >
-          Login
+          Entrar
         </button>
       </form>
       <p style={{ marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem', color: '#666' }}>
-        Use admin/admin123 to test
+        Use admin/admin123 para testar
       </p>
     </div>
   );

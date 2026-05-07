@@ -19,10 +19,10 @@ const CategoryList: React.FC = () => {
       setCount(data.count);
       setNext(data.next);
       setPrevious(data.previous);
-      setError('');
+      setError('Falha ao carregar categorias');
     } catch (err) {
-      console.error('Error loading categories:', err);
-      setError('Failed to load categories');
+      console.error('Erro ao carregar categorias:', err);
+      setError('Falha ao carregar categorias');
     } finally {
       setLoading(false);
     }
@@ -36,24 +36,24 @@ const CategoryList: React.FC = () => {
   }, [page]);
 
   const handleDelete = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this category?')) {
+    if (window.confirm('Tem certeza que deseja deletar esta categoria?')) {
       try {
         await categoryAPI.deleteCategory(id);
         loadCategories(page); // Reload the current page after deletion
       } catch (err) {
-        console.error('Error deleting category:', err);
-        setError('Failed to delete category');
+        console.error('Erro ao deletar categoria:', err);
+        setError('Falha ao deletar categoria');
       }
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div>Carregando...</div>;
+  if (error) return <div>Erro: {error}</div>;
 
   return (
     <div style={{ padding: '2rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h1>Categories</h1>
+        <h1>Categorias</h1>
         <Link
           to="/categories/new"
           style={{
@@ -65,12 +65,12 @@ const CategoryList: React.FC = () => {
             fontWeight: 'bold'
           }}
         >
-          Add New Category
+          Criar Nova Categoria
         </Link>
       </div>
 
       {categories.length === 0 ? (
-        <p>No categories found.</p>
+        <p>Nenhuma categoria encontrada.</p>
       ) : (
         <div>
           {categories.map(category => (
@@ -81,13 +81,13 @@ const CategoryList: React.FC = () => {
                   to={`/categories/${category.id}/edit`}
                   style={{ marginRight: '1rem', padding: '0.25rem 0.5rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}
                 >
-                  Edit
+                  Editar
                 </Link>
                 <button
                   onClick={() => handleDelete(category.id)}
                   style={{ padding: '0.25rem 0.5rem', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px' }}
                 >
-                  Delete
+                  Deletar
                 </button>
               </div>
             </div>
@@ -101,16 +101,16 @@ const CategoryList: React.FC = () => {
           disabled={!previous}
           style={{ padding: '0.5rem 1rem', backgroundColor: previous ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '4px' }}
         >
-          Previous
+          Anterior
         </button>
-        <div>Page {page} of {Math.max(1, count)}</div>
+        <div>Página {page} de {Math.max(1, count)}</div>
         <button
           type="button"
           onClick={() => setPage(page + 1)}
           disabled={!next}
           style={{ padding: '0.5rem 1rem', backgroundColor: next ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '4px' }}
         >
-          Next
+          Próximo
         </button>
       </div>
     </div>

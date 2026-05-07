@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { createEvent, updateEvent, getEvent } from "../services/eventsService";
 import { getCategories } from "../services/categoryService";
 import { Event, Category } from "../types/events";
