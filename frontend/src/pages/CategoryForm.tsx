@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { categoryAPI, Category } from '../lib/api';
+import { categoryAPI } from '../lib/api';
 
 const CategoryForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,12 +13,6 @@ const CategoryForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (isEditing && id) {
-      loadCategory(Number(id));
-    }
-  }, [id, isEditing]);
-
   const loadCategory = async (categoryId: number) => {
     try {
       const category = await categoryAPI.getCategory(categoryId);
@@ -30,6 +24,15 @@ const CategoryForm: React.FC = () => {
       setError('Failed to load category');
     }
   };
+
+  useEffect(() => {
+    const load = async () => {
+      if (isEditing && id) {
+        await loadCategory(Number(id));
+      }
+    };
+    load();
+  }, [id, isEditing]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

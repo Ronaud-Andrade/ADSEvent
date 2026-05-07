@@ -1,5 +1,5 @@
 /* Contexto de autenticação para gerenciar estado de login do usuário */
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useState, useEffect, ReactNode } from "react";
 /* Importa funções e tipos relacionados à autenticação */
 import { User, authAPI } from "../lib/api";
 
@@ -12,19 +12,7 @@ interface AuthContextType {
 }
 
 /* Criação do contexto de autenticação */
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-/* Hook personalizado para acessar o contexto de autenticação */
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-
-  /* Garante que o hook só seja usado dentro do Provider */
-  if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
-
-  return context;
-};
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 /* Provider que envolve a aplicação e fornece o contexto */
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -36,18 +24,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   /* Verifica se existe token ao carregar a aplicação */
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const checkAuth = async () => {
+      const token = localStorage.getItem("token");
 
-    if (token) {
-      /* Se existir token, busca os dados do usuário */
-      authAPI.user()
-        .then((data) => setUser(data)) // Define usuário logado
-        .catch(() => localStorage.removeItem("token")) // Remove token inválido
-        .finally(() => setIsLoading(false)); // Finaliza carregamento
-    } else {
-      /* Se não houver token, apenas encerra o loading */
+      if (token) {
+        try {
+          /* Se existir token, busca os dados do usuário */
+          const data = await authAPI.user();
+          setUser(data); // Define usuário logado
+        } catch {
+          localStorage.removeItem("token"); // Remove token inválido
+        }
+      }
       setIsLoading(false);
-    }
+    };
+
+    checkAuth();
   }, []);
 
   /* Função de login */

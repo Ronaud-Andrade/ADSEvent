@@ -11,10 +11,6 @@ const CategoryList: React.FC = () => {
   const [next, setNext] = useState<string | null>(null);
   const [previous, setPrevious] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadCategories(page);
-  }, [page]);
-
   const loadCategories = async (pageNumber: number) => {
     setLoading(true);
     try {
@@ -31,6 +27,13 @@ const CategoryList: React.FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const load = async () => {
+      await loadCategories(page);
+    };
+    load();
+  }, [page]);
 
   const handleDelete = async (id: number) => {
     if (window.confirm('Are you sure you want to delete this category?')) {

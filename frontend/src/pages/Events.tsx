@@ -59,27 +59,53 @@ export default function Events() {
 
   /* Renderização da tela */
   return (
-    <div>
-      <h1>Eventos</h1>
+    <div style={{ padding: '2rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h1>Eventos</h1>
+        <Link
+          to="/events/new"
+          style={{
+            padding: '0.75rem 1rem',
+            backgroundColor: '#28a745',
+            color: 'white',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 'bold'
+          }}
+        >
+          Criar Novo Evento
+        </Link>
+      </div>
 
-      {/* Link para criar novo evento */}
-      <Link to="/events/new">Criar Novo Evento</Link>
-
-      {/* Percorre a lista de eventos */}
-      {events.map((event) => (
-        <div key={event.id}>
-          <h3>{event.title}</h3>
-          <p>{event.descriptions}</p>
-
-          {/* Botão de editar */}
-          <Link to={`/events/${event.id}/edit`}>Editar</Link>
-
-          {/* Botão de deletar */}
-          <button onClick={() => handleDelete(event.id!)}>
-            Deletar
-          </button>
+      {events.length === 0 ? (
+        <p>Nenhum evento encontrado.</p>
+      ) : (
+        <div>
+          {events.map((event) => (
+            <div key={event.id} style={{ border: '1px solid #ddd', padding: '1rem', marginBottom: '1rem', borderRadius: '8px' }}>
+              <h3>{event.title}</h3>
+              <p style={{ marginBottom: '0.5rem' }}>{event.descriptions}</p>
+              <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem' }}>
+                📅 {new Date(event.date_time).toLocaleString('pt-BR')} | 📍 {event.local} | 👥 {event.vagas} vagas
+              </p>
+              <div style={{ marginTop: '1rem' }}>
+                <Link
+                  to={`/events/${event.id}/edit`}
+                  style={{ marginRight: '1rem', padding: '0.25rem 0.5rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}
+                >
+                  Editar
+                </Link>
+                <button
+                  onClick={() => handleDelete(event.id!)}
+                  style={{ padding: '0.25rem 0.5rem', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px' }}
+                >
+                  Deletar
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }
