@@ -68,8 +68,6 @@ coverage.xml
 *,cover
 
 # Logs
-logs/
-*.log
 
 # Editor temp files
 *~
