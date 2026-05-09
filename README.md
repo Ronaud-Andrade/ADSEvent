@@ -1,73 +1,140 @@
-# React + TypeScript + Vite
+# ADS Event
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for managing events and subscriptions, built with Django REST Framework and React.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Backend**: Django REST API (`/` root directory)
+- **Frontend**: React + TypeScript + Vite (`/frontend` directory)
 
-## React Compiler
+## Backend Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Python 3.x
+- pip
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Create a superuser (optional):
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+### Running the Server
+
+Start the development server:
+
+```bash
+python manage.py runserver
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The backend API will be available at `http://127.0.0.1:8000/`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Frontend Setup
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js (version 16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+To start the development server:
+
+```bash
+npm run dev
 ```
+
+The application will be available at `http://localhost:5173/` (or next available port).
+
+### Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+To preview the production build:
+
+```bash
+npm run preview
+```
+
+## Features
+
+### Authentication
+- Login page with token-based authentication
+- Protected routes requiring authentication
+- Automatic token management and logout
+
+### Events Management
+- List all events
+- Create new events
+- Edit existing events
+- Delete events
+
+### Pages
+- **Login** (`/login`): User authentication
+- **Home** (`/`): Welcome page (protected)
+- **Events** (`/events`): List of events (protected)
+- **Event Form** (`/events/new` or `/events/:id/edit`): Create/edit events (protected)
+
+## API Integration
+
+The frontend communicates with the Django REST API running on `http://127.0.0.1:8000/api/v1/`.
+
+### Authentication Endpoints
+- `POST /api/v1/auth/login/` - Login
+- `POST /api/v1/auth/logout/` - Logout
+- `GET /api/v1/auth/user/` - Get current user
+
+### Events Endpoints
+- `GET /api/v1/events/` - List events
+- `POST /api/v1/events/` - Create event
+- `GET /api/v1/events/{id}/` - Get event details
+- `PUT /api/v1/events/{id}/` - Update event
+- `DELETE /api/v1/events/{id}/` - Delete event
+
+## Testing
+
+Use the following credentials to test the application:
+- Username: `admin`
+- Password: `admin123`
+
+## Technologies Used
+
+### Backend
+- Django
+- Django REST Framework
+
+### Frontend
+- React 19
+- TypeScript
+- Vite
+- React Router DOM
+- Axios (for API calls)
+- Context API (for state management)
