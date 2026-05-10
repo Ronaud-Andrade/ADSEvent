@@ -9,85 +9,44 @@ const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const inputStyle = {
+    width: '100%',
+    padding: '0.8rem',
+    borderRadius: '8px',
+    border: '1px solid #ddd',
+    fontSize: '1rem',
+    boxSizing: 'border-box' as const,
+    marginBottom: '1rem'
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await login(username, password);
       navigate('/');
     } catch (err) {
-      setError('Credenciais inválidas');
+      setError('Usuário ou senha incorretos.');
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '2rem', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Entrar</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Usuário:
-          </label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem',
-              boxSizing: 'border-box'
-            }}
-          />
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Senha:
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem',
-              boxSizing: 'border-box'
-            }}
-          />
-        </div>
-        {error && (
-          <div style={{ marginBottom: '1rem', color: '#dc3545', fontWeight: 'bold', textAlign: 'center' }}>
-            {error}
-          </div>
-        )}
-        <button
-          type="submit"
-          style={{
-            width: '100%',
-            padding: '0.75rem',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer'
-          }}
-        >
-          Entrar
-        </button>
-      </form>
-      <p style={{ marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem', color: '#666' }}>
-        Use admin/admin123 para testar
-      </p>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
+      <div style={{ maxWidth: '400px', width: '100%', padding: '2.5rem', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '2rem', color: '#333' }}>Login ADS Event</h2>
+        <form onSubmit={handleSubmit}>
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Usuário</label>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={inputStyle} required />
+          
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Senha</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={inputStyle} required />
+
+          {error && <div style={{ color: '#dc3545', textAlign: 'center', marginBottom: '1rem', fontWeight: '500' }}>{error}</div>}
+
+          <button type="submit" style={{ width: '100%', padding: '1rem', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '8px', fontSize: '1rem', fontWeight: 'bold', cursor: 'pointer' }}>
+            Entrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

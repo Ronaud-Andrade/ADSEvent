@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { eventsAPI, subscribeAPI, Event, Subscribe } from '../lib/api';
+import { eventsAPI, subscribeAPI, Subscribe } from '../lib/api';
+// Importando o tipo Event oficial do seu projeto para evitar conflitos de duplicidade
+import { Event } from "../types/events";
 
 const SubscribeList: React.FC = () => {
   const [subscribes, setSubscribes] = useState<Subscribe[]>([]);
-  const [allSubscribes, setAllSubscribes] = useState<Subscribe[]>([]);
   const [availableEvents, setAvailableEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [selectedEventId, setSelectedEventId] = useState<number | ''>('');
@@ -12,7 +13,7 @@ const SubscribeList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(0);
+  const [, setCount] = useState(0);
   const [next, setNext] = useState<string | null>(null);
   const [previous, setPrevious] = useState<string | null>(null);
 
@@ -22,7 +23,6 @@ const SubscribeList: React.FC = () => {
 
   useEffect(() => {
     loadAvailableEvents();
-    loadAllSubscribes();
   }, []);
 
   useEffect(() => {
@@ -36,7 +36,6 @@ const SubscribeList: React.FC = () => {
     setLoading(true);
     try {
       const data = await subscribeAPI.getUserSubscribes(pageNumber);
-      console.log('Loaded subscriptions:', data);
       setSubscribes(data.results || []);
       setCount(data.count);
       setNext(data.next);
@@ -50,37 +49,30 @@ const SubscribeList: React.FC = () => {
     }
   };
 
-  const loadAllSubscribes = async () => {
-    try {
-      const data = await subscribeAPI.getAllUserSubscribes();
-      setAllSubscribes(data);
-    } catch (err) {
-      console.error('Error loading all subscriptions:', err);
-    }
-  };
-
   const loadAvailableEvents = async () => {
     try {
-      let page = 1;
+      let currentPage = 1;
       let allEvents: Event[] = [];
+      let hasNext = true;
 
-      while (true) {
-        const response = await eventsAPI.getEvents(page);
+      while (hasNext) {
+        const response = await eventsAPI.getEvents(currentPage);
         allEvents = [...allEvents, ...(response.results || [])];
         if (!response.next) {
-          break;
+          hasNext = false;
+        } else {
+          currentPage += 1;
         }
-        page += 1;
       }
-
       setAvailableEvents(allEvents);
     } catch (err) {
       console.error('Error loading available events:', err);
     }
   };
 
-  const isAlreadySubscribed = (eventId: number) => {
-    return allSubscribes.some((sub) => sub.events.id === eventId && sub.active);
+  const isAlreadySubscribed = (eventId: number | undefined) => {
+    if (!eventId) return false;
+    return subscribes.some((sub) => sub.events.id === eventId && sub.active);
   };
 
   const handleCreateSubscription = async () => {
@@ -89,15 +81,10 @@ const SubscribeList: React.FC = () => {
       return;
     }
 
-    if (isAlreadySubscribed(selectedEventId)) {
-      setError('Você já está inscrito neste evento.');
-      return;
-    }
-
     try {
-      await subscribeAPI.createSubscribe(selectedEventId);
+      // Enviando o ID no formato de objeto esperado pela sua API
+      await subscribeAPI.createSubscribe({ events_id: selectedEventId });
       await loadSubscribes(page);
-      await loadAllSubscribes();
       setSelectedEventId('');
       setError('');
     } catch (err) {
@@ -111,7 +98,6 @@ const SubscribeList: React.FC = () => {
       try {
         await subscribeAPI.deleteSubscribe(id);
         await loadSubscribes(page);
-        await loadAllSubscribes();
       } catch (err) {
         setError('Falha ao cancelar inscrição');
       }
@@ -120,47 +106,38 @@ const SubscribeList: React.FC = () => {
 
   const formatEventDateTime = (dateTime: string) => {
     if (!dateTime) return '';
-
-    const normalized = dateTime.replace(/Z$/, '').split('.')[0];
-    const [datePart, timePart] = normalized.split('T');
-    if (!datePart || !timePart) return dateTime.replace('T', ' ');
-
-    const [year, month, day] = datePart.split('-').map(Number);
-    const [hour = 0, minute = 0] = timePart.split(':').map(Number);
-    if ([year, month, day, hour, minute].some((value) => Number.isNaN(value))) {
-      return dateTime.replace('T', ' ');
-    }
-
-    const date = new Date(year, month - 1, day, hour, minute);
+    const date = new Date(dateTime);
     return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
   };
 
-  if (loading) return <div>Carregando...</div>;
+  if (loading) return <div style={{ textAlign: 'center', padding: '2rem' }}>Carregando...</div>;
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '2px solid #f0f0f0', paddingBottom: '1rem' }}>
+        <h1 style={{ color: '#333', margin: 0 }}>Minhas Inscrições</h1>
+      </div>
+
       {error && (
-        <div style={{ marginBottom: '1rem', color: '#dc3545', fontWeight: 'bold' }}>
+        <div style={{ backgroundColor: '#f8d7da', color: '#dc3545', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', fontWeight: 'bold', border: '1px solid #f5c6cb' }}>
           {error}
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h1>Minhas Inscrições</h1>
-      </div>
 
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '1rem' }}>
+      {/* Seção de Nova Inscrição Padronizada */}
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', marginBottom: '2rem', backgroundColor: '#f9f9f9', padding: '1.5rem', borderRadius: '10px' }}>
         <input
           type="text"
-          placeholder="Buscar eventos..."
+          placeholder="Buscar eventos disponíveis..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', minWidth: '200px' }}
+          style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #ccc', minWidth: '200px', flex: 1 }}
         />
 
         <select
           value={selectedEventId}
           onChange={(e) => setSelectedEventId(e.target.value ? Number(e.target.value) : '')}
-          style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', minWidth: '240px' }}
+          style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #ccc', minWidth: '240px', flex: 1 }}
         >
           <option value="">Selecionar evento</option>
           {filteredEvents.map((event) => {
@@ -177,33 +154,39 @@ const SubscribeList: React.FC = () => {
           type="button"
           onClick={handleCreateSubscription}
           disabled={!selectedEventId}
-          style={{ padding: '0.6rem 1.2rem', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}
+          style={{ padding: '0.7rem 1.5rem', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: selectedEventId ? 'pointer' : 'not-allowed' }}
         >
-          Nova Inscrição
+          + Inscrever-se
         </button>
       </div>
 
       {subscribes.length === 0 ? (
-        <p>Você ainda não tem inscrições.</p>
+        <div style={{ textAlign: 'center', padding: '3rem', color: '#666', backgroundColor: '#fff', borderRadius: '10px', border: '1px solid #eee' }}>
+          Nenhuma inscrição encontrada.
+        </div>
       ) : (
-        <div>
+        <div style={{ display: 'grid', gap: '1.5rem' }}>
           {subscribes.map(subscribe => (
-            <div key={subscribe.id} style={{ border: '1px solid #ddd', padding: '1rem', marginBottom: '1rem', borderRadius: '8px' }}>
-              <h3>{subscribe.events.title}</h3>
-              <p>{subscribe.events.descriptions}</p>
-              <p><strong>Data:</strong> {formatEventDateTime(subscribe.events.date_time)}</p>
-              <p><strong>Local:</strong> {subscribe.events.local}</p>
-              <p><strong>Capacidade:</strong> {subscribe.events.vagas}</p>
-              <div style={{ marginTop: '1rem' }}>
+            <div key={subscribe.id} style={{ backgroundColor: '#fff', border: '1px solid #ddd', padding: '1.5rem', borderRadius: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
+              <h3 style={{ color: '#007bff', margin: '0 0 0.5rem 0' }}>{subscribe.events.title}</h3>
+              <p style={{ color: '#666', marginBottom: '1rem' }}>{subscribe.events.descriptions}</p>
+              
+              <div style={{ fontSize: '0.9rem', color: '#888', display: 'flex', gap: '1.2rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
+                <span>📅 <strong>Data:</strong> {formatEventDateTime(subscribe.events.date_time)}</span>
+                <span>📍 <strong>Local:</strong> {subscribe.events.local}</span>
+                <span>👥 <strong>Capacidade:</strong> {subscribe.events.vagas}</span>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.8rem', borderTop: '1px solid #eee', paddingTop: '1.2rem' }}>
                 <Link
                   to={`/subscriptions/${subscribe.id}/edit`}
-                  style={{ marginRight: '1rem', padding: '0.25rem 0.5rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}
+                  style={{ padding: '0.5rem 1.2rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '6px', fontWeight: '500' }}
                 >
-                  Editar
+                  Editar Status
                 </Link>
                 <button
-                  onClick={() => handleUnsubscribe(subscribe.id)}
-                  style={{ padding: '0.25rem 0.5rem', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px' }}
+                  onClick={() => subscribe.id && handleUnsubscribe(subscribe.id)}
+                  style={{ padding: '0.5rem 1.2rem', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '500' }}
                 >
                   Cancelar Inscrição
                 </button>
@@ -212,21 +195,23 @@ const SubscribeList: React.FC = () => {
           ))}
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
+
+      {/* Paginação */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem', padding: '1rem', backgroundColor: '#fff', borderRadius: '10px', border: '1px solid #eee' }}>
         <button
           type="button"
           onClick={() => setPage(page - 1)}
           disabled={!previous}
-          style={{ padding: '0.5rem 1rem', backgroundColor: previous ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '4px' }}
+          style={{ padding: '0.6rem 1.2rem', backgroundColor: previous ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '6px', cursor: previous ? 'pointer' : 'not-allowed' }}
         >
           Anterior
         </button>
-        <div>Página {page} de {Math.max(1, count)}</div>
+        <div style={{ fontWeight: 'bold', color: '#555' }}>Página {page}</div>
         <button
           type="button"
           onClick={() => setPage(page + 1)}
           disabled={!next}
-          style={{ padding: '0.5rem 1rem', backgroundColor: next ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '4px' }}
+          style={{ padding: '0.6rem 1.2rem', backgroundColor: next ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '6px', cursor: next ? 'pointer' : 'not-allowed' }}
         >
           Próximo
         </button>
