@@ -14,9 +14,9 @@ const Home: React.FC = () => {
 
       {user ? (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '2rem' }}>
-          <div style={{ border: '1px solid #ddd', padding: '1.5rem', borderRadius: '8px', backgroundColor: '#f8f9fa' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', border: '1px solid #ddd', padding: '1.5rem', borderRadius: '8px', backgroundColor: '#f8f9fa' }}>
             <h3 style={{ marginBottom: '1rem', color: '#007bff' }}>📅 Eventos</h3>
-            <p style={{ marginBottom: '1rem', color: '#666' }}>Gerencie todos os eventos disponíveis</p>
+            <p style={{ marginBottom: '1rem', color: '#666', flex: 1 }}>Gerencie todos os eventos disponíveis</p>
             <Link
               to="/events"
               style={{
@@ -33,9 +33,9 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div style={{ border: '1px solid #ddd', padding: '1.5rem', borderRadius: '8px', backgroundColor: '#f8f9fa' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', border: '1px solid #ddd', padding: '1.5rem', borderRadius: '8px', backgroundColor: '#f8f9fa' }}>
             <h3 style={{ marginBottom: '1rem', color: '#28a745' }}>📋 Categorias</h3>
-            <p style={{ marginBottom: '1rem', color: '#666' }}>Organize eventos por categorias</p>
+            <p style={{ marginBottom: '1rem', color: '#666', flex: 1 }}>Organize eventos por categorias</p>
             <Link
               to="/categories"
               style={{
@@ -52,9 +52,9 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div style={{ border: '1px solid #ddd', padding: '1.5rem', borderRadius: '8px', backgroundColor: '#f8f9fa' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', border: '1px solid #ddd', padding: '1.5rem', borderRadius: '8px', backgroundColor: '#f8f9fa' }}>
             <h3 style={{ marginBottom: '1rem', color: '#dc3545' }}>🎫 Minhas Inscrições</h3>
-            <p style={{ marginBottom: '1rem', color: '#666' }}>Veja e gerencie suas inscrições</p>
+            <p style={{ marginBottom: '1rem', color: '#666', flex: 1 }}>Veja e gerencie suas inscrições</p>
             <Link
               to="/subscriptions"
               style={{

@@ -6,40 +6,31 @@ const CategoryList: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [page, setPage] = useState(1);
-  const [count, setCount] = useState(0);
-  const [next, setNext] = useState<string | null>(null);
-  const [previous, setPrevious] = useState<string | null>(null);
 
-  const loadCategories = async (pageNumber: number) => {
+  const loadCategories = async () => {
     setLoading(true);
     try {
-      const data = await categoryAPI.getCategories(pageNumber);
+      const data = await categoryAPI.getCategories();
       setCategories(data.results || []);
-      setCount(data.count);
-      setNext(data.next);
-      setPrevious(data.previous);
-      setError('Falha ao carregar categorias');
+      setError('');
     } catch (err) {
       console.error('Erro ao carregar categorias:', err);
-      setError('Falha ao carregar categorias');
+      setCategories([]);
+      setError('Falha ao carregar categorias.');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    const load = async () => {
-      await loadCategories(page);
-    };
-    load();
-  }, [page]);
+    loadCategories();
+  }, []);
 
   const handleDelete = async (id: number) => {
     if (window.confirm('Tem certeza que deseja deletar esta categoria?')) {
       try {
         await categoryAPI.deleteCategory(id);
-        loadCategories(page); // Reload the current page after deletion
+        loadCategories();
       } catch (err) {
         console.error('Erro ao deletar categoria:', err);
         setError('Falha ao deletar categoria');
@@ -48,7 +39,6 @@ const CategoryList: React.FC = () => {
   };
 
   if (loading) return <div>Carregando...</div>;
-  if (error) return <div>Erro: {error}</div>;
 
   return (
     <div style={{ padding: '2rem' }}>
@@ -69,8 +59,14 @@ const CategoryList: React.FC = () => {
         </Link>
       </div>
 
+      {error && (
+        <div style={{ marginBottom: '1rem', color: '#dc3545', fontWeight: 'bold' }}>
+          {error}
+        </div>
+      )}
+
       {categories.length === 0 ? (
-        <p>Nenhuma categoria encontrada.</p>
+        <p style={{ color: '#000' }}>Nenhuma categoria encontrada.</p>
       ) : (
         <div>
           {categories.map(category => (
@@ -94,25 +90,6 @@ const CategoryList: React.FC = () => {
           ))}
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
-        <button
-          type="button"
-          onClick={() => setPage(page - 1)}
-          disabled={!previous}
-          style={{ padding: '0.5rem 1rem', backgroundColor: previous ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '4px' }}
-        >
-          Anterior
-        </button>
-        <div>Página {page} de {Math.max(1, count)}</div>
-        <button
-          type="button"
-          onClick={() => setPage(page + 1)}
-          disabled={!next}
-          style={{ padding: '0.5rem 1rem', backgroundColor: next ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '4px' }}
-        >
-          Próximo
-        </button>
-      </div>
     </div>
   );
 };
