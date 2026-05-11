@@ -94,11 +94,13 @@ const CategoryForm: React.FC = () => {
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <button
             type="submit"
             disabled={loading}
             style={{
+              flex: 1,
+              maxWidth: '200px',
               padding: '0.75rem 1.5rem',
               backgroundColor: '#28a745',
               color: 'white',
@@ -115,6 +117,8 @@ const CategoryForm: React.FC = () => {
             type="button"
             onClick={() => navigate('/categories')}
             style={{
+              flex: 1,
+              maxWidth: '200px',
               padding: '0.75rem 1.5rem',
               backgroundColor: '#6c757d',
               color: 'white',

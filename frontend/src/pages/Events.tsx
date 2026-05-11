@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { getEvents, deleteEvent } from "../services/eventsService";
-import { Event } from "../types/events";
+import { Event, PaginatedResponse } from "../types/events";
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [next, setNext] = useState<string | null>(null);
+  const [previous, setPrevious] = useState<string | null>(null);
 
-  const loadEvents = async () => {
+  const loadEvents = async (pageNumber: number = 1) => {
+    setLoading(true);
     try {
-      const data = await getEvents();
-      setEvents(data);
+      const data: PaginatedResponse<Event> = await getEvents(pageNumber);
+      setEvents(data.results);
+      setNext(data.next);
+      setPrevious(data.previous);
     } catch (error) {
       alert("Erro ao carregar eventos");
     } finally {
@@ -18,13 +24,13 @@ export default function Events() {
     }
   };
 
-  useEffect(() => { loadEvents(); }, []);
+  useEffect(() => { loadEvents(page); }, [page]);
 
   const handleDelete = async (id: number) => {
     if (!confirm("Deseja realmente excluir este evento?")) return;
     try {
       await deleteEvent(id);
-      loadEvents();
+      loadEvents(page);
     } catch (error) { alert("Erro ao deletar"); }
   };
 
@@ -44,10 +50,13 @@ export default function Events() {
           <div key={event.id} style={{ backgroundColor: '#fff', border: '1px solid #ddd', padding: '1.5rem', borderRadius: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
             <h3 style={{ color: '#007bff', margin: '0 0 0.5rem 0' }}>{event.title}</h3>
             <p style={{ color: '#666', marginBottom: '1rem' }}>{event.descriptions}</p>
-            <div style={{ fontSize: '0.9rem', color: '#888', display: 'flex', gap: '1rem' }}>
+            <div style={{ fontSize: '0.9rem', color: '#888', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <span>📅 {new Date(event.date_time).toLocaleDateString()}</span>
               <span>📍 {event.local}</span>
               <span>👥 {event.vagas} vagas</span>
+              {event.category && event.category.length > 0 && (
+                <span>🏷️ {event.category.map(cat => cat.name).join(', ')}</span>
+              )}
             </div>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.8rem' }}>
               <Link to={`/events/${event.id}/edit`} style={{ padding: '0.5rem 1.2rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '6px' }}>Editar</Link>
@@ -55,6 +64,27 @@ export default function Events() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Paginação */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem', padding: '1rem', backgroundColor: '#fff', borderRadius: '10px', border: '1px solid #eee' }}>
+        <button
+          type="button"
+          onClick={() => setPage(page - 1)}
+          disabled={!previous}
+          style={{ padding: '0.6rem 1.2rem', backgroundColor: previous ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '6px', cursor: previous ? 'pointer' : 'not-allowed' }}
+        >
+          Anterior
+        </button>
+        <div style={{ fontWeight: 'bold', color: '#555' }}>Página {page}</div>
+        <button
+          type="button"
+          onClick={() => setPage(page + 1)}
+          disabled={!next}
+          style={{ padding: '0.6rem 1.2rem', backgroundColor: next ? '#007bff' : '#ccc', color: 'white', border: 'none', borderRadius: '6px', cursor: next ? 'pointer' : 'not-allowed' }}
+        >
+          Próximo
+        </button>
       </div>
     </div>
   );

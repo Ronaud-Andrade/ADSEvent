@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { eventsAPI, subscribeAPI, Subscribe } from '../lib/api';
 // Importando o tipo Event oficial do seu projeto para evitar conflitos de duplicidade
 import { Event } from "../types/events";
 
 const SubscribeList: React.FC = () => {
   const [subscribes, setSubscribes] = useState<Subscribe[]>([]);
+  const [allUserSubscribes, setAllUserSubscribes] = useState<Subscribe[]>([]);
   const [availableEvents, setAvailableEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [selectedEventId, setSelectedEventId] = useState<number | ''>('');
@@ -13,7 +13,6 @@ const SubscribeList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
-  const [, setCount] = useState(0);
   const [next, setNext] = useState<string | null>(null);
   const [previous, setPrevious] = useState<string | null>(null);
 
@@ -22,6 +21,7 @@ const SubscribeList: React.FC = () => {
   }, [page]);
 
   useEffect(() => {
+    loadAllUserSubscribes();
     loadAvailableEvents();
   }, []);
 
@@ -37,7 +37,6 @@ const SubscribeList: React.FC = () => {
     try {
       const data = await subscribeAPI.getUserSubscribes(pageNumber);
       setSubscribes(data.results || []);
-      setCount(data.count);
       setNext(data.next);
       setPrevious(data.previous);
       setError('');
@@ -46,6 +45,27 @@ const SubscribeList: React.FC = () => {
       setError('Falha ao carregar inscrições');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadAllUserSubscribes = async () => {
+    try {
+      let currentPage = 1;
+      let allSubscribes: Subscribe[] = [];
+      let hasNext = true;
+
+      while (hasNext) {
+        const response = await subscribeAPI.getUserSubscribes(currentPage);
+        allSubscribes = [...allSubscribes, ...(response.results || [])];
+        if (!response.next) {
+          hasNext = false;
+        } else {
+          currentPage += 1;
+        }
+      }
+      setAllUserSubscribes(allSubscribes);
+    } catch (err) {
+      console.error('Erro ao carregar todas as inscrições:', err);
     }
   };
 
@@ -72,7 +92,7 @@ const SubscribeList: React.FC = () => {
 
   const isAlreadySubscribed = (eventId: number | undefined) => {
     if (!eventId) return false;
-    return subscribes.some((sub) => sub.events.id === eventId && sub.active);
+    return allUserSubscribes.some((sub) => sub.events.id === eventId && sub.active);
   };
 
   const handleCreateSubscription = async () => {
@@ -85,6 +105,7 @@ const SubscribeList: React.FC = () => {
       // Enviando o ID no formato de objeto esperado pela sua API
       await subscribeAPI.createSubscribe({ events_id: selectedEventId });
       await loadSubscribes(page);
+      await loadAllUserSubscribes();
       setSelectedEventId('');
       setError('');
     } catch (err) {
@@ -98,6 +119,7 @@ const SubscribeList: React.FC = () => {
       try {
         await subscribeAPI.deleteSubscribe(id);
         await loadSubscribes(page);
+        await loadAllUserSubscribes();
       } catch (err) {
         setError('Falha ao cancelar inscrição');
       }
@@ -175,15 +197,12 @@ const SubscribeList: React.FC = () => {
                 <span>📅 <strong>Data:</strong> {formatEventDateTime(subscribe.events.date_time)}</span>
                 <span>📍 <strong>Local:</strong> {subscribe.events.local}</span>
                 <span>👥 <strong>Capacidade:</strong> {subscribe.events.vagas}</span>
+                {subscribe.events.category && subscribe.events.category.length > 0 && (
+                  <span>🏷️ {subscribe.events.category.map(cat => cat.name).join(', ')}</span>
+                )}
               </div>
 
               <div style={{ display: 'flex', gap: '0.8rem', borderTop: '1px solid #eee', paddingTop: '1.2rem' }}>
-                <Link
-                  to={`/subscriptions/${subscribe.id}/edit`}
-                  style={{ padding: '0.5rem 1.2rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '6px', fontWeight: '500' }}
-                >
-                  Editar Status
-                </Link>
                 <button
                   onClick={() => subscribe.id && handleUnsubscribe(subscribe.id)}
                   style={{ padding: '0.5rem 1.2rem', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '500' }}

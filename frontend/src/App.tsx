@@ -8,7 +8,6 @@ import EventForm from './pages/EventForm';
 import CategoryList from './pages/CategoryList';
 import CategoryForm from './pages/CategoryForm';
 import SubscribeList from './pages/SubscribeList';
-import SubscribeEdit from './pages/SubscribeEdit';
 import Login from './pages/Login';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -37,7 +36,6 @@ function App() {
             <Route path="/categories/new" element={<ProtectedRoute><CategoryForm /></ProtectedRoute>} />
             <Route path="/categories/:id/edit" element={<ProtectedRoute><CategoryForm /></ProtectedRoute>} />
             <Route path="/subscriptions" element={<ProtectedRoute><SubscribeList /></ProtectedRoute>} />
-            <Route path="/subscriptions/:id/edit" element={<ProtectedRoute><SubscribeEdit /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>

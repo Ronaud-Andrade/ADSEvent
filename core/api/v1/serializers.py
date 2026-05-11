@@ -14,9 +14,16 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'first_name', 'last_name']
 
 class EventSerializer(serializers.ModelSerializer):  # Cria um serializer para o modelo Events.
+    category = CategorySerializer(many=True, read_only=True)  # Inclui os dados completos das categorias
+    category_ids = serializers.PrimaryKeyRelatedField(
+        queryset=CategoryEvent.objects.all(),
+        write_only=True,
+        many=True,
+        source='category'
+    )
     class Meta:  # Configurações internas do serializer.
         model = Events  # Modelo vinculado ao serializer.
-        fields = '__all__'  # Usa todos os campos do modelo.
+        fields = ['id', 'title', 'descriptions', 'date_time', 'vagas', 'local', 'category', 'category_ids', 'created_at', 'updated_at', 'deleted_at', 'is_deleted']
 
 class SubscribeSerializer(serializers.ModelSerializer):  # Cria um serializer para o modelo Subscribe.
     events = EventSerializer(read_only=True)  # Inclui os dados completos do evento
