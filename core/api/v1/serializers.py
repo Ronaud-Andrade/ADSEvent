@@ -16,7 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_admin']
     
     def get_is_admin(self, obj):
-        """Retorna o valor de is_admin do UserProfile do usuário"""
+        """Retorna o valor de is_admin do UserProfile do usuário ou True para superusers."""
+        if obj.is_superuser:
+            return True
         try:
             if hasattr(obj, 'profile') and obj.profile:
                 return obj.profile.is_admin

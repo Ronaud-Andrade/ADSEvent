@@ -34,7 +34,11 @@ def create_user_profile(sender, instance, created, **kwargs):
     Cria automaticamente um UserProfile quando um novo User é criado.
     """
     if created:
-        UserProfile.objects.get_or_create(user=instance)
+        profile, _ = UserProfile.objects.get_or_create(user=instance)
+        if instance.is_superuser:
+            profile.is_admin = True
+            profile.role = 'admin'
+            profile.save()
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_user_profile(sender, instance, **kwargs):
@@ -42,6 +46,9 @@ def save_user_profile(sender, instance, **kwargs):
     Salva automaticamente o UserProfile quando o User é salvo.
     """
     if hasattr(instance, 'profile'):
+        if instance.is_superuser and not instance.profile.is_admin:
+            instance.profile.is_admin = True
+            instance.profile.role = 'admin'
         instance.profile.save()
 
 class BaseModel(models.Model):
