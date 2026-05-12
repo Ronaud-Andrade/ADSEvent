@@ -69,7 +69,6 @@ coverage.xml
 
 # Logs
 logs/
-*.log
 
 # Editor temp files
 *~
