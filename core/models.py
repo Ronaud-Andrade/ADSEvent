@@ -1,8 +1,48 @@
 from django.utils.timezone import now
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
+
+class UserProfile(models.Model):
+    """
+    Modelo para estender o User com informações de permissão.
+    """
+    ROLE_CHOICES = [
+        ('admin', 'Administrador'),
+        ('user', 'Usuário Comum'),
+    ]
+    
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+    is_admin = models.BooleanField(default=False, help_text="Marca se o usuário tem permissão de administrador")
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user', help_text="Papel/Tipo do usuário")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"Perfil de {self.user.username} - {'Admin' if self.is_admin else 'User'}"
+    
+    class Meta:
+        verbose_name = "Perfil de Usuário"
+        verbose_name_plural = "Perfis de Usuário"
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_user_profile(sender, instance, created, **kwargs):
+    """
+    Cria automaticamente um UserProfile quando um novo User é criado.
+    """
+    if created:
+        UserProfile.objects.get_or_create(user=instance)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_user_profile(sender, instance, **kwargs):
+    """
+    Salva automaticamente o UserProfile quando o User é salvo.
+    """
+    if hasattr(instance, 'profile'):
+        instance.profile.save()
 
 class BaseModel(models.Model):
     

@@ -9,6 +9,8 @@ import {
   useNavigate,
 } from 'react-router-dom';
 
+import { useAuth } from '../hooks/useAuth';
+
 import {
   getEvents,
   deleteEvent,
@@ -37,6 +39,8 @@ import {
 } from '../lib/ui';
 
 const Events: React.FC = () => {
+  const { user } = useAuth();
+  
   const [events, setEvents] =
     useState<Event[]>([]);
 
@@ -157,12 +161,14 @@ const Events: React.FC = () => {
           Eventos
         </Heading>
 
-        <LinkButton
-          variant="success"
-          to="/events/new"
-        >
-          + Novo Evento
-        </LinkButton>
+        {user?.is_admin && (
+          <LinkButton
+            variant="success"
+            to="/events/new"
+          >
+            + Novo Evento
+          </LinkButton>
+        )}
       </FlexBetween>
 
       {error && (
@@ -235,29 +241,33 @@ const Events: React.FC = () => {
               </InfoRow>
 
               <CardFooter>
-                <SmallButton
-                  variant="primary"
-                  onClick={() =>
-                    event.id &&
-                    navigate(
-                      `/events/${event.id}/edit`
-                    )
-                  }
-                >
-                  Editar
-                </SmallButton>
+                {user?.is_admin && (
+                  <>
+                    <SmallButton
+                      variant="primary"
+                      onClick={() =>
+                        event.id &&
+                        navigate(
+                          `/events/${event.id}/edit`
+                        )
+                      }
+                    >
+                      Editar
+                    </SmallButton>
 
-                <SmallButton
-                  variant="danger"
-                  onClick={() =>
-                    event.id &&
-                    handleDelete(
-                      event.id
-                    )
-                  }
-                >
-                  Deletar
-                </SmallButton>
+                    <SmallButton
+                      variant="danger"
+                      onClick={() =>
+                        event.id &&
+                        handleDelete(
+                          event.id
+                        )
+                      }
+                    >
+                      Deletar
+                    </SmallButton>
+                  </>
+                )}
               </CardFooter>
             </Card>
           ))}

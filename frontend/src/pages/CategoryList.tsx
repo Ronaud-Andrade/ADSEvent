@@ -5,6 +5,8 @@ import React, {
   useEffect
 } from 'react';
 
+import { useAuth } from '../hooks/useAuth';
+
 import { categoryAPI, Category } from '../lib/api';
 
 import {
@@ -21,6 +23,8 @@ import {
 } from '../lib/ui';
 
 const CategoryList: React.FC = () => {
+  const { user } = useAuth();
+  
   const [categories, setCategories] =
     useState<Category[]>([]);
 
@@ -90,12 +94,14 @@ const CategoryList: React.FC = () => {
           Categorias
         </Heading>
 
-        <LinkButton
-          to="/categories/new"
-          variant="success"
-        >
-          + Nova Categoria
-        </LinkButton>
+        {user?.is_admin && (
+          <LinkButton
+            to="/categories/new"
+            variant="success"
+          >
+            + Nova Categoria
+          </LinkButton>
+        )}
       </FlexBetween>
 
       {categories.length === 0 ? (
@@ -121,25 +127,29 @@ const CategoryList: React.FC = () => {
             </Heading>
 
             <CardFooter>
-              <SmallButton
-                variant="primary"
-                onClick={() =>
-                  window.location.assign(
-                    `/categories/${cat.id}/edit`
-                  )
-                }
-              >
-                Editar
-              </SmallButton>
+              {user?.is_admin && (
+                <>
+                  <SmallButton
+                    variant="primary"
+                    onClick={() =>
+                      window.location.assign(
+                        `/categories/${cat.id}/edit`
+                      )
+                    }
+                  >
+                    Editar
+                  </SmallButton>
 
-              <SmallButton
-                variant="danger"
-                onClick={() =>
-                  handleDelete(cat.id)
-                }
-              >
-                Excluir
-              </SmallButton>
+                  <SmallButton
+                    variant="danger"
+                    onClick={() =>
+                      handleDelete(cat.id)
+                    }
+                  >
+                    Excluir
+                  </SmallButton>
+                </>
+              )}
             </CardFooter>
           </Card>
         ))

@@ -28,6 +28,8 @@ export interface User {
   email?: string;
   first_name?: string;
   last_name?: string;
+  is_admin?: boolean; // Indica se o usuário é administrador
+  role?: string; // Papel do usuário: 'admin' ou 'user'
 }
 
 /* Tipagem de categorias */

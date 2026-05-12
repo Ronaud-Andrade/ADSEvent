@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 import { createEvent, updateEvent, getEvent } from '../services/eventsService';
 import { getCategories } from '../services/categoryService';
 import { Event, Category } from '../types/events';
@@ -20,6 +21,7 @@ import {
 export default function EventForm() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const isEditing = Boolean(id);
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -34,6 +36,12 @@ export default function EventForm() {
 
   useEffect(() => {
     const fetchData = async () => {
+      // Redirecionar se não for admin e não estiver editando
+      if (!user?.is_admin && !isEditing) {
+        navigate('/events');
+        return;
+      }
+
       const cats = await getCategories();
       setCategories(cats);
 
@@ -47,7 +55,7 @@ export default function EventForm() {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, isEditing, user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
