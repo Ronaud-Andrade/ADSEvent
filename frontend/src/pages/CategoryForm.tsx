@@ -104,15 +104,10 @@ const CategoryForm: React.FC = () => {
       )}
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1.5rem' }}>
+        <div className="form-group">
           <label
             htmlFor="name"
-            style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-              color: '#333'
-            }}
+            className="form-label"
           >
             Nome:
           </label>
@@ -124,16 +119,7 @@ const CategoryForm: React.FC = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem',
-              backgroundColor: '#fff',
-              color: '#000',
-              boxSizing: 'border-box'
-            }}
+            className="form-control"
           />
         </div>
 
@@ -147,17 +133,10 @@ const CategoryForm: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
+            className="btn btn-success"
             style={{
               flex: 1,
-              maxWidth: '200px',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              cursor: loading ? 'not-allowed' : 'pointer'
+              maxWidth: '200px'
             }}
           >
             {loading
@@ -170,17 +149,10 @@ const CategoryForm: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate('/categories')}
+            className="btn btn-secondary"
             style={{
               flex: 1,
-              maxWidth: '200px',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#6c757d',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              cursor: 'pointer'
+              maxWidth: '200px'
             }}
           >
             Cancelar

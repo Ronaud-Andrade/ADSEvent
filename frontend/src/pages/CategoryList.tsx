@@ -60,14 +60,7 @@ const CategoryList: React.FC = () => {
 
         <Link
           to="/categories/new"
-          style={{
-            padding: '0.8rem 1.2rem',
-            backgroundColor: '#28a745',
-            color: 'white',
-            textDecoration: 'none',
-            borderRadius: '8px',
-            fontWeight: 'bold'
-          }}
+          className="btn btn-success"
         >
           + Nova Categoria
         </Link>
@@ -108,14 +101,10 @@ const CategoryList: React.FC = () => {
           >
             <Link
               to={`/categories/${cat.id}/edit`}
+              className="btn btn-primary"
               style={{
                 padding: '0.4rem 0.8rem',
-                backgroundColor: '#007bff',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '6px',
-                fontSize: '0.9rem',
-                fontWeight: '500'
+                fontSize: '0.9rem'
               }}
             >
               Editar
@@ -125,15 +114,10 @@ const CategoryList: React.FC = () => {
               onClick={() =>
                 handleDelete(cat.id)
               }
+              className="btn btn-danger"
               style={{
                 padding: '0.4rem 0.8rem',
-                backgroundColor: '#dc3545',
-                color: 'white',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: '500'
+                fontSize: '0.9rem'
               }}
             >
               Excluir

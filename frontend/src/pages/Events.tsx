@@ -22,7 +22,7 @@ export default function Events() {
       setEvents(data.results);
       setNext(data.next);
       setPrevious(data.previous);
-    } catch (error) {
+    } catch {
       alert("Erro ao carregar eventos");
     } finally {
       setLoading(false);
@@ -92,14 +92,7 @@ export default function Events() {
 
         <Link
           to="/events/new"
-          style={{
-            padding: '0.8rem 1.5rem',
-            backgroundColor: '#28a745',
-            color: 'white',
-            textDecoration: 'none',
-            borderRadius: '8px',
-            fontWeight: 'bold'
-          }}
+          className="btn btn-success"
         >
           + Novo Evento
         </Link>
@@ -187,14 +180,8 @@ export default function Events() {
             >
               <Link
                 to={`/events/${event.id}/edit`}
-                style={{
-                  padding: '0.5rem 1.2rem',
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  textDecoration: 'none',
-                  borderRadius: '6px',
-                  fontWeight: '500'
-                }}
+                className="btn btn-primary"
+                style={{ padding: '0.5rem 1.2rem' }}
               >
                 Editar
               </Link>
@@ -203,15 +190,8 @@ export default function Events() {
                 onClick={() =>
                   handleDelete(event.id!)
                 }
-                style={{
-                  padding: '0.5rem 1.2rem',
-                  backgroundColor: '#dc3545',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontWeight: '500'
-                }}
+                className="btn btn-danger"
+                style={{ padding: '0.5rem 1.2rem' }}
               >
                 Excluir
               </button>

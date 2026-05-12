@@ -15,17 +15,6 @@ const Login: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const inputStyle = {
-    width: '100%',
-    padding: '0.8rem',
-    borderRadius: '8px',
-    border: '1px solid #ccc',
-    fontSize: '1rem',
-    boxSizing: 'border-box' as const,
-    marginBottom: '1rem',
-    backgroundColor: '#fff'
-  };
-
   const handleSubmit = async (
     e: React.FormEvent
   ) => {
@@ -74,47 +63,51 @@ const Login: React.FC = () => {
         </h2>
 
         <form onSubmit={handleSubmit}>
-          <label
-            style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-              color: '#555'
-            }}
-          >
-            Usuário
-          </label>
+          <div className="form-group">
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontWeight: 'bold',
+                color: '#555'
+              }}
+            >
+              Usuário
+            </label>
 
-          <input
-            type="text"
-            value={username}
-            onChange={(e) =>
-              setUsername(e.target.value)
-            }
-            style={inputStyle}
-            required
-          />
+            <input
+              className="form-control"
+              type="text"
+              value={username}
+              onChange={(e) =>
+                setUsername(e.target.value)
+              }
+              required
+            />
+          </div>
 
-          <label
-            style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-              color: '#555'
-            }}
-          >
-            Senha
-          </label>
+          <div className="form-group">
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontWeight: 'bold',
+                color: '#555'
+              }}
+            >
+              Senha
+            </label>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
-            style={inputStyle}
-            required
-          />
+            <input
+              className="form-control"
+              type="password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              required
+            />
+          </div>
 
           {error && (
             <div
@@ -131,16 +124,9 @@ const Login: React.FC = () => {
 
           <button
             type="submit"
+            className="btn btn-primary"
             style={{
-              width: '100%',
-              padding: '1rem',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px',
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              cursor: 'pointer'
+              width: '100%'
             }}
           >
             Entrar

@@ -16,17 +16,6 @@ const Home: React.FC = () => {
     transition: 'transform 0.2s'
   };
 
-  const buttonStyle = (color: string) => ({
-    display: 'inline-block',
-    padding: '0.8rem 1.5rem',
-    backgroundColor: color,
-    color: 'white',
-    textDecoration: 'none',
-    borderRadius: '8px',
-    fontWeight: 'bold' as const,
-    textAlign: 'center' as const
-  });
-
   return (
     <div
       style={{
@@ -89,7 +78,7 @@ const Home: React.FC = () => {
 
             <Link
               to="/events"
-              style={buttonStyle('#007bff')}
+              className="btn btn-primary"
             >
               Ver Eventos
             </Link>
@@ -118,7 +107,7 @@ const Home: React.FC = () => {
 
             <Link
               to="/categories"
-              style={buttonStyle('#28a745')}
+              className="btn btn-success"
             >
               Categorias
             </Link>
@@ -147,7 +136,7 @@ const Home: React.FC = () => {
 
             <Link
               to="/subscriptions"
-              style={buttonStyle('#dc3545')}
+              className="btn btn-danger"
             >
               Inscrições
             </Link>
@@ -174,7 +163,7 @@ const Home: React.FC = () => {
 
           <Link
             to="/login"
-            style={buttonStyle('#007bff')}
+            className="btn btn-primary"
           >
             Entrar no Sistema
           </Link>

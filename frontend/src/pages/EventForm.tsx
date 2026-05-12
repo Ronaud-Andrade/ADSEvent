@@ -40,30 +40,6 @@ export default function EventForm() {
     fetchData();
   }, [id]);
 
-  const labelStyle = {
-    display: "block",
-    marginBottom: "0.5rem",
-    fontWeight: "bold",
-    color: "#555",
-    textAlign: "left" as const
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "0.8rem",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    marginBottom: "1.2rem",
-    boxSizing: "border-box" as const,
-    backgroundColor: "#fff",
-    fontSize: "1rem"
-  };
-
-  const formGroupStyle = {
-    maxWidth: "500px",
-    margin: "0 auto"
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -110,12 +86,12 @@ export default function EventForm() {
       </h2>
 
       <form onSubmit={handleSubmit}>
-        <div style={formGroupStyle}>
-          <label style={labelStyle}>Título</label>
+        <div className="form-group">
+          <label className="form-label">Título</label>
 
           <input
+            className="form-control"
             type="text"
-            style={inputStyle}
             value={event.title}
             onChange={(e) =>
               setEvent({
@@ -127,12 +103,12 @@ export default function EventForm() {
           />
         </div>
 
-        <div style={formGroupStyle}>
-          <label style={labelStyle}>Descrição</label>
+        <div className="form-group">
+          <label className="form-label">Descrição</label>
 
           <textarea
+            className="form-control"
             style={{
-              ...inputStyle,
               height: "100px",
               resize: "none"
             }}
@@ -147,23 +123,14 @@ export default function EventForm() {
           />
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "2rem",
-            justifyContent: "center",
-            alignItems: "start",
-            maxWidth: "500px",
-            margin: "0 auto 1rem auto"
-          }}
-        >
-          <div style={{ maxWidth: "240px", width: "100%" }}>
-            <label style={labelStyle}>Data/Hora</label>
+        <div className="grid-2-cols" style={{ maxWidth: "500px", margin: "0 auto 1rem auto" }}>
+          <div className="form-group">
+            <label className="form-label">Data/Hora</label>
 
             <input
+              className="form-control"
               type="datetime-local"
-              style={inputStyle}
+              style={{ marginBottom: "0" }}
               value={event.date_time?.slice(0, 16)}
               onChange={(e) =>
                 setEvent({
@@ -175,13 +142,14 @@ export default function EventForm() {
             />
           </div>
 
-          <div style={{ maxWidth: "240px", width: "100%" }}>
-            <label style={labelStyle}>Vagas</label>
+          <div className="form-group">
+            <label className="form-label">Vagas</label>
 
             <input
+              className="form-control"
               type="number"
               min="0"
-              style={inputStyle}
+              style={{ marginBottom: "0" }}
               value={event.vagas}
               onChange={(e) =>
                 setEvent({
@@ -194,12 +162,12 @@ export default function EventForm() {
           </div>
         </div>
 
-        <div style={formGroupStyle}>
-          <label style={labelStyle}>Local</label>
+        <div className="form-group">
+          <label className="form-label">Local</label>
 
           <input
+            className="form-control"
             type="text"
-            style={inputStyle}
             value={event.local}
             onChange={(e) =>
               setEvent({
@@ -211,13 +179,13 @@ export default function EventForm() {
           />
         </div>
 
-        <div style={formGroupStyle}>
-          <label style={labelStyle}>Categorias</label>
+        <div className="form-group">
+          <label className="form-label">Categorias</label>
 
           <select
+            className="form-control"
             multiple
             style={{
-              ...inputStyle,
               height: "120px"
             }}
             value={event.category_ids?.map(String)}
@@ -254,16 +222,8 @@ export default function EventForm() {
         >
           <button
             type="submit"
-            style={{
-              flex: 1,
-              padding: "1rem",
-              backgroundColor: "#28a745",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              fontWeight: "bold",
-              cursor: "pointer"
-            }}
+            className="btn btn-success"
+            style={{ flex: 1 }}
           >
             Salvar
           </button>
@@ -271,16 +231,8 @@ export default function EventForm() {
           <button
             type="button"
             onClick={() => navigate("/events")}
-            style={{
-              flex: 1,
-              padding: "1rem",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              fontWeight: "bold",
-              cursor: "pointer"
-            }}
+            className="btn btn-secondary"
+            style={{ flex: 1 }}
           >
             Cancelar
           </button>

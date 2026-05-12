@@ -12,30 +12,16 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav
-      style={{
-        backgroundColor: '#f8f9fa',
-        borderBottom: '1px solid #ddd',
-        padding: '1rem 2rem',
-        marginBottom: '2rem',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+    <nav className="nav">
+      <div className="nav-content">
         <Link
           to="/"
+          className="nav-link"
           style={{
             fontSize: '1.5rem',
             fontWeight: 'bold',
-            color: '#007bff',
-            textDecoration: 'none',
+            color: 'var(--primary)',
+            textDecoration: 'none'
           }}
         >
           ADS Event
@@ -43,35 +29,36 @@ const Navigation: React.FC = () => {
 
         {user && (
           <ul
+            className="nav-links"
             style={{
               display: 'flex',
               listStyle: 'none',
               gap: '1.5rem',
               margin: 0,
               padding: 0,
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <li>
-              <Link to="/" style={navLinkStyle}>
+              <Link to="/" className="nav-link">
                 Início
               </Link>
             </li>
 
             <li>
-              <Link to="/events" style={navLinkStyle}>
+              <Link to="/events" className="nav-link">
                 Eventos
               </Link>
             </li>
 
             <li>
-              <Link to="/categories" style={navLinkStyle}>
+              <Link to="/categories" className="nav-link">
                 Categorias
               </Link>
             </li>
 
             <li>
-              <Link to="/subscriptions" style={navLinkStyle}>
+              <Link to="/subscriptions" className="nav-link">
                 Inscrições
               </Link>
             </li>
@@ -79,15 +66,8 @@ const Navigation: React.FC = () => {
             <li>
               <button
                 onClick={handleLogout}
-                style={{
-                  padding: '0.5rem 1rem',
-                  backgroundColor: '#dc3545',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                }}
+                className="btn btn-danger"
+                style={{ padding: '0.5rem 1rem' }}
               >
                 Sair
               </button>
@@ -97,15 +77,6 @@ const Navigation: React.FC = () => {
       </div>
     </nav>
   );
-};
-
-const navLinkStyle: React.CSSProperties = {
-  color: '#333',
-  textDecoration: 'none',
-  fontWeight: '500',
-  padding: '0.5rem 0.75rem',
-  borderRadius: '4px',
-  transition: 'background-color 0.2s',
 };
 
 export default Navigation;

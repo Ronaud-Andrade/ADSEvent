@@ -297,16 +297,9 @@ const SubscribeList: React.FC = () => {
           type="button"
           onClick={handleCreateSubscription}
           disabled={!selectedEventId}
+          className="btn btn-success"
           style={{
-            padding: '0.7rem 1.5rem',
-            backgroundColor: '#28a745',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontWeight: 'bold',
-            cursor: selectedEventId
-              ? 'pointer'
-              : 'not-allowed'
+            padding: '0.7rem 1.5rem'
           }}
         >
           + Inscrever-se
@@ -417,14 +410,9 @@ const SubscribeList: React.FC = () => {
                       subscribe.id
                     )
                   }
+                  className="btn btn-danger"
                   style={{
-                    padding: '0.5rem 1.2rem',
-                    backgroundColor: '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontWeight: '500'
+                    padding: '0.5rem 1.2rem'
                   }}
                 >
                   Cancelar Inscrição
