@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { categoryAPI } from '../lib/api';
+import {
+  PageContainer,
+  FormCard,
+  FormGroup,
+  FormLabel,
+  FormControl,
+  Button,
+  ButtonRow,
+  MessageBox,
+  Heading
+} from '../lib/ui';
 
 const CategoryForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -69,97 +80,47 @@ const CategoryForm: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        padding: '2rem',
-        maxWidth: '600px',
-        margin: '2rem auto',
-        backgroundColor: '#f8f9fa',
-        borderRadius: '8px',
-        border: '1px solid #ddd',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
-      }}
-    >
-      <h1
-        style={{
-          marginBottom: '1.5rem',
-          textAlign: 'center',
-          color: '#333'
-        }}
-      >
-        {isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}
-      </h1>
+    <PageContainer>
+      <FormCard>
+        <Heading>
+          {isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}
+        </Heading>
 
-      {error && (
-        <div
-          style={{
-            marginBottom: '1rem',
-            color: '#dc3545',
-            fontWeight: 'bold',
-            textAlign: 'center'
-          }}
-        >
-          {error}
-        </div>
-      )}
+        {error && <MessageBox>{error}</MessageBox>}
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label
-            htmlFor="name"
-            className="form-label"
-          >
-            Nome:
-          </label>
+        <form onSubmit={handleSubmit}>
+          <FormGroup>
+            <FormLabel htmlFor="name">Nome:</FormLabel>
+            <FormControl
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </FormGroup>
 
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="form-control"
-          />
-        </div>
+          <ButtonRow>
+            <Button type="submit" variant="success" disabled={loading}>
+              {loading
+                ? 'Salvando...'
+                : isEditing
+                ? 'Atualizar Categoria'
+                : 'Criar Categoria'}
+            </Button>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: '1rem',
-            justifyContent: 'center'
-          }}
-        >
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn btn-success"
-            style={{
-              flex: 1,
-              maxWidth: '200px'
-            }}
-          >
-            {loading
-              ? 'Salvando...'
-              : isEditing
-              ? 'Atualizar Categoria'
-              : 'Criar Categoria'}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => navigate('/categories')}
-            className="btn btn-secondary"
-            style={{
-              flex: 1,
-              maxWidth: '200px'
-            }}
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => navigate('/categories')}
+            >
+              Cancelar
+            </Button>
+          </ButtonRow>
+        </form>
+      </FormCard>
+    </PageContainer>
   );
 };
 

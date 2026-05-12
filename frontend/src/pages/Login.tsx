@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import {
+  CenteredScreen,
+  FormCard,
+  Heading,
+  FormGroup,
+  FormLabel,
+  FormControl,
+  Button,
+  MessageBox
+} from '../lib/ui';
 
 const Login: React.FC = () => {
   const [username, setUsername] =
@@ -31,109 +41,39 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '70vh',
-        padding: '1rem'
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '400px',
-          width: '100%',
-          padding: '2.5rem',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '12px',
-          boxShadow:
-            '0 10px 25px rgba(0,0,0,0.1)',
-          border: '1px solid #ddd'
-        }}
-      >
-        <h2
-          style={{
-            textAlign: 'center',
-            marginBottom: '2rem',
-            color: '#333'
-          }}
-        >
-          Login ADS Event
-        </h2>
+    <CenteredScreen>
+      <FormCard>
+        <Heading>ADS Event</Heading>
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label
-              style={{
-                display: 'block',
-                marginBottom: '0.5rem',
-                fontWeight: 'bold',
-                color: '#555'
-              }}
-            >
-              Usuário
-            </label>
-
-            <input
-              className="form-control"
+          <FormGroup>
+            <FormLabel>Usuário</FormLabel>
+            <FormControl
               type="text"
               value={username}
-              onChange={(e) =>
-                setUsername(e.target.value)
-              }
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
-          </div>
+          </FormGroup>
 
-          <div className="form-group">
-            <label
-              style={{
-                display: 'block',
-                marginBottom: '0.5rem',
-                fontWeight: 'bold',
-                color: '#555'
-              }}
-            >
-              Senha
-            </label>
-
-            <input
-              className="form-control"
+          <FormGroup>
+            <FormLabel>Senha</FormLabel>
+            <FormControl
               type="password"
               value={password}
-              onChange={(e) =>
-                setPassword(e.target.value)
-              }
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </div>
+          </FormGroup>
 
-          {error && (
-            <div
-              style={{
-                color: '#dc3545',
-                textAlign: 'center',
-                marginBottom: '1rem',
-                fontWeight: '500'
-              }}
-            >
-              {error}
-            </div>
-          )}
+          {error && <MessageBox>{error}</MessageBox>}
 
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{
-              width: '100%'
-            }}
-          >
+          <Button type="submit" variant="primary" style={{ width: '100%' }}>
             Entrar
-          </button>
+          </Button>
         </form>
-      </div>
-    </div>
+      </FormCard>
+    </CenteredScreen>
   );
 };
 

@@ -1,9 +1,22 @@
+// Navigation.tsx
+
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+
+import {
+  NavBar,
+  NavInner,
+  LogoLink,
+  NavLinks,
+  NavItem,
+  NavAnchor,
+  LogoutButton
+} from '../lib/ui';
 
 const Navigation: React.FC = () => {
   const { user, logout } = useAuth();
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -12,70 +25,50 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className="nav">
-      <div className="nav-content">
-        <Link
-          to="/"
-          className="nav-link"
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            color: 'var(--primary)',
-            textDecoration: 'none'
-          }}
-        >
+    <NavBar>
+      <NavInner>
+        <LogoLink to="/">
           ADS Event
-        </Link>
+        </LogoLink>
 
         {user && (
-          <ul
-            className="nav-links"
-            style={{
-              display: 'flex',
-              listStyle: 'none',
-              gap: '1.5rem',
-              margin: 0,
-              padding: 0,
-              alignItems: 'center'
-            }}
-          >
-            <li>
-              <Link to="/" className="nav-link">
+          <NavLinks>
+            <NavItem>
+              <NavAnchor to="/">
                 Início
-              </Link>
-            </li>
+              </NavAnchor>
+            </NavItem>
 
-            <li>
-              <Link to="/events" className="nav-link">
+            <NavItem>
+              <NavAnchor to="/events">
                 Eventos
-              </Link>
-            </li>
+              </NavAnchor>
+            </NavItem>
 
-            <li>
-              <Link to="/categories" className="nav-link">
+            <NavItem>
+              <NavAnchor to="/categories">
                 Categorias
-              </Link>
-            </li>
+              </NavAnchor>
+            </NavItem>
 
-            <li>
-              <Link to="/subscriptions" className="nav-link">
+            <NavItem>
+              <NavAnchor to="/subscriptions">
                 Inscrições
-              </Link>
-            </li>
+              </NavAnchor>
+            </NavItem>
 
-            <li>
-              <button
+            <NavItem>
+              <LogoutButton
+                variant="danger"
                 onClick={handleLogout}
-                className="btn btn-danger"
-                style={{ padding: '0.5rem 1rem' }}
               >
                 Sair
-              </button>
-            </li>
-          </ul>
+              </LogoutButton>
+            </NavItem>
+          </NavLinks>
         )}
-      </div>
-    </nav>
+      </NavInner>
+    </NavBar>
   );
 };
 

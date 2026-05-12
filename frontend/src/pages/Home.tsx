@@ -1,175 +1,107 @@
+// Home.tsx
+
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+
+import {
+  PageContainer,
+  Heading,
+  SubTitle,
+  CardGrid,
+  Card,
+  CardTitle,
+  CardDescription,
+  LinkButton
+} from '../lib/ui';
 
 const Home: React.FC = () => {
   const { user } = useAuth();
 
-  const cardStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    border: '1px solid #ddd',
-    padding: '2rem',
-    borderRadius: '12px',
-    backgroundColor: '#f8f9fa',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-    transition: 'transform 0.2s'
-  };
-
   return (
-    <div
-      style={{
-        padding: '3rem 1rem',
-        textAlign: 'center',
-        maxWidth: '1000px',
-        margin: '0 auto'
-      }}
-    >
-      <h1
-        style={{
-          fontSize: '2.5rem',
-          marginBottom: '1rem',
-          color: '#2c3e50'
-        }}
-      >
+    <PageContainer>
+      <Heading>
         ADS Event
-      </h1>
+      </Heading>
 
-      <p
-        style={{
-          fontSize: '1.2rem',
-          marginBottom: '3rem',
-          color: '#666'
-        }}
-      >
-        Gerenciamento profissional de eventos e
-        inscrições acadêmicas.
-      </p>
+      <SubTitle>
+        Gerenciamento profissional
+        de eventos e inscrições
+        acadêmicas.
+      </SubTitle>
 
       {user ? (
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns:
-              'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem'
-          }}
-        >
-          <div style={cardStyle}>
-            <h3
-              style={{
-                marginBottom: '1rem',
-                color: '#007bff'
-              }}
-            >
+        <CardGrid>
+          <Card>
+            <CardTitle>
               📅 Eventos
-            </h3>
+            </CardTitle>
 
-            <p
-              style={{
-                marginBottom: '1.5rem',
-                color: '#666',
-                flex: 1
-              }}
-            >
-              Explore e gerencie a lista completa
-              de eventos.
-            </p>
+            <CardDescription>
+              Explore e gerencie a
+              lista completa de
+              eventos.
+            </CardDescription>
 
-            <Link
+            <LinkButton
+              variant="primary"
               to="/events"
-              className="btn btn-primary"
             >
               Ver Eventos
-            </Link>
-          </div>
+            </LinkButton>
+          </Card>
 
-          <div style={cardStyle}>
-            <h3
-              style={{
-                marginBottom: '1rem',
-                color: '#28a745'
-              }}
-            >
+          <Card>
+            <CardTitle>
               🏷️ Categorias
-            </h3>
+            </CardTitle>
 
-            <p
-              style={{
-                marginBottom: '1.5rem',
-                color: '#666',
-                flex: 1
-              }}
-            >
-              Organize os eventos por tipos e
-              categorias.
-            </p>
+            <CardDescription>
+              Organize os eventos
+              por tipos e categorias.
+            </CardDescription>
 
-            <Link
+            <LinkButton
+              variant="success"
               to="/categories"
-              className="btn btn-success"
             >
               Categorias
-            </Link>
-          </div>
+            </LinkButton>
+          </Card>
 
-          <div style={cardStyle}>
-            <h3
-              style={{
-                marginBottom: '1rem',
-                color: '#dc3545'
-              }}
-            >
+          <Card>
+            <CardTitle>
               🎫 Minhas Inscrições
-            </h3>
+            </CardTitle>
 
-            <p
-              style={{
-                marginBottom: '1.5rem',
-                color: '#666',
-                flex: 1
-              }}
-            >
-              Acompanhe o status das suas
-              participações.
-            </p>
+            <CardDescription>
+              Acompanhe o status das
+              suas participações.
+            </CardDescription>
 
-            <Link
+            <LinkButton
+              variant="danger"
               to="/subscriptions"
-              className="btn btn-danger"
             >
               Inscrições
-            </Link>
-          </div>
-        </div>
+            </LinkButton>
+          </Card>
+        </CardGrid>
       ) : (
-        <div
-          style={{
-            ...cardStyle,
-            maxWidth: '500px',
-            margin: '0 auto'
-          }}
-        >
-          <p
-            style={{
-              marginBottom: '1.5rem',
-              fontSize: '1.1rem',
-              color: '#444'
-            }}
-          >
-            Acesse sua conta para começar a se
-            inscrever.
-          </p>
+        <Card>
+          <CardDescription>
+            Acesse sua conta para
+            começar a se inscrever.
+          </CardDescription>
 
-          <Link
+          <LinkButton
+            variant="primary"
             to="/login"
-            className="btn btn-primary"
           >
             Entrar no Sistema
-          </Link>
-        </div>
+          </LinkButton>
+        </Card>
       )}
-    </div>
+    </PageContainer>
   );
 };
 

@@ -1,267 +1,301 @@
-import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import { getEvents, deleteEvent } from "../services/eventsService";
-import { Event, PaginatedResponse } from "../types/events";
+// Events.tsx
 
-export default function Events() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [next, setNext] = useState<string | null>(null);
-  const [previous, setPrevious] = useState<string | null>(null);
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 
-  const loadEvents = async (
-    pageNumber: number = 1
-  ) => {
-    setLoading(true);
+import {
+  useNavigate,
+} from 'react-router-dom';
 
-    try {
-      const data: PaginatedResponse<Event> =
-        await getEvents(pageNumber);
+import {
+  getEvents,
+  deleteEvent,
+} from '../services/eventsService';
 
-      setEvents(data.results);
-      setNext(data.next);
-      setPrevious(data.previous);
-    } catch {
-      alert("Erro ao carregar eventos");
-    } finally {
-      setLoading(false);
-    }
-  };
+import {
+  Event,
+  PaginatedResponse,
+} from '../types/events';
+
+import {
+  PageContainer,
+  MessageBox,
+  Button,
+  LinkButton,
+  SmallButton,
+  EmptyState,
+  Card,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+  PaginationBar,
+  Heading,
+  FlexBetween,
+  InfoRow
+} from '../lib/ui';
+
+const Events: React.FC = () => {
+  const [events, setEvents] =
+    useState<Event[]>([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState('');
+
+  const [page, setPage] =
+    useState(1);
+
+  const [next, setNext] =
+    useState<string | null>(null);
+
+  const [previous, setPrevious] =
+    useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadEvents(page);
   }, [page]);
 
-  const handleDelete = async (id: number) => {
+  const loadEvents = async (
+    pageNumber: number
+  ) => {
+    setLoading(true);
+    setError('');
+
+    try {
+      const data: PaginatedResponse<Event> =
+        await getEvents(pageNumber);
+
+      setEvents(data.results || []);
+      setNext(data.next);
+      setPrevious(data.previous);
+    } catch (err) {
+      console.error(
+        'Erro ao carregar eventos:',
+        err
+      );
+
+      setError(
+        'Falha ao carregar eventos'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (
+    id: number | undefined
+  ) => {
+    if (!id) return;
+
     if (
-      !confirm(
-        "Deseja realmente excluir este evento?"
+      !window.confirm(
+        'Tem certeza que deseja deletar este evento?'
       )
-    )
+    ) {
       return;
+    }
 
     try {
       await deleteEvent(id);
       loadEvents(page);
-    } catch (error) {
-      alert("Erro ao deletar");
+    } catch (err) {
+      console.error(
+        'Erro ao deletar evento:',
+        err
+      );
+
+      setError(
+        'Falha ao deletar evento'
+      );
     }
+  };
+
+  const formatEventDateTime = (
+    dateTime: string
+  ) => {
+    if (!dateTime) return '';
+
+    const date = new Date(dateTime);
+
+    return date.toLocaleString(
+      'pt-BR',
+      {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }
+    );
   };
 
   if (loading) {
     return (
-      <div
-        style={{
-          textAlign: 'center',
-          padding: '2rem'
-        }}
-      >
-        Carregando...
-      </div>
+      <PageContainer>
+        <MessageBox>
+          Carregando...
+        </MessageBox>
+      </PageContainer>
     );
   }
 
   return (
-    <div
-      style={{
-        padding: '2rem',
-        maxWidth: '1000px',
-        margin: '0 auto'
-      }}
-    >
-      <div
+    <PageContainer>
+      <FlexBetween
         style={{
-          display: 'flex',
-          justifyContent:
-            'space-between',
-          alignItems: 'center',
-          marginBottom: '2.5rem',
-          borderBottom: '2px solid #f0f0f0',
-          paddingBottom: '1rem'
+          marginBottom: '2rem',
         }}
       >
-        <h1
+        <Heading
           style={{
-            color: '#333',
-            margin: 0
+            margin: 0,
           }}
         >
-          Gerenciar Eventos
-        </h1>
+          Eventos
+        </Heading>
 
-        <Link
+        <LinkButton
+          variant="success"
           to="/events/new"
-          className="btn btn-success"
         >
           + Novo Evento
-        </Link>
-      </div>
+        </LinkButton>
+      </FlexBetween>
 
-      <div
-        style={{
-          display: 'grid',
-          gap: '1.5rem'
-        }}
-      >
-        {events.map((event) => (
-          <div
-            key={event.id}
-            style={{
-              backgroundColor: '#f8f9fa',
-              border: '1px solid #ddd',
-              padding: '1.5rem',
-              borderRadius: '10px',
-              boxShadow:
-                '0 2px 5px rgba(0,0,0,0.05)'
-            }}
-          >
-            <h3
-              style={{
-                color: '#007bff',
-                margin: '0 0 0.5rem 0'
-              }}
-            >
-              {event.title}
-            </h3>
+      {error && (
+        <MessageBox>
+          {error}
+        </MessageBox>
+      )}
 
-            <p
-              style={{
-                color: '#666',
-                marginBottom: '1rem'
-              }}
-            >
-              {event.descriptions}
-            </p>
-
-            <div
-              style={{
-                fontSize: '0.9rem',
-                color: '#555',
-                display: 'flex',
-                gap: '1rem',
-                flexWrap: 'wrap'
-              }}
-            >
-              <span>
-                📅{" "}
-                {new Date(
-                  event.date_time
-                ).toLocaleDateString()}
-              </span>
-
-              <span>
-                📍 {event.local}
-              </span>
-
-              <span>
-                👥 {event.vagas} vagas
-              </span>
-
-              {event.category &&
-                event.category.length > 0 && (
-                  <span>
-                    🏷️{" "}
-                    {event.category
-                      .map((cat) => cat.name)
-                      .join(', ')}
-                  </span>
-                )}
-            </div>
-
-            <div
-              style={{
-                marginTop: '1.5rem',
-                display: 'flex',
-                gap: '0.8rem',
-                borderTop: '1px solid #ddd',
-                paddingTop: '1rem'
-              }}
-            >
-              <Link
-                to={`/events/${event.id}/edit`}
-                className="btn btn-primary"
-                style={{ padding: '0.5rem 1.2rem' }}
-              >
-                Editar
-              </Link>
-
-              <button
-                onClick={() =>
-                  handleDelete(event.id!)
-                }
-                className="btn btn-danger"
-                style={{ padding: '0.5rem 1.2rem' }}
-              >
-                Excluir
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div
-        style={{
-          display: 'flex',
-          justifyContent:
-            'space-between',
-          alignItems: 'center',
-          marginTop: '2rem',
-          padding: '1rem',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '10px',
-          border: '1px solid #ddd'
-        }}
-      >
-        <button
-          type="button"
-          onClick={() => setPage(page - 1)}
-          disabled={!previous}
+      {events.length === 0 ? (
+        <EmptyState>
+          Nenhum evento encontrado.
+        </EmptyState>
+      ) : (
+        <div
           style={{
-            padding: '0.6rem 1.2rem',
-            backgroundColor: previous
-              ? '#007bff'
-              : '#ccc',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: previous
-              ? 'pointer'
-              : 'not-allowed'
+            display: 'grid',
+            gap: '1.5rem',
           }}
         >
+          {events.map((event) => (
+            <Card key={event.id}>
+              <CardTitle>
+                {event.title}
+              </CardTitle>
+
+              <CardDescription>
+                {event.descriptions}
+              </CardDescription>
+
+              <InfoRow>
+                <span>
+                  📅{' '}
+                  <strong>
+                    Data:
+                  </strong>{' '}
+                  {formatEventDateTime(
+                    event.date_time
+                  )}
+                </span>
+
+                <span>
+                  📍{' '}
+                  <strong>
+                    Local:
+                  </strong>{' '}
+                  {event.local}
+                </span>
+
+                <span>
+                  👥{' '}
+                  <strong>
+                    Vagas:
+                  </strong>{' '}
+                  {event.vagas}
+                </span>
+
+                {event.category &&
+                  event.category
+                    .length > 0 && (
+                    <span>
+                      🏷️{' '}
+                      {event.category
+                        .map(
+                          (cat) =>
+                            cat.name
+                        )
+                        .join(', ')}
+                    </span>
+                  )}
+              </InfoRow>
+
+              <CardFooter>
+                <SmallButton
+                  variant="primary"
+                  onClick={() =>
+                    event.id &&
+                    navigate(
+                      `/events/${event.id}/edit`
+                    )
+                  }
+                >
+                  Editar
+                </SmallButton>
+
+                <SmallButton
+                  variant="danger"
+                  onClick={() =>
+                    event.id &&
+                    handleDelete(
+                      event.id
+                    )
+                  }
+                >
+                  Deletar
+                </SmallButton>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      <PaginationBar>
+        <Button
+          variant="primary"
+          onClick={() =>
+            setPage(page - 1)
+          }
+          disabled={!previous}
+        >
           Anterior
-        </button>
+        </Button>
 
         <div
           style={{
             fontWeight: 'bold',
-            color: '#555'
+            color: '#555',
           }}
         >
           Página {page}
         </div>
 
-        <button
-          type="button"
-          onClick={() => setPage(page + 1)}
+        <Button
+          variant="primary"
+          onClick={() =>
+            setPage(page + 1)
+          }
           disabled={!next}
-          style={{
-            padding: '0.6rem 1.2rem',
-            backgroundColor: next
-              ? '#007bff'
-              : '#ccc',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: next
-              ? 'pointer'
-              : 'not-allowed'
-          }}
         >
           Próximo
-        </button>
-      </div>
-    </div>
+        </Button>
+      </PaginationBar>
+    </PageContainer>
   );
-}
+};
+
+export default Events;

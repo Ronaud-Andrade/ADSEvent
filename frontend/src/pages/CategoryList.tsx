@@ -1,13 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// CategoryList.tsx
+
+import React, {
+  useState,
+  useEffect
+} from 'react';
+
 import { categoryAPI, Category } from '../lib/api';
 
+import {
+  PageContainer,
+  FlexBetween,
+  Card,
+  CardFooter,
+  Heading,
+  EmptyState,
+  LinkButton,
+  SmallButton,
+  PaginationBar,
+  Button
+} from '../lib/ui';
+
 const CategoryList: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [next, setNext] = useState<string | null>(null);
-  const [previous, setPrevious] = useState<string | null>(null);
+  const [categories, setCategories] =
+    useState<Category[]>([]);
+
+  const [, setLoading] =
+    useState(true);
+
+  const [page, setPage] =
+    useState(1);
+
+  const [next, setNext] =
+    useState<string | null>(null);
+
+  const [previous, setPrevious] =
+    useState<string | null>(null);
 
   const loadCategories = async (
     pageNumber: number = 1
@@ -16,7 +43,9 @@ const CategoryList: React.FC = () => {
 
     try {
       const data =
-        await categoryAPI.getCategories(pageNumber);
+        await categoryAPI.getCategories(
+          pageNumber
+        );
 
       setCategories(data.results || []);
       setNext(data.next);
@@ -30,165 +59,125 @@ const CategoryList: React.FC = () => {
     loadCategories(page);
   }, [page]);
 
-  const handleDelete = async (id: number) => {
-    if (window.confirm('Excluir esta categoria?')) {
-      await categoryAPI.deleteCategory(id);
+  const handleDelete = async (
+    id: number
+  ) => {
+    if (
+      window.confirm(
+        'Excluir esta categoria?'
+      )
+    ) {
+      await categoryAPI.deleteCategory(
+        id
+      );
+
       loadCategories(page);
     }
   };
 
   return (
-    <div
-      style={{
-        padding: '2rem',
-        maxWidth: '800px',
-        margin: '0 auto'
-      }}
-    >
-      <div
+    <PageContainer>
+      <FlexBetween
         style={{
-          display: 'flex',
-          justifyContent:
-            'space-between',
-          alignItems: 'center',
-          marginBottom: '2rem'
+          marginBottom: '2rem',
         }}
       >
-        <h1 style={{ color: '#333' }}>
+        <Heading
+          style={{
+            margin: 0,
+          }}
+        >
           Categorias
-        </h1>
+        </Heading>
 
-        <Link
+        <LinkButton
           to="/categories/new"
-          className="btn btn-success"
+          variant="success"
         >
           + Nova Categoria
-        </Link>
-      </div>
+        </LinkButton>
+      </FlexBetween>
 
-      {categories.map((cat) => (
-        <div
-          key={cat.id}
-          style={{
-            backgroundColor: '#f8f9fa',
-            border: '1px solid #ddd',
-            padding: '1.2rem',
-            borderRadius: '10px',
-            marginBottom: '1rem',
-            display: 'flex',
-            justifyContent:
-              'space-between',
-            alignItems: 'center',
-            boxShadow:
-              '0 2px 4px rgba(0,0,0,0.03)'
-          }}
-        >
-          <span
+      {categories.length === 0 ? (
+        <EmptyState>
+          Nenhuma categoria
+          encontrada.
+        </EmptyState>
+      ) : (
+        categories.map((cat) => (
+          <Card
+            key={cat.id}
             style={{
-              fontWeight: '600',
-              fontSize: '1.1rem',
-              color: '#333'
+              marginBottom: '1rem',
             }}
           >
-            {cat.name}
-          </span>
-
-          <div
-            style={{
-              display: 'flex',
-              gap: '0.5rem'
-            }}
-          >
-            <Link
-              to={`/categories/${cat.id}/edit`}
-              className="btn btn-primary"
+            <Heading
               style={{
-                padding: '0.4rem 0.8rem',
-                fontSize: '0.9rem'
+                fontSize: '1.2rem',
+                marginBottom: '1rem',
               }}
             >
-              Editar
-            </Link>
+              {cat.name}
+            </Heading>
 
-            <button
-              onClick={() =>
-                handleDelete(cat.id)
-              }
-              className="btn btn-danger"
-              style={{
-                padding: '0.4rem 0.8rem',
-                fontSize: '0.9rem'
-              }}
-            >
-              Excluir
-            </button>
-          </div>
-        </div>
-      ))}
+            <CardFooter>
+              <SmallButton
+                variant="primary"
+                onClick={() =>
+                  window.location.assign(
+                    `/categories/${cat.id}/edit`
+                  )
+                }
+              >
+                Editar
+              </SmallButton>
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent:
-            'space-between',
-          alignItems: 'center',
-          marginTop: '2rem',
-          padding: '1rem',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '10px',
-          border: '1px solid #ddd'
-        }}
-      >
-        <button
+              <SmallButton
+                variant="danger"
+                onClick={() =>
+                  handleDelete(cat.id)
+                }
+              >
+                Excluir
+              </SmallButton>
+            </CardFooter>
+          </Card>
+        ))
+      )}
+
+      <PaginationBar>
+        <Button
           type="button"
-          onClick={() => setPage(page - 1)}
+          variant="primary"
+          onClick={() =>
+            setPage(page - 1)
+          }
           disabled={!previous}
-          style={{
-            padding: '0.6rem 1.2rem',
-            backgroundColor: previous
-              ? '#007bff'
-              : '#ccc',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: previous
-              ? 'pointer'
-              : 'not-allowed'
-          }}
         >
           Anterior
-        </button>
+        </Button>
 
         <div
           style={{
             fontWeight: 'bold',
-            color: '#555'
+            color: '#555',
           }}
         >
           Página {page}
         </div>
 
-        <button
+        <Button
           type="button"
-          onClick={() => setPage(page + 1)}
+          variant="primary"
+          onClick={() =>
+            setPage(page + 1)
+          }
           disabled={!next}
-          style={{
-            padding: '0.6rem 1.2rem',
-            backgroundColor: next
-              ? '#007bff'
-              : '#ccc',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: next
-              ? 'pointer'
-              : 'not-allowed'
-          }}
         >
           Próximo
-        </button>
-      </div>
-    </div>
+        </Button>
+      </PaginationBar>
+    </PageContainer>
   );
 };
 
