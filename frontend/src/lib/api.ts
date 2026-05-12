@@ -11,11 +11,11 @@ const api = axios.create({
 /* Interceptor que roda antes de cada requisição */
 api.interceptors.request.use((config) => {
   /* Pega o token salvo no navegador */
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access_token");
 
   /* Se existir token, adiciona no cabeçalho */
   if (token) {
-    config.headers.Authorization = `Token ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
 
   return config;
@@ -54,17 +54,29 @@ export interface PaginatedResponse<T> {
   results: T[];
 }
 
+export interface AuthResponse {
+  access: string;
+  refresh: string;
+  user: User;
+}
+
 /* Auth API */
 export const authAPI = {
   /* Login */
-  login: async (data: { username: string; password: string }) => {
-    const response = await api.post("auth/login/", data);
-    return response.data; // { token, user }
+  login: async (data: { username: string; password: string }): Promise<AuthResponse> => {
+    const response = await api.post<AuthResponse>("auth/login/", data);
+    return response.data;
+  },
+
+  /* Refresh de access token */
+  refresh: async (refresh: string): Promise<{ access: string }> => {
+    const response = await api.post<{ access: string }>("auth/refresh/", { refresh });
+    return response.data;
   },
 
   /* Logout */
-  logout: async () => {
-    await api.post("auth/logout/");
+  logout: async (refresh?: string) => {
+    await api.post("auth/logout/", refresh ? { refresh } : {});
   },
 
   /* Pega dados do usuário logado */
