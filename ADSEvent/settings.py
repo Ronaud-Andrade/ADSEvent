@@ -107,6 +107,9 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
+LOG_DIR = BASE_DIR / 'logs'
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -195,7 +198,7 @@ LOGGING = {
         'debug_file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'logs' / 'logging.log',
+            'filename': str(LOG_DIR / 'logging.log'),
             'formatter': 'verbose',
             'maxBytes': 5 * 1024 * 1024,
             'backupCount': 5,
@@ -204,7 +207,7 @@ LOGGING = {
         'error_file': {
             'level': 'WARNING',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'logs' / 'errors.log',
+            'filename': str(LOG_DIR / 'errors.log'),
             'formatter': 'verbose',
             'maxBytes': 5 * 1024 * 1024,
             'backupCount': 10,
