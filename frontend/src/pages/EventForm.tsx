@@ -27,9 +27,12 @@ export default function EventForm() {
 
       if (id) {
         const data = await getEvent(Number(id));
+
         setEvent({
           ...data,
-          category_ids: data.category ? data.category.map(cat => cat.id) : []
+          category_ids: data.category
+            ? data.category.map((cat) => cat.id)
+            : []
         });
       }
     };
@@ -51,7 +54,9 @@ export default function EventForm() {
     borderRadius: "8px",
     border: "1px solid #ccc",
     marginBottom: "1.2rem",
-    boxSizing: "border-box" as const
+    boxSizing: "border-box" as const,
+    backgroundColor: "#fff",
+    fontSize: "1rem"
   };
 
   const formGroupStyle = {
@@ -86,8 +91,9 @@ export default function EventForm() {
         maxWidth: "700px",
         margin: "3rem auto",
         padding: "2rem",
-        backgroundColor: "#fff",
+        backgroundColor: "#f8f9fa",
         borderRadius: "12px",
+        border: "1px solid #ddd",
         boxShadow: "0 4px 15px rgba(0,0,0,0.1)"
       }}
     >
@@ -96,7 +102,8 @@ export default function EventForm() {
           marginBottom: "2rem",
           borderBottom: "2px solid #eee",
           paddingBottom: "0.5rem",
-          textAlign: "center"
+          textAlign: "center",
+          color: "#333"
         }}
       >
         {isEditing ? "Editar Evento" : "Novo Evento"}
@@ -215,7 +222,11 @@ export default function EventForm() {
             }}
             value={event.category_ids?.map(String)}
             onChange={(e) => {
-              const selectedOptions = Array.from(e.target.selectedOptions, option => Number(option.value));
+              const selectedOptions = Array.from(
+                e.target.selectedOptions,
+                (option) => Number(option.value)
+              );
+
               setEvent({
                 ...event,
                 category_ids: selectedOptions
@@ -267,6 +278,7 @@ export default function EventForm() {
               color: "white",
               border: "none",
               borderRadius: "8px",
+              fontWeight: "bold",
               cursor: "pointer"
             }}
           >

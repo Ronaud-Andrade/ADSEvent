@@ -10,12 +10,14 @@ const CategoryForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: ''
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const loadCategory = async (categoryId: number) => {
     try {
       const category = await categoryAPI.getCategory(categoryId);
+
       setFormData({
         name: category.name
       });
@@ -31,11 +33,13 @@ const CategoryForm: React.FC = () => {
         await loadCategory(Number(id));
       }
     };
+
     load();
   }, [id, isEditing]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -44,6 +48,7 @@ const CategoryForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
     setError('');
 
@@ -53,6 +58,7 @@ const CategoryForm: React.FC = () => {
       } else {
         await categoryAPI.createCategory(formData);
       }
+
       navigate('/categories');
     } catch (err) {
       console.error('Erro ao salvar categoria:', err);
@@ -63,20 +69,54 @@ const CategoryForm: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1>{isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}</h1>
+    <div
+      style={{
+        padding: '2rem',
+        maxWidth: '600px',
+        margin: '2rem auto',
+        backgroundColor: '#f8f9fa',
+        borderRadius: '8px',
+        border: '1px solid #ddd',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+      }}
+    >
+      <h1
+        style={{
+          marginBottom: '1.5rem',
+          textAlign: 'center',
+          color: '#333'
+        }}
+      >
+        {isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}
+      </h1>
 
       {error && (
-        <div style={{ marginBottom: '1rem', color: '#dc3545', fontWeight: 'bold' }}>
+        <div
+          style={{
+            marginBottom: '1rem',
+            color: '#dc3545',
+            fontWeight: 'bold',
+            textAlign: 'center'
+          }}
+        >
           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <label
+            htmlFor="name"
+            style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontWeight: 'bold',
+              color: '#333'
+            }}
+          >
             Nome:
           </label>
+
           <input
             type="text"
             id="name"
@@ -86,15 +126,24 @@ const CategoryForm: React.FC = () => {
             required
             style={{
               width: '100%',
-              padding: '0.5rem',
+              padding: '0.75rem',
               borderRadius: '4px',
               border: '1px solid #ccc',
-              fontSize: '1rem'
+              fontSize: '1rem',
+              backgroundColor: '#fff',
+              color: '#000',
+              boxSizing: 'border-box'
             }}
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: '1rem',
+            justifyContent: 'center'
+          }}
+        >
           <button
             type="submit"
             disabled={loading}
@@ -107,10 +156,15 @@ const CategoryForm: React.FC = () => {
               border: 'none',
               borderRadius: '4px',
               fontSize: '1rem',
+              fontWeight: 'bold',
               cursor: loading ? 'not-allowed' : 'pointer'
             }}
           >
-            {loading ? 'Salvando...' : (isEditing ? 'Atualizar Categoria' : 'Criar Categoria')}
+            {loading
+              ? 'Salvando...'
+              : isEditing
+              ? 'Atualizar Categoria'
+              : 'Criar Categoria'}
           </button>
 
           <button
@@ -125,6 +179,7 @@ const CategoryForm: React.FC = () => {
               border: 'none',
               borderRadius: '4px',
               fontSize: '1rem',
+              fontWeight: 'bold',
               cursor: 'pointer'
             }}
           >

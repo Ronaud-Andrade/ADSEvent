@@ -12,80 +12,88 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav style={{
-      backgroundColor: '#f8f9fa',
-      borderBottom: '1px solid #ddd',
-      padding: '1rem 2rem',
-      marginBottom: '2rem'
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
+    <nav
+      style={{
+        backgroundColor: '#f8f9fa',
+        borderBottom: '1px solid #ddd',
+        padding: '1rem 2rem',
+        marginBottom: '2rem',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <Link
           to="/"
           style={{
             fontSize: '1.5rem',
             fontWeight: 'bold',
             color: '#007bff',
-            textDecoration: 'none'
+            textDecoration: 'none',
           }}
         >
           ADS Event
         </Link>
 
-        <ul style={{
-          display: 'flex',
-          listStyle: 'none',
-          gap: '1.5rem',
-          margin: 0,
-          padding: 0,
-          alignItems: 'center'
-        }}>
-          {user ? (
-            <>
-              <li><Link to="/" style={navLinkStyle}>Início</Link></li>
-              <li><Link to="/events" style={navLinkStyle}>Eventos</Link></li>
-              <li><Link to="/categories" style={navLinkStyle}>Categorias</Link></li>
-              <li><Link to="/subscriptions" style={navLinkStyle}>Inscrições</Link></li>
-              <li>
-                <button
-                  onClick={handleLogout}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    backgroundColor: '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  Sair
-                </button>
-              </li>
-            </>
-          ) : (
+        {user && (
+          <ul
+            style={{
+              display: 'flex',
+              listStyle: 'none',
+              gap: '1.5rem',
+              margin: 0,
+              padding: 0,
+              alignItems: 'center',
+            }}
+          >
             <li>
-              <Link
-                to="/login"
-                style={{
-                  padding: '0.5rem 1rem',
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  textDecoration: 'none',
-                  borderRadius: '4px',
-                  fontWeight: 'bold'
-                }}
-              >
-                Entrar
+              <Link to="/" style={navLinkStyle}>
+                Início
               </Link>
             </li>
-          )}
-        </ul>
+
+            <li>
+              <Link to="/events" style={navLinkStyle}>
+                Eventos
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/categories" style={navLinkStyle}>
+                Categorias
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/subscriptions" style={navLinkStyle}>
+                Inscrições
+              </Link>
+            </li>
+
+            <li>
+              <button
+                onClick={handleLogout}
+                style={{
+                  padding: '0.5rem 1rem',
+                  backgroundColor: '#dc3545',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                }}
+              >
+                Sair
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
     </nav>
   );
