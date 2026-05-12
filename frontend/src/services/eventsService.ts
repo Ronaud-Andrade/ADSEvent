@@ -5,13 +5,13 @@ import { Event, PaginatedResponse } from
 "../types/events";
 
 /* Função para listar eventos */
-export const getEvents = async (): Promise<Event[]> => {
+export const getEvents = async (page: number = 1): Promise<PaginatedResponse<Event>> => {
     try {
-    /* Faz requisição GET para /events/ */
-    const response = await api.get<PaginatedResponse<Event>>("events/");
+    /* Faz requisição GET para /events/ com parâmetro de página */
+    const response = await api.get<PaginatedResponse<Event>>(`events/?page=${page}`);
 
-    /* Retorna apenas a lista de eventos (results) */
-    return response.data.results;
+    /* Retorna a resposta paginada completa */
+    return response.data;
 } catch (error) {
     /* Mostra erro no console (debug) */
     console.error("Erro ao buscar eventos:", error);

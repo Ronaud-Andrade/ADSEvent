@@ -1,252 +1,170 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { createEvent, updateEvent, getEvent } from "../services/eventsService";
-import { getCategories } from "../services/categoryService";
-import { Event, Category } from "../types/events";
+﻿import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { createEvent, updateEvent, getEvent } from '../services/eventsService';
+import { getCategories } from '../services/categoryService';
+import { Event, Category } from '../types/events';
+import {
+  PageContainer,
+  FormCard,
+  Heading,
+  FormGroup,
+  FormLabel,
+  FormControl,
+  TextArea,
+  SelectControl,
+  Button,
+  ButtonRow,
+  GridTwoCols
+} from '../lib/ui';
 
 export default function EventForm() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
   const isEditing = Boolean(id);
 
-  const [event, setEvent] = useState<Event>({
-    title: "",
-    descriptions: "",
-    date_time: "",
-    vagas: 0,
-    local: "",
-    category: [],
-  });
   const [categories, setCategories] = useState<Category[]>([]);
-
-  const loadEvent = async () => {
-    try {
-      const data = await getEvent(Number(id));
-      setEvent(data);
-    } catch {
-      alert("Erro ao carregar evento");
-    }
-  };
-
-  useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        const data = await getCategories();
-        setCategories(data);
-      } catch (error) {
-        console.error("Erro ao buscar categorias", error);
-      }
-    };
-
-    loadCategories();
-  }, []);
+  const [event, setEvent] = useState<Event>({
+    title: '',
+    descriptions: '',
+    date_time: '',
+    vagas: 0,
+    local: '',
+    category_ids: []
+  });
 
   useEffect(() => {
-    const load = async () => {
+    const fetchData = async () => {
+      const cats = await getCategories();
+      setCategories(cats);
+
       if (id) {
-        await loadEvent();
+        const data = await getEvent(Number(id));
+        setEvent({
+          ...data,
+          category_ids: data.category ? data.category.map((cat) => cat.id) : []
+        });
       }
     };
-    load();
+
+    fetchData();
   }, [id]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     try {
-      const payload: Event = {
+      const eventData = {
         ...event,
-        category: event.category?.length ? event.category : [],
-        vagas: Number(event.vagas),
+        category_ids: event.category_ids
       };
 
       if (isEditing) {
-        if (!event.id) {
-          alert("Evento sem ID!");
-          return;
-        }
-
-        await updateEvent(event.id, payload);
-        alert("Evento atualizado!");
+        await updateEvent(Number(id), eventData);
       } else {
-        await createEvent(payload);
-        alert("Evento criado!");
+        await createEvent(eventData);
       }
 
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      alert("Erro ao salvar evento");
+      navigate('/events');
+    } catch {
+      alert('Erro ao salvar');
     }
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1>{isEditing ? "Editar Evento" : "Criar Evento"}</h1>
+    <PageContainer>
+      <FormCard>
+        <Heading>{isEditing ? 'Editar Evento' : 'Novo Evento'}</Heading>
 
-      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="title" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Título:
-          </label>
-          <input
-            type="text"
-            id="title"
-            placeholder="Título do evento"
-            value={event.title}
-            onChange={(e) => setEvent({ ...event, title: e.target.value })}
-            required
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem'
-            }}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <FormGroup>
+            <FormLabel>Título</FormLabel>
+            <FormControl
+              type="text"
+              value={event.title}
+              onChange={(e) => setEvent({ ...event, title: e.target.value })}
+              required
+            />
+          </FormGroup>
 
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="descriptions" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Descrição:
-          </label>
-          <textarea
-            id="descriptions"
-            placeholder="Descrição do evento"
-            value={event.descriptions}
-            onChange={(e) => setEvent({ ...event, descriptions: e.target.value })}
-            required
-            rows={4}
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem',
-              resize: 'vertical'
-            }}
-          />
-        </div>
+          <FormGroup>
+            <FormLabel>Descrição</FormLabel>
+            <TextArea
+              value={event.descriptions}
+              onChange={(e) => setEvent({ ...event, descriptions: e.target.value })}
+              required
+            />
+          </FormGroup>
 
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="date_time" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Data e Hora:
-          </label>
-          <input
-            type="datetime-local"
-            id="date_time"
-            value={event.date_time}
-            onChange={(e) => setEvent({ ...event, date_time: e.target.value })}
-            required
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem'
-            }}
-          />
-        </div>
+          <GridTwoCols>
+            <FormGroup>
+              <FormLabel>Data/Hora</FormLabel>
+              <FormControl
+                type="datetime-local"
+                value={event.date_time?.slice(0, 16)}
+                onChange={(e) => setEvent({ ...event, date_time: e.target.value })}
+                required
+              />
+            </FormGroup>
 
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="vagas" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Vagas:
-          </label>
-          <input
-            type="number"
-            id="vagas"
-            placeholder="Número de vagas"
-            value={event.vagas}
-            onChange={(e) => setEvent({ ...event, vagas: Number(e.target.value) })}
-            required
-            min="1"
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem'
-            }}
-          />
-        </div>
+            <FormGroup>
+              <FormLabel>Vagas</FormLabel>
+              <FormControl
+                type="number"
+                min="0"
+                value={event.vagas}
+                onChange={(e) =>
+                  setEvent({
+                    ...event,
+                    vagas: Math.max(0, Number(e.target.value))
+                  })
+                }
+                required
+              />
+            </FormGroup>
+          </GridTwoCols>
 
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="local" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Local:
-          </label>
-          <input
-            type="text"
-            id="local"
-            placeholder="Local do evento"
-            value={event.local}
-            onChange={(e) => setEvent({ ...event, local: e.target.value })}
-            required
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem'
-            }}
-          />
-        </div>
+          <FormGroup>
+            <FormLabel>Local</FormLabel>
+            <FormControl
+              type="text"
+              value={event.local}
+              onChange={(e) => setEvent({ ...event, local: e.target.value })}
+              required
+            />
+          </FormGroup>
 
-        <div style={{ marginBottom: '1.5rem' }}>
-          <label htmlFor="category" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Categoria:
-          </label>
-          <select
-            id="category"
-            value={event.category.length > 0 ? event.category[0].toString() : ""}
-            onChange={(e) =>
-              setEvent({ ...event, category: e.target.value ? [Number(e.target.value)] : [] })
-            }
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem'
-            }}
-          >
-            <option value="">Selecione uma categoria</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
+          <FormGroup>
+            <FormLabel>Categorias</FormLabel>
+            <SelectControl
+              multiple
+              value={event.category_ids?.map(String)}
+              onChange={(e) => {
+                const selectedOptions = Array.from(
+                  e.target.selectedOptions,
+                  (option) => Number(option.value)
+                );
+                setEvent({ ...event, category_ids: selectedOptions });
+              }}
+              required
+            >
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </SelectControl>
+          </FormGroup>
 
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button
-            type="submit"
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-          >
-            Salvar
-          </button>
-          <Link
-            to="/events"
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#6c757d',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontWeight: 'bold'
-            }}
-          >
-            Cancelar
-          </Link>
-        </div>
-      </form>
-    </div>
+          <ButtonRow>
+            <Button type="submit" variant="success">
+              Salvar
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => navigate('/events')}>
+              Cancelar
+            </Button>
+          </ButtonRow>
+        </form>
+      </FormCard>
+    </PageContainer>
   );
 }

@@ -7,7 +7,6 @@ import EventForm from './pages/EventForm';
 import CategoryList from './pages/CategoryList';
 import CategoryForm from './pages/CategoryForm';
 import SubscribeList from './pages/SubscribeList';
-import SubscribeEdit from './pages/SubscribeEdit';
 import Login from './pages/Login';
 import PrivateRoute from './routes/PrivateRoute';
 
@@ -19,15 +18,14 @@ function App() {
           <Navigation />
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-            <Route path="/events" element={<PrivateRoute><Events /></PrivateRoute>} />
-            <Route path="/events/new" element={<PrivateRoute><EventForm /></PrivateRoute>} />
-            <Route path="/events/:id/edit" element={<PrivateRoute><EventForm /></PrivateRoute>} />
-            <Route path="/categories" element={<PrivateRoute><CategoryList /></PrivateRoute>} />
-            <Route path="/categories/new" element={<PrivateRoute><CategoryForm /></PrivateRoute>} />
-            <Route path="/categories/:id/edit" element={<PrivateRoute><CategoryForm /></PrivateRoute>} />
-            <Route path="/subscriptions" element={<PrivateRoute><SubscribeList /></PrivateRoute>} />
-            <Route path="/subscriptions/:id/edit" element={<PrivateRoute><SubscribeEdit /></PrivateRoute>} />
+            <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+            <Route path="/events/new" element={<ProtectedRoute><EventForm /></ProtectedRoute>} />
+            <Route path="/events/:id/edit" element={<ProtectedRoute><EventForm /></ProtectedRoute>} />
+            <Route path="/categories" element={<ProtectedRoute><CategoryList /></ProtectedRoute>} />
+            <Route path="/categories/new" element={<ProtectedRoute><CategoryForm /></ProtectedRoute>} />
+            <Route path="/categories/:id/edit" element={<ProtectedRoute><CategoryForm /></ProtectedRoute>} />
+            <Route path="/subscriptions" element={<ProtectedRoute><SubscribeList /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>

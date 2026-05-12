@@ -1,111 +1,301 @@
-/* Importa hooks do React */
-import { useEffect, useState } from "react";
-/* Importa Link do React Router */
-import { Link } from 'react-router-dom';
-/* Importa funções do serviço */
-import { getEvents, deleteEvent } from "../services/eventsService";
-/* Importa tipo Event */
-import { Event } from "../types/events";
+// Events.tsx
 
-/* Componente principal da página */
-export default function Events() {
-  /* Estado para armazenar os eventos */
-  const [events, setEvents] = useState<Event[]>([]);
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 
-  /* Estado de carregamento */
-  const [loading, setLoading] = useState(true);
+import {
+  useNavigate,
+} from 'react-router-dom';
 
-  /* Função para carregar eventos da API */
-  const loadEvents = async () => {
+import {
+  getEvents,
+  deleteEvent,
+} from '../services/eventsService';
+
+import {
+  Event,
+  PaginatedResponse,
+} from '../types/events';
+
+import {
+  PageContainer,
+  MessageBox,
+  Button,
+  LinkButton,
+  SmallButton,
+  EmptyState,
+  Card,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+  PaginationBar,
+  Heading,
+  FlexBetween,
+  InfoRow
+} from '../lib/ui';
+
+const Events: React.FC = () => {
+  const [events, setEvents] =
+    useState<Event[]>([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState('');
+
+  const [page, setPage] =
+    useState(1);
+
+  const [next, setNext] =
+    useState<string | null>(null);
+
+  const [previous, setPrevious] =
+    useState<string | null>(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    loadEvents(page);
+  }, [page]);
+
+  const loadEvents = async (
+    pageNumber: number
+  ) => {
+    setLoading(true);
+    setError('');
+
     try {
-      /* Chama a API */
-      const data = await getEvents();
+      const data: PaginatedResponse<Event> =
+        await getEvents(pageNumber);
 
-      /* Atualiza o estado com os dados */
-      setEvents(data);
-    } catch (error) {
-      /* Mostra erro para o usuário */
-      alert("Erro ao carregar eventos");
+      setEvents(data.results || []);
+      setNext(data.next);
+      setPrevious(data.previous);
+    } catch (err) {
+      console.error(
+        'Erro ao carregar eventos:',
+        err
+      );
+
+      setError(
+        'Falha ao carregar eventos'
+      );
     } finally {
-      /* Finaliza o loading */
       setLoading(false);
     }
   };
 
-  /* Função para deletar evento */
-  const handleDelete = async (id: number) => {
-    /* Confirmação antes de excluir */
-    if (!confirm("Tem certeza?")) return;
+  const handleDelete = async (
+    id: number | undefined
+  ) => {
+    if (!id) return;
+
+    if (
+      !window.confirm(
+        'Tem certeza que deseja deletar este evento?'
+      )
+    ) {
+      return;
+    }
 
     try {
-      /* Chama a API para deletar */
       await deleteEvent(id);
+      loadEvents(page);
+    } catch (err) {
+      console.error(
+        'Erro ao deletar evento:',
+        err
+      );
 
-      /* Recarrega lista */
-      loadEvents();
-    } catch {
-      /* Erro ao deletar */
-      alert("Erro ao deletar evento");
+      setError(
+        'Falha ao deletar evento'
+      );
     }
   };
 
-  /* Executa quando o componente é montado */
-  useEffect(() => {
-    loadEvents();
-  }, []);
+  const formatEventDateTime = (
+    dateTime: string
+  ) => {
+    if (!dateTime) return '';
 
-  /* Enquanto carrega, mostra mensagem */
-  if (loading) return <p>Carregando...</p>;
+    const date = new Date(dateTime);
 
-  /* Renderização da tela */
+    return date.toLocaleString(
+      'pt-BR',
+      {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }
+    );
+  };
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <MessageBox>
+          Carregando...
+        </MessageBox>
+      </PageContainer>
+    );
+  }
+
   return (
-    <div style={{ padding: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h1>Eventos</h1>
-        <Link
-          to="/events/new"
+    <PageContainer>
+      <FlexBetween
+        style={{
+          marginBottom: '2rem',
+        }}
+      >
+        <Heading
           style={{
-            padding: '0.75rem 1rem',
-            backgroundColor: '#28a745',
-            color: 'white',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontWeight: 'bold'
+            margin: 0,
           }}
         >
-          Criar Novo Evento
-        </Link>
-      </div>
+          Eventos
+        </Heading>
+
+        <LinkButton
+          variant="success"
+          to="/events/new"
+        >
+          + Novo Evento
+        </LinkButton>
+      </FlexBetween>
+
+      {error && (
+        <MessageBox>
+          {error}
+        </MessageBox>
+      )}
 
       {events.length === 0 ? (
-        <p>Nenhum evento encontrado.</p>
+        <EmptyState>
+          Nenhum evento encontrado.
+        </EmptyState>
       ) : (
-        <div>
+        <div
+          style={{
+            display: 'grid',
+            gap: '1.5rem',
+          }}
+        >
           {events.map((event) => (
-            <div key={event.id} style={{ border: '1px solid #ddd', padding: '1rem', marginBottom: '1rem', borderRadius: '8px' }}>
-              <h3>{event.title}</h3>
-              <p style={{ marginBottom: '0.5rem' }}>{event.descriptions}</p>
-              <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem' }}>
-                📅 {new Date(event.date_time).toLocaleString('pt-BR')} | 📍 {event.local} | 👥 {event.vagas} vagas
-              </p>
-              <div style={{ marginTop: '1rem' }}>
-                <Link
-                  to={`/events/${event.id}/edit`}
-                  style={{ marginRight: '1rem', padding: '0.25rem 0.5rem', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}
+            <Card key={event.id}>
+              <CardTitle>
+                {event.title}
+              </CardTitle>
+
+              <CardDescription>
+                {event.descriptions}
+              </CardDescription>
+
+              <InfoRow>
+                <span>
+                  📅{' '}
+                  <strong>
+                    Data:
+                  </strong>{' '}
+                  {formatEventDateTime(
+                    event.date_time
+                  )}
+                </span>
+
+                <span>
+                  📍{' '}
+                  <strong>
+                    Local:
+                  </strong>{' '}
+                  {event.local}
+                </span>
+
+                <span>
+                  👥{' '}
+                  <strong>
+                    Vagas:
+                  </strong>{' '}
+                  {event.vagas}
+                </span>
+
+                {event.category &&
+                  event.category
+                    .length > 0 && (
+                    <span>
+                      🏷️{' '}
+                      {event.category
+                        .map(
+                          (cat) =>
+                            cat.name
+                        )
+                        .join(', ')}
+                    </span>
+                  )}
+              </InfoRow>
+
+              <CardFooter>
+                <SmallButton
+                  variant="primary"
+                  onClick={() =>
+                    event.id &&
+                    navigate(
+                      `/events/${event.id}/edit`
+                    )
+                  }
                 >
                   Editar
-                </Link>
-                <button
-                  onClick={() => handleDelete(event.id!)}
-                  style={{ padding: '0.25rem 0.5rem', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px' }}
+                </SmallButton>
+
+                <SmallButton
+                  variant="danger"
+                  onClick={() =>
+                    event.id &&
+                    handleDelete(
+                      event.id
+                    )
+                  }
                 >
                   Deletar
-                </button>
-              </div>
-            </div>
+                </SmallButton>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       )}
-    </div>
+
+      <PaginationBar>
+        <Button
+          variant="primary"
+          onClick={() =>
+            setPage(page - 1)
+          }
+          disabled={!previous}
+        >
+          Anterior
+        </Button>
+
+        <div
+          style={{
+            fontWeight: 'bold',
+            color: '#555',
+          }}
+        >
+          Página {page}
+        </div>
+
+        <Button
+          variant="primary"
+          onClick={() =>
+            setPage(page + 1)
+          }
+          disabled={!next}
+        >
+          Próximo
+        </Button>
+      </PaginationBar>
+    </PageContainer>
   );
-}
+};
+
+export default Events;

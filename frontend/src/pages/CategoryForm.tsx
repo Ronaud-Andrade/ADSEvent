@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { categoryAPI } from '../lib/api';
+import {
+  PageContainer,
+  FormCard,
+  FormGroup,
+  FormLabel,
+  FormControl,
+  Button,
+  ButtonRow,
+  MessageBox,
+  Heading
+} from '../lib/ui';
 
 const CategoryForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -10,12 +21,14 @@ const CategoryForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: ''
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const loadCategory = async (categoryId: number) => {
     try {
       const category = await categoryAPI.getCategory(categoryId);
+
       setFormData({
         name: category.name
       });
@@ -31,11 +44,13 @@ const CategoryForm: React.FC = () => {
         await loadCategory(Number(id));
       }
     };
+
     load();
   }, [id, isEditing]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -44,6 +59,7 @@ const CategoryForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
     setError('');
 
@@ -53,6 +69,7 @@ const CategoryForm: React.FC = () => {
       } else {
         await categoryAPI.createCategory(formData);
       }
+
       navigate('/categories');
     } catch (err) {
       console.error('Erro ao salvar categoria:', err);
@@ -63,72 +80,47 @@ const CategoryForm: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1>{isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}</h1>
+    <PageContainer>
+      <FormCard>
+        <Heading>
+          {isEditing ? 'Editar Categoria' : 'Criar Nova Categoria'}
+        </Heading>
 
-      {error && (
-        <div style={{ marginBottom: '1rem', color: '#dc3545', fontWeight: 'bold' }}>
-          {error}
-        </div>
-      )}
+        {error && <MessageBox>{error}</MessageBox>}
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Nome:
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '1rem'
-            }}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <FormGroup>
+            <FormLabel htmlFor="name">Nome:</FormLabel>
+            <FormControl
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </FormGroup>
 
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '1rem',
-              cursor: loading ? 'not-allowed' : 'pointer'
-            }}
-          >
-            {loading ? 'Salvando...' : (isEditing ? 'Atualizar Categoria' : 'Criar Categoria')}
-          </button>
+          <ButtonRow>
+            <Button type="submit" variant="success" disabled={loading}>
+              {loading
+                ? 'Salvando...'
+                : isEditing
+                ? 'Atualizar Categoria'
+                : 'Criar Categoria'}
+            </Button>
 
-          <button
-            type="button"
-            onClick={() => navigate('/categories')}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#6c757d',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '1rem',
-              cursor: 'pointer'
-            }}
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => navigate('/categories')}
+            >
+              Cancelar
+            </Button>
+          </ButtonRow>
+        </form>
+      </FormCard>
+    </PageContainer>
   );
 };
 

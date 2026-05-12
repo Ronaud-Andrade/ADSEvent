@@ -12,7 +12,8 @@ export interface Event {
   date_time: string;    // Data e hora (formato ISO)
   vagas: number;        // Quantidade de vagas
   local: string;        // Local do evento
-  category: number[];   // Lista de IDs de categorias
+  category?: Category[]; // Lista de objetos categoria (para leitura)
+  category_ids?: number[]; // Lista de IDs de categorias (para escrita)
 }
 
 /* Interface genérica para respostas paginadas do Django REST */
