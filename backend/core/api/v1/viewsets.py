@@ -88,4 +88,43 @@ class SubscribeViewSet(viewsets.ModelViewSet):  # Cria um ViewSet completo para 
     permission_classes = [IsAuthenticatedUser]
 
     def get_queryset(self):
+        """
+        Se o usuário é admin, retorna todas as inscrições.
+        Se não, retorna apenas suas próprias inscrições.
+        """
+        if self._is_admin(self.request):
+            return Subscribe.objects.all().order_by("-created_at")
         return Subscribe.objects.filter(client=self.request.user).order_by("-created_at")
+    
+    def create(self, request, *args, **kwargs):
+        """Admins podem criar inscrições para qualquer usuário. Usuários comuns apenas para si mesmos."""
+        if not self._is_admin(request):
+            # Usuário comum: pode criar inscrição apenas para si mesmo
+            request.data['client'] = request.user.id
+        return super().create(request, *args, **kwargs)
+    
+    def update(self, request, *args, **kwargs):
+        """Admins podem editar qualquer inscrição. Usuários comuns apenas as suas."""
+        instance = self.get_object()
+        if not self._is_admin(request) and instance.client != request.user:
+            return Response(
+                {"detail": "Você não tem permissão para editar esta inscrição."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        return super().update(request, *args, **kwargs)
+    
+    def destroy(self, request, *args, **kwargs):
+        """Admins podem deletar qualquer inscrição. Usuários comuns apenas as suas."""
+        instance = self.get_object()
+        if not self._is_admin(request) and instance.client != request.user:
+            return Response(
+                {"detail": "Você não tem permissão para deletar esta inscrição."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        return super().destroy(request, *args, **kwargs)
+    
+    def _is_admin(self, request):
+        """Helper para verificar se o usuário é admin"""
+        if hasattr(request.user, 'profile'):
+            return request.user.profile.is_admin
+        return False

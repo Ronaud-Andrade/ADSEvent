@@ -46,15 +46,22 @@ class SubscribeSerializer(serializers.ModelSerializer):  # Cria um serializer pa
         source='events'
     )
     client = UserSerializer(read_only=True)  # Inclui os dados do cliente
+    client_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        write_only=True,
+        source='client',
+        required=False
+    )
 
     class Meta:  # Configurações internas do serializer.
         model = Subscribe  # Define o modelo usado.
-        fields = ['id', 'client', 'events', 'events_id', 'active', 'created_at', 'updated_at']  # Campos específicos
+        fields = ['id', 'client', 'client_id', 'events', 'events_id', 'active', 'created_at', 'updated_at']  # Campos específicos
         read_only_fields = ['id', 'client', 'created_at', 'updated_at']  # Campos que não podem ser definidos na criação
 
     def create(self, validated_data):
-        # Define o cliente como o usuário autenticado
-        validated_data['client'] = self.context['request'].user
+        # Se client não foi fornecido, define como o usuário autenticado
+        if 'client' not in validated_data:
+            validated_data['client'] = self.context['request'].user
         return super().create(validated_data)
 
 class LoginSerializer(serializers.Serializer):
