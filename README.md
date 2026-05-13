@@ -75,21 +75,22 @@ source .venv/bin/activate
 
 #### Instale as dependências:
 ```bash
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 #### Configure o banco de dados:
 - Crie um banco PostgreSQL chamado `adsevent`
-- Atualize as configurações em `ADSEvent/settings.py` se necessário
+- Atualize as configurações em `backend/ADSEvent/settings.py` se necessário
+- Mantenha o arquivo de ambiente em `backend/.env`
 
 #### Execute as migrações:
 ```bash
-python manage.py migrate
+python backend/manage.py migrate
 ```
 
 #### (Opcional) Crie um superusuário:
 ```bash
-python manage.py createsuperuser
+python backend/manage.py createsuperuser
 ```
 
 ### 3. Configuração do Frontend
@@ -108,7 +109,7 @@ npm install
 
 #### Backend (em um terminal):
 ```bash
-python manage.py runserver
+python backend/manage.py runserver
 ```
 API disponível em: `http://127.0.0.1:8000/`
 
@@ -123,10 +124,10 @@ Aplicação disponível em: `http://localhost:5173/`
 
 ### Backend
 ```bash
-python manage.py runserver          # Inicia servidor de desenvolvimento
-python manage.py migrate            # Executa migrações do banco
-python manage.py createsuperuser    # Cria usuário administrador
-python manage.py makemigrations     # Cria novas migrações
+python backend/manage.py runserver          # Inicia servidor de desenvolvimento
+python backend/manage.py migrate            # Executa migrações do banco
+python backend/manage.py createsuperuser    # Cria usuário administrador
+python backend/manage.py makemigrations     # Cria novas migrações
 ```
 
 ### Frontend
@@ -140,9 +141,10 @@ npm run lint       # Executa linting
 ## 📁 Estrutura do Projeto
 
 ```
-ADSEvent/
+backend/
 ├── manage.py                    # Script de gerenciamento Django
 ├── requirements.txt             # Dependências Python
+├── .env                         # Variáveis de ambiente do backend
 ├── ADSEvent/                    # Configurações Django
 │   ├── settings.py
 │   ├── urls.py
@@ -157,7 +159,7 @@ ADSEvent/
 │   │       └── router.py       # Configuração de rotas API
 │   ├── migrations/             # Migrações do banco
 │   └── templates/              # Templates HTML
-├── frontend/                    # Aplicação React
+frontend/                    # Aplicação React
 │   ├── src/
 │   │   ├── components/         # Componentes reutilizáveis
 │   │   ├── pages/              # Páginas da aplicação
@@ -167,7 +169,7 @@ ADSEvent/
 │   │   └── types/              # Definições TypeScript
 │   ├── package.json
 │   └── vite.config.ts
-└── logs/                        # Arquivos de log
+logs/                        # Arquivos de log
 ```
 
 ## 🔐 Sistema de Autenticação
