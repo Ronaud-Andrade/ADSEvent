@@ -1,0 +1,20 @@
+{
+  "name": "ads-event-monorepo",
+  "version": "1.0.0",
+  "description": "ADS Event - Sistema de Gerenciamento de Eventos (Monorepo)",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && python manage.py runserver",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && pip install -r requirements.txt",
+    "setup": "npm run install:backend && npm run install:frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "keywords": ["django", "react", "typescript", "monorepo", "ads-event"],
+  "author": "ADS Event Team",
+  "license": "MIT"
+}
