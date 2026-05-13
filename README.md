@@ -21,6 +21,30 @@ O **ADS Event** é um sistema completo para gerenciamento de eventos, inscriçõ
 - 🎨 **Interface Responsiva** com React + TypeScript
 - 🔄 **Integração API REST** com Axios
 
+## 🏗️ Estrutura do Monorepo
+
+Este projeto está organizado como um monorepo com duas aplicações principais:
+
+```
+ADSEvent/
+├── backend/           # Django REST API
+│   ├── .env
+│   ├── manage.py
+│   ├── requirements.txt
+│   ├── ADSEvent/      # Configurações do Django
+│   ├── core/          # App principal Django
+│   └── logs/          # Arquivos de log
+├── frontend/          # React SPA
+│   ├── src/
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── ...
+├── package.json       # Scripts do monorepo
+└── README.md
+```
+
+> Nota: o `manage.py` está dentro de `backend/`; execute comandos Django a partir dessa pasta, não da raiz.
+
 ## 🚀 Tecnologias Utilizadas
 
 ### Backend
@@ -47,6 +71,148 @@ O **ADS Event** é um sistema completo para gerenciamento de eventos, inscriçõ
 - **ESLint** - Linting de código JavaScript/TypeScript
 
 ## 📦 Instalação e Configuração
+
+### Pré-requisitos
+
+- **Python 3.12+**
+- **Node.js 18+**
+- **PostgreSQL 15+**
+- **Git**
+
+### Backend Setup
+
+1. **Clone o repositório e navegue para a pasta backend:**
+   ```bash
+   git clone <repository-url>
+   cd ADSEvent/backend
+   ```
+
+2. **Crie e ative o ambiente virtual:**
+   ```bash
+   python -m venv .venv
+   # Windows
+   .venv\Scripts\activate
+   # Linux/Mac
+   source .venv/bin/activate
+   ```
+
+3. **Instale as dependências:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configure o banco de dados:**
+   - Crie um banco PostgreSQL
+   - Configure as variáveis de ambiente no arquivo `.env` (veja `.env.example`)
+
+5. **Execute as migrações:**
+   ```bash
+   python manage.py migrate
+   ```
+
+6. **Crie um superusuário:**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+7. **Execute o servidor:**
+   ```bash
+   python manage.py runserver
+   ```
+
+   O backend estará disponível em: `http://127.0.0.1:8000`
+
+> Observação: este comando deve ser executado na pasta `backend/`.
+
+
+### Frontend Setup
+
+1. **Navegue para a pasta frontend:**
+   ```bash
+   cd ../frontend
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure as variáveis de ambiente:**
+   - O frontend já está configurado para acessar `http://127.0.0.1:8000/api/v1/`
+
+4. **Execute o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+
+   O frontend estará disponível em: `http://localhost:5173`
+
+## 🔧 Scripts Disponíveis
+
+### Backend
+```bash
+cd backend
+python manage.py runserver          # Inicia o servidor Django
+python manage.py migrate           # Executa migrações do banco
+python manage.py createsuperuser   # Cria superusuário
+python manage.py makemigrations    # Cria novas migrações
+```
+
+### Frontend
+```bash
+cd frontend
+npm run dev        # Inicia servidor de desenvolvimento
+npm run build      # Build para produção
+npm run preview    # Preview do build
+npm run lint       # Executa ESLint
+```
+
+## 🔐 Autenticação e Autorização
+
+O sistema utiliza autenticação JWT com controle de acesso baseado em papéis:
+
+- **Admin**: Acesso completo ao CRUD de eventos, categorias e usuários
+- **User**: Pode visualizar eventos e gerenciar suas próprias inscrições
+
+## 📊 API Endpoints
+
+### Autenticação
+- `POST /api/v1/auth/login/` - Login
+- `POST /api/v1/auth/logout/` - Logout
+- `GET /api/v1/auth/user/` - Dados do usuário logado
+
+### Eventos
+- `GET /api/v1/events/` - Lista eventos (paginação)
+- `POST /api/v1/events/` - Criar evento (admin)
+- `GET /api/v1/events/{id}/` - Detalhes do evento
+- `PUT /api/v1/events/{id}/` - Atualizar evento (admin)
+- `DELETE /api/v1/events/{id}/` - Deletar evento (admin)
+
+### Categorias
+- `GET /api/v1/categories/` - Lista categorias
+- `POST /api/v1/categories/` - Criar categoria (admin)
+- `PUT /api/v1/categories/{id}/` - Atualizar categoria (admin)
+- `DELETE /api/v1/categories/{id}/` - Deletar categoria (admin)
+
+### Inscrições
+- `GET /api/v1/subscriptions/` - Minhas inscrições
+- `POST /api/v1/subscriptions/` - Inscrever-se em evento
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 📞 Suporte
+
+Para dúvidas ou suporte, abra uma issue no GitHub ou entre em contato com a equipe de desenvolvimento.
 
 ### Pré-requisitos
 
