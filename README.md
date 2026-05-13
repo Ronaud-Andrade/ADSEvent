@@ -122,10 +122,22 @@ ADSEvent/
 
    O backend estará disponível em: `http://127.0.0.1:8000`
 
-> Observação: este comando deve ser executado na pasta `backend/`.
+## 🧩 Scripts do Monorepo
 
+O projeto também possui scripts de automação na raiz:
 
-### Frontend Setup
+```bash
+# Executa backend e frontend juntos
+npm run dev
+
+# Build do frontend
+npm run build:frontend
+
+# Instala dependências do backend e frontend
+npm run setup
+```
+
+## Frontend Setup
 
 1. **Navegue para a pasta frontend:**
    ```bash
@@ -307,33 +319,40 @@ npm run lint       # Executa linting
 
 ```
 ADSEvent/
-├── manage.py                    # Script de gerenciamento Django
-├── requirements.txt             # Dependências Python
-├── ADSEvent/                    # Configurações Django
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── core/                        # App principal
-│   ├── models.py               # Modelos de dados
-│   ├── views.py                # Views Django
-│   ├── api/
-│   │   └── v1/
-│   │       ├── viewsets.py     # ViewSets DRF
-│   │       ├── serializers.py  # Serializers
-│   │       └── router.py       # Configuração de rotas API
-│   ├── migrations/             # Migrações do banco
-│   └── templates/              # Templates HTML
-├── frontend/                    # Aplicação React
+├── backend/                    # Django REST API
+│   ├── .env                    # Configurações de ambiente
+│   ├── manage.py               # Script de gerenciamento Django
+│   ├── requirements.txt        # Dependências Python
+│   ├── ADSEvent/               # Configurações Django
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── core/                   # App principal
+│   │   ├── models.py           # Modelos de dados
+│   │   ├── views.py            # Views Django
+│   │   ├── api/
+│   │   │   └── v1/
+│   │   │       ├── viewsets.py     # ViewSets DRF
+│   │   │       ├── serializers.py  # Serializers
+│   │   │       └── router.py       # Configuração de rotas API
+│   │   ├── migrations/         # Migrações do banco
+│   │   └── templates/          # Templates HTML
+│   └── logs/                   # Arquivos de log
+├── frontend/                  # Aplicação React
 │   ├── src/
-│   │   ├── components/         # Componentes reutilizáveis
-│   │   ├── pages/              # Páginas da aplicação
-│   │   ├── contexts/           # Contextos React
-│   │   ├── hooks/              # Hooks customizados
-│   │   ├── services/           # Serviços de API
-│   │   └── types/              # Definições TypeScript
+│   │   ├── components/        # Componentes reutilizáveis
+│   │   ├── pages/             # Páginas da aplicação
+│   │   ├── contexts/          # Contextos React
+│   │   ├── hooks/             # Hooks customizados
+│   │   ├── services/          # Serviços de API
+│   │   └── types/             # Definições TypeScript
 │   ├── package.json
-│   └── vite.config.ts
-└── logs/                        # Arquivos de log
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   ├── vite.config.ts
+│   └── index.html
+├── package.json            
+└── README.md
 ```
 
 ## 🔐 Sistema de Autenticação
