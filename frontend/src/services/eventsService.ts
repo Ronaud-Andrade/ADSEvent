@@ -5,10 +5,18 @@ import { Event, PaginatedResponse } from
 "../types/events";
 
 /* Função para listar eventos */
-export const getEvents = async (page: number = 1): Promise<PaginatedResponse<Event>> => {
+export const getEvents = async (
+  page: number = 1,
+  search: string = ''
+): Promise<PaginatedResponse<Event>> => {
     try {
-    /* Faz requisição GET para /events/ com parâmetro de página */
-    const response = await api.get<PaginatedResponse<Event>>(`events/?page=${page}`);
+    /* Faz requisição GET para /events/ com parâmetros de página e busca */
+    const response = await api.get<PaginatedResponse<Event>>("events/", {
+      params: {
+        page,
+        search: search || undefined,
+      },
+    });
 
     /* Retorna a resposta paginada completa */
     return response.data;

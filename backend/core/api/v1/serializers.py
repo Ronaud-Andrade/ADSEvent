@@ -9,22 +9,20 @@ class CategorySerializer(serializers.ModelSerializer):  # Cria um serializer bas
         fields = '__all__'  # No caso de categoria, só vai ser pego um campo.
 
 class UserSerializer(serializers.ModelSerializer):
-    is_admin = serializers.SerializerMethodField()
-    
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_admin']
-    
-    def get_is_admin(self, obj):
-        """Retorna o valor de is_admin do UserProfile do usuário ou True para superusers."""
-        if obj.is_superuser:
-            return True
-        try:
-            if hasattr(obj, 'profile') and obj.profile:
-                return obj.profile.is_admin
-        except Exception:
-            pass
-        return False
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
 
 class EventSerializer(serializers.ModelSerializer):  # Cria um serializer para o modelo Events.
     category = CategorySerializer(many=True, read_only=True)  # Inclui os dados completos das categorias

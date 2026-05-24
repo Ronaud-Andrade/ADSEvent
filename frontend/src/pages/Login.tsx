@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import {
   CenteredScreen,
@@ -72,6 +72,10 @@ const Login: React.FC = () => {
             Entrar
           </Button>
         </form>
+
+        <p style={{ marginTop: '1rem', textAlign: 'center' }}>
+          Não tem conta? <Link to="/register">Cadastre-se</Link>
+        </p>
       </FormCard>
     </CenteredScreen>
   );

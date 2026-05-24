@@ -12,6 +12,7 @@ router.register(r'subscribes', SubscribeViewSet)  # Registra as rotas para inscr
 
 urlpatterns = router.urls + [
     path('auth/login/', views.login_view, name='api_login'),
+    path('auth/signup/', views.register_view, name='api_signup'),
     path('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/logout/', views.logout_view, name='api_logout'),
     path('auth/user/', views.user_view, name='api_user'),

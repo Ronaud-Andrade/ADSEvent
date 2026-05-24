@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
 import { categoryAPI } from '../lib/api';
 import {
   PageContainer,
@@ -17,7 +16,6 @@ import {
 const CategoryForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { user } = useAuth();
   const isEditing = Boolean(id);
 
   const [formData, setFormData] = useState({
@@ -42,19 +40,13 @@ const CategoryForm: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
-      // Redirecionar se não for admin e não estiver editando
-      if (!user?.is_admin && !isEditing) {
-        navigate('/categories');
-        return;
-      }
-
       if (isEditing && id) {
         await loadCategory(Number(id));
       }
     };
 
     load();
-  }, [id, isEditing, user, navigate]);
+  }, [id, isEditing, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

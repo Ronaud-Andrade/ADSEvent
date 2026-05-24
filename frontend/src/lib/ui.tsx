@@ -7,15 +7,23 @@ export type ButtonVariant =
   | 'danger'
   | 'secondary';
 
-/* Define a cor do botão baseado na variante */
-const getButtonColor = (variant: ButtonVariant) => {
+/* =========================
+   CORES DOS BOTÕES
+========================= */
+
+const getButtonColor = (
+  variant: ButtonVariant
+) => {
   switch (variant) {
     case 'success':
       return 'var(--success)';
+
     case 'danger':
       return 'var(--danger)';
+
     case 'secondary':
       return 'var(--secondary)';
+
     default:
       return 'var(--primary)';
   }
@@ -26,10 +34,13 @@ const getButtonColor = (variant: ButtonVariant) => {
 ========================= */
 
 export const PageContainer = styled.div`
-  padding: 2rem;
+  width: 100%;
   max-width: 1000px;
+  padding: 2rem;
   margin: 0 auto;
   box-sizing: border-box;
+  min-width: 0;
+  overflow-x: hidden;
 
   @media (max-width: 768px) {
     padding: 1.2rem;
@@ -42,24 +53,55 @@ export const PageContainer = styled.div`
 
 export const CenteredScreen = styled.div`
   display: flex;
+
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
-  padding: 1rem;
+
+  min-height: 100vh;
+
+  padding: 2rem;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    align-items: flex-start;
+
+    padding: 1rem;
+  }
 `;
+
+/* =========================
+   PAINÉIS
+========================= */
 
 export const Panel = styled.div`
   background: var(--bg);
-  border-radius: 12px;
+
+  border-radius: 18px;
+
   border: 1px solid var(--border);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
   box-sizing: border-box;
 `;
 
 export const Card = styled(Panel)`
   display: flex;
+
   flex-direction: column;
+
   padding: 2rem;
+
+  min-width: 0;
+  overflow-wrap: anywhere;
 
   @media (max-width: 768px) {
     padding: 1.5rem;
@@ -72,7 +114,10 @@ export const Card = styled(Panel)`
 
 export const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
   gap: 1.5rem;
 
   @media (max-width: 480px) {
@@ -82,7 +127,9 @@ export const CardGrid = styled.div`
 
 export const GridTwoCols = styled.div`
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 1.5rem;
 
   @media (max-width: 720px) {
@@ -92,65 +139,87 @@ export const GridTwoCols = styled.div`
 
 export const FlexBetween = styled.div`
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   gap: 1rem;
+
   flex-wrap: wrap;
+
   width: 100%;
+
   box-sizing: border-box;
 
   @media (max-width: 768px) {
     flex-direction: column;
+
     align-items: stretch;
   }
 `;
 
-/* Linha de informações (ex: data, vagas, status) */
 export const InfoRow = styled.div`
   font-size: 0.9rem;
+
   color: #555;
 
   display: flex;
+
   gap: 1rem;
+
   flex-wrap: wrap;
 
   margin-bottom: 1rem;
+
   width: 100%;
+  min-width: 0;
+
   box-sizing: border-box;
+
+  > span {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 
   @media (max-width: 480px) {
     flex-direction: column;
+
     gap: 0.5rem;
   }
 `;
 
 /* =========================
-   HEADERS
+   TÍTULOS
 ========================= */
 
 export const Heading = styled.h1`
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+  font-size: 2.3rem;
+
+  margin-bottom: 1.5rem;
+
   color: #2c3e50;
 
+  text-align: center;
+
   @media (max-width: 768px) {
-    font-size: 1.8rem;
-    text-align: center;
+    font-size: 2rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
 `;
 
 export const SubTitle = styled.p`
   font-size: 1.1rem;
+
   margin-bottom: 2rem;
+
   color: #666;
 
-  @media (max-width: 768px) {
-    text-align: center;
-  }
+  text-align: center;
 `;
 
 /* =========================
@@ -158,47 +227,116 @@ export const SubTitle = styled.p`
 ========================= */
 
 export const FormCard = styled(Panel)`
-  padding: 2rem;
-  max-width: 700px;
-  margin: 2rem auto;
   width: 100%;
+  max-width: min(500px, 100%);
+  padding: 3rem 2.5rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
 `;
 
 export const FormGroup = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
+  min-width: 0;
 `;
 
 export const FormLabel = styled.label`
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+
+  margin-bottom: 0.6rem;
+
+  font-weight: 700;
+
+  color: #333;
 `;
 
 export const FormControl = styled.input`
   width: 100%;
-  padding: 0.8rem;
-  border-radius: 8px;
+
+  padding: 1rem;
+
+  border-radius: 12px;
+
   border: 1px solid #ccc;
+
+  font-size: 1rem;
+
+  transition: 0.2s ease;
+
   box-sizing: border-box;
+  min-width: 0;
+
+  &:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow:
+      0 0 0 3px rgba(0, 140, 255, 0.15);
+  }
 `;
 
 export const TextArea = styled.textarea`
   width: 100%;
-  padding: 0.8rem;
-  border-radius: 8px;
+
+  padding: 1rem;
+
+  border-radius: 12px;
+
   border: 1px solid #ccc;
-  min-height: 100px;
+
+  min-height: 120px;
+
   resize: none;
+
+  font-size: 1rem;
+
   box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow:
+      0 0 0 3px rgba(0, 140, 255, 0.15);
+  }
 `;
 
 export const SelectControl = styled.select`
   width: 100%;
-  padding: 0.8rem;
-  border-radius: 8px;
+
+  padding: 1rem;
+
+  border-radius: 12px;
+
   border: 1px solid #ccc;
+
+  font-size: 1rem;
+
   box-sizing: border-box;
+  min-width: 0;
+
+  &:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow:
+      0 0 0 3px rgba(0, 140, 255, 0.15);
+  }
 `;
 
 /* =========================
@@ -207,35 +345,47 @@ export const SelectControl = styled.select`
 
 const buttonStyles = css`
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
+  padding: 0.95rem 1.3rem;
 
-  font-weight: 600;
+  border-radius: 12px;
+
+  font-weight: 700;
+
   cursor: pointer;
 
   border: none;
+
   color: #fff;
 
   transition: 0.2s ease;
 
-  /* evita overflow em layouts pequenos */
   max-width: 100%;
+
   min-width: 0;
+
   width: auto;
 
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  word-break: break-word;
+
   box-sizing: border-box;
 
   &:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+
+    opacity: 0.95;
   }
 
   &:disabled {
     background: #ccc;
+
     cursor: not-allowed;
+
     transform: none;
   }
 
@@ -244,35 +394,59 @@ const buttonStyles = css`
   }
 `;
 
-export const Button = styled.button<{ variant?: ButtonVariant }>`
+export const Button = styled.button<{
+  variant?: ButtonVariant;
+}>`
   ${buttonStyles}
+
   background: ${(props) =>
-    getButtonColor(props.variant ?? 'primary')};
+    getButtonColor(
+      props.variant ?? 'primary'
+    )};
+
+  flex-shrink: 1;
+  min-width: 0;
 `;
 
-export const LinkButton = styled(Link)<{ variant?: ButtonVariant }>`
+export const LinkButton = styled(
+  Link
+)<{
+  variant?: ButtonVariant;
+}>`
   ${buttonStyles}
+
   background: ${(props) =>
-    getButtonColor(props.variant ?? 'primary')};
+    getButtonColor(
+      props.variant ?? 'primary'
+    )};
+
+  text-decoration: none;
+  flex-shrink: 1;
+  min-width: 0;
+
   text-decoration: none;
 `;
 
-/* Botão pequeno reutilizável */
 export const SmallButton = styled(Button)`
-  padding: 0.45rem 0.8rem;
+  padding: 0.55rem 0.9rem;
+
   font-size: 0.9rem;
 `;
 
-/* Botão de logout com ajuste mobile */
 export const LogoutButton = styled(Button)`
-  padding: 0.45rem 0.8rem;
+  padding: 0.55rem 0.9rem;
+
   min-width: auto;
+
   font-size: 0.9rem;
+
   white-space: nowrap;
 
   @media (max-width: 480px) {
     width: auto;
+
     align-self: center;
+
     margin: 0 auto;
   }
 `;
@@ -283,36 +457,46 @@ export const LogoutButton = styled(Button)`
 
 export const NavBar = styled.nav`
   background: var(--bg);
-  border-bottom: 1px solid var(--border);
+
+  border-bottom: 1px solid
+    var(--border);
 `;
 
 export const NavInner = styled.div`
   max-width: 1200px;
+
   margin: 0 auto;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
   padding: 0.7rem 1.2rem;
+
   gap: 1rem;
 
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
     flex-direction: column;
+
     align-items: stretch;
-    flex-wrap: wrap;
   }
 `;
 
 export const LogoLink = styled(Link)`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+
   font-weight: bold;
+
   color: var(--primary);
+
   text-decoration: none;
 
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+
   flex-shrink: 0;
 
   @media (max-width: 768px) {
@@ -322,20 +506,29 @@ export const LogoLink = styled(Link)`
 
 export const NavLinks = styled.ul`
   display: flex;
+
   gap: 1rem;
+
   list-style: none;
+
   padding: 0;
+
   margin: 0;
 
   flex-wrap: wrap;
-  justify-content: center;
 
-  width: 100%;
+  flex: 1;
+
+  justify-content: flex-end;
+  align-items: center;
+
   box-sizing: border-box;
 
   @media (max-width: 768px) {
     flex-direction: column;
+
     align-items: stretch;
+    width: 100%;
   }
 `;
 
@@ -345,16 +538,23 @@ export const NavItem = styled.li`
 
 export const NavAnchor = styled(Link)`
   text-decoration: none;
+
   color: #333;
 
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+
+  border-radius: 8px;
 
   display: flex;
+
   justify-content: center;
   align-items: center;
 
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
+
+  transition: 0.2s ease;
 
   &:hover {
     background: #eee;
@@ -366,27 +566,36 @@ export const NavAnchor = styled(Link)`
 `;
 
 /* =========================
-   UTILITÁRIOS UI
+   UTILITÁRIOS
 ========================= */
 
 export const MessageBox = styled.div`
   color: #dc3545;
+
   font-weight: bold;
+
   text-align: center;
+
   margin-bottom: 1rem;
 `;
 
 export const EmptyState = styled.div`
   text-align: center;
+
   padding: 2rem;
+
   color: #777;
 `;
 
 export const PaginationBar = styled.div`
   display: flex;
+
   justify-content: space-between;
+
   gap: 1rem;
+
   margin-top: 2rem;
+
   flex-wrap: wrap;
 
   @media (max-width: 600px) {
@@ -396,9 +605,18 @@ export const PaginationBar = styled.div`
 
 export const CardFooter = styled.div`
   margin-top: 1rem;
+
   display: flex;
+
   gap: 0.8rem;
+
   flex-wrap: wrap;
+
+  min-width: 0;
+
+  & > * {
+    min-width: 0;
+  }
 
   @media (max-width: 480px) {
     flex-direction: column;
@@ -407,9 +625,17 @@ export const CardFooter = styled.div`
 
 export const FilterSection = styled.div`
   display: flex;
+
   gap: 1rem;
+
   flex-wrap: wrap;
+
   margin-bottom: 1.5rem;
+  min-width: 0;
+
+  & > * {
+    min-width: 0;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -418,28 +644,48 @@ export const FilterSection = styled.div`
 
 export const ButtonRow = styled.div`
   display: flex;
+
   gap: 1rem;
+
   justify-content: center;
   align-items: center;
 
   flex-wrap: wrap;
+
   width: 100%;
+
   box-sizing: border-box;
 
   margin-top: 2rem;
 
+  & > * {
+    min-width: 0;
+    flex: 1;
+  }
+
   @media (max-width: 480px) {
     flex-direction: column;
+
+    & > * {
+      width: 100%;
+    }
   }
 `;
 
 export const CardTitle = styled.h3`
   margin-bottom: 1rem;
+
   word-break: break-word;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 `;
 
 export const CardDescription = styled.p`
   margin-bottom: 1rem;
+
   color: #666;
+
   word-break: break-word;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 `;

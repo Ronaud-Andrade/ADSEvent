@@ -28,8 +28,6 @@ export interface User {
   email?: string;
   first_name?: string;
   last_name?: string;
-  is_admin?: boolean; // Indica se o usuário é administrador
-  role?: string; // Papel do usuário: 'admin' ou 'user'
 }
 
 /* Tipagem de categorias */
@@ -70,6 +68,11 @@ export const authAPI = {
     return response.data;
   },
 
+  signup: async (data: { username: string; password: string }): Promise<User> => {
+    const response = await api.post<User>("auth/signup/", data);
+    return response.data;
+  },
+
   /* Refresh de access token */
   refresh: async (refresh: string): Promise<{ access: string }> => {
     const response = await api.post<{ access: string }>("auth/refresh/", { refresh });
@@ -89,9 +92,9 @@ export const authAPI = {
 };
 
 export const categoryAPI = {
-  getCategories: async (page: number = 1): Promise<PaginatedResponse<Category>> => {
+  getCategories: async (page: number = 1, search: string = ''): Promise<PaginatedResponse<Category>> => {
     const response = await api.get<PaginatedResponse<Category>>("categories/", {
-      params: { page },
+      params: { page, search: search || undefined },
     });
     return response.data;
   },
@@ -117,9 +120,9 @@ export const categoryAPI = {
 };
 
 export const eventsAPI = {
-  getEvents: async (page: number = 1): Promise<PaginatedResponse<Event>> => {
+  getEvents: async (page: number = 1, search: string = ''): Promise<PaginatedResponse<Event>> => {
     const response = await api.get<PaginatedResponse<Event>>("events/", {
-      params: { page },
+      params: { page, search: search || undefined },
     });
     return response.data;
   },

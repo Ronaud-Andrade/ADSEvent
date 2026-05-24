@@ -5,8 +5,6 @@ import React, {
   useEffect
 } from 'react';
 
-import { useAuth } from '../hooks/useAuth';
-
 import { categoryAPI, Category } from '../lib/api';
 
 import {
@@ -19,12 +17,13 @@ import {
   LinkButton,
   SmallButton,
   PaginationBar,
-  Button
+  Button,
+  FilterSection,
+  FormGroup,
+  FormControl
 } from '../lib/ui';
 
 const CategoryList: React.FC = () => {
-  const { user } = useAuth();
-  
   const [categories, setCategories] =
     useState<Category[]>([]);
 
@@ -40,15 +39,20 @@ const CategoryList: React.FC = () => {
   const [previous, setPrevious] =
     useState<string | null>(null);
 
+  const [searchQuery, setSearchQuery] =
+    useState('');
+
   const loadCategories = async (
-    pageNumber: number = 1
+    pageNumber: number = 1,
+    search: string = ''
   ) => {
     setLoading(true);
 
     try {
       const data =
         await categoryAPI.getCategories(
-          pageNumber
+          pageNumber,
+          search
         );
 
       setCategories(data.results || []);
@@ -60,8 +64,8 @@ const CategoryList: React.FC = () => {
   };
 
   useEffect(() => {
-    loadCategories(page);
-  }, [page]);
+    loadCategories(page, searchQuery);
+  }, [page, searchQuery]);
 
   const handleDelete = async (
     id: number
@@ -75,7 +79,7 @@ const CategoryList: React.FC = () => {
         id
       );
 
-      loadCategories(page);
+      loadCategories(page, searchQuery);
     }
   };
 
@@ -94,15 +98,31 @@ const CategoryList: React.FC = () => {
           Categorias
         </Heading>
 
-        {user?.is_admin && (
-          <LinkButton
-            to="/categories/new"
-            variant="success"
-          >
-            + Nova Categoria
-          </LinkButton>
-        )}
+        <LinkButton
+          to="/categories/new"
+          variant="success"
+        >
+          + Nova Categoria
+        </LinkButton>
       </FlexBetween>
+
+      <FilterSection>
+        <FormGroup
+          style={{
+            flex: 1,
+            marginBottom: 0,
+          }}
+        >
+          <FormControl
+            type="text"
+            placeholder="Buscar categorias..."
+            value={searchQuery}
+            onChange={(e) =>
+              setSearchQuery(e.target.value)
+            }
+          />
+        </FormGroup>
+      </FilterSection>
 
       {categories.length === 0 ? (
         <EmptyState>
@@ -127,29 +147,25 @@ const CategoryList: React.FC = () => {
             </Heading>
 
             <CardFooter>
-              {user?.is_admin && (
-                <>
-                  <SmallButton
-                    variant="primary"
-                    onClick={() =>
-                      window.location.assign(
-                        `/categories/${cat.id}/edit`
-                      )
-                    }
-                  >
-                    Editar
-                  </SmallButton>
+              <SmallButton
+                variant="primary"
+                onClick={() =>
+                  window.location.assign(
+                    `/categories/${cat.id}/edit`
+                  )
+                }
+              >
+                Editar
+              </SmallButton>
 
-                  <SmallButton
-                    variant="danger"
-                    onClick={() =>
-                      handleDelete(cat.id)
-                    }
-                  >
-                    Excluir
-                  </SmallButton>
-                </>
-              )}
+              <SmallButton
+                variant="danger"
+                onClick={() =>
+                  handleDelete(cat.id)
+                }
+              >
+                Excluir
+              </SmallButton>
             </CardFooter>
           </Card>
         ))
