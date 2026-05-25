@@ -1,25 +1,10 @@
-/* Importa a biblioteca axios para fazer requisições HTTP */
-import axios from "axios";
+/* Importa o cliente HTTP Singleton e os tipos TypeScript */
+import { ApiClient } from "./ApiClient";
 import { Event } from "../types/events";
 
-/* Cria uma instância personalizada do axios */
-const api = axios.create({
-  /* Define a URL base da API */
-  baseURL: "http://127.0.0.1:8000/api/v1/",
-});
-
-/* Interceptor que roda antes de cada requisição */
-api.interceptors.request.use((config) => {
-  /* Pega o token salvo no navegador */
-  const token = localStorage.getItem("access_token");
-
-  /* Se existir token, adiciona no cabeçalho */
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-
-  return config;
-});
+/* Facade: expõe métodos de alto nível para consumir a API sem precisar
+   lidar diretamente com axios, URLs ou headers em cada componente. */
+const api = ApiClient.getInstance().axios;
 
 /* Tipagem do usuário */
 export interface User {

@@ -16,6 +16,11 @@ import {
 } from '../types/events';
 
 import {
+  EventFilterType,
+  eventFilterStrategies,
+} from '../lib/filterStrategies';
+
+import {
   PageContainer,
   Heading,
   MessageBox,
@@ -60,6 +65,11 @@ const SubscribeList: React.FC = () => {
   const [searchQuery, setSearchQuery] =
     useState('');
 
+  // Strategy: tipo de filtro selecionado pelo usuário. Cada estratégia
+  // encapsula um critério de busca diferente (título, local, categoria).
+  const [filterType, setFilterType] =
+    useState<EventFilterType>('title');
+
   const [loading, setLoading] =
     useState(true);
 
@@ -85,17 +95,17 @@ const SubscribeList: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    const strategy =
+      eventFilterStrategies[filterType];
+
+    // Aplica a estratégia escolhida para filtrar a lista de eventos.
     const filtered =
       availableEvents.filter((event) =>
-        event.title
-          .toLowerCase()
-          .includes(
-            searchQuery.toLowerCase()
-          )
+        strategy.matches(event, searchQuery)
       );
 
     setFilteredEvents(filtered);
-  }, [searchQuery, availableEvents]);
+  }, [searchQuery, availableEvents, filterType]);
 
   const loadSubscribes = async (
     pageNumber: number
@@ -325,6 +335,32 @@ const SubscribeList: React.FC = () => {
               )
             }
           />
+        </FormGroup>
+
+        <FormGroup
+          style={{
+            minWidth: '180px',
+            marginBottom: 0,
+          }}
+        >
+          <SelectControl
+            value={filterType}
+            onChange={(e) =>
+              setFilterType(
+                e.target.value as EventFilterType
+              )
+            }
+          >
+            <option value="title">
+              Título
+            </option>
+            <option value="location">
+              Local
+            </option>
+            <option value="category">
+              Categoria
+            </option>
+          </SelectControl>
         </FormGroup>
 
         <FormGroup
