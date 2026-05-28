@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+﻿from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import CategoryEvent, Events, Subscribe
 from .forms import CategoryForm, EventForm, SubscribeForm
@@ -7,9 +7,151 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _ #marque strings para o I18N
 from .mixins import NotSuperUserMixin
 import logging
+from functools import wraps
 
 # Create your views here.
 
+logger = logging.getLogger('core')
+
+
+#################################################################################
+#                     ✅ PADRÃO DECORATOR (Estrutural)                          #
+#                                  INÍCIO                                       #
+#                                                                               #
+# Problema: 10+ views tinham logging repetitivo/duplicado                      #
+# Solução: LoggingDecorator adiciona logging transparentemente                  #
+# Benefício: Logging centralizado, código das views limpo, reutilizável        #
+#                                                                               #
+#################################################################################
+
+
+class LoggingDecorator:
+    """Decorator base que adiciona logging automático a métodos de view"""
+    
+    def __init__(self, action_name, log_level='info'):
+        """
+        Args:
+            action_name: Nome da ação (ex: 'criada', 'atualizada', 'deletada')
+            log_level: Nível de logging ('debug', 'info', 'warning')
+        """
+        self.action_name = action_name
+        self.log_level = log_level
+    
+    def __call__(self, method):
+        """Torna a classe callable para usar como decorator"""
+        @wraps(method)
+        def wrapper(view_instance, *args, **kwargs):
+            # Log ANTES da ação
+            self._log_before(view_instance)
+            
+            # Executa o método original
+            response = method(view_instance, *args, **kwargs)
+            
+            # Log DEPOIS da ação
+            self._log_after(view_instance)
+            
+            return response
+        
+        return wrapper
+    
+    def _get_logger(self):
+        """Retorna o logger com o nível apropriado"""
+        if self.log_level == 'debug':
+            return logger.debug
+        elif self.log_level == 'warning':
+            return logger.warning
+        else:
+            return logger.info
+    
+    def _log_before(self, view_instance):
+        """Template method - Log antes da ação (pode ser sobrescrito)"""
+        pass
+    
+    def _log_after(self, view_instance):
+        """Template method - Log depois da ação (deve ser sobrescrito)"""
+        pass
+
+
+class CategoryLoggingDecorator(LoggingDecorator):
+    """Decorator especializado para logging de Categorias"""
+    
+    def _log_after(self, view_instance):
+        if hasattr(view_instance, 'object'):
+            log_func = self._get_logger()
+            log_func(
+                f'Categoria {self.action_name}: {view_instance.object.name} '
+                f'por {view_instance.request.user.username} '
+                f'em {view_instance.object.updated_at}'
+            )
+
+
+class EventLoggingDecorator(LoggingDecorator):
+    """Decorator especializado para logging de Eventos"""
+    
+    def _log_before(self, view_instance):
+        # Log adicional para criação de eventos
+        if hasattr(view_instance, 'form') and hasattr(view_instance.form, 'cleaned_data'):
+            logger.debug(
+                f'Usuário {view_instance.request.user.username} '
+                f'submeteu formulário de evento'
+            )
+    
+    def _log_after(self, view_instance):
+        if hasattr(view_instance, 'object'):
+            log_func = self._get_logger()
+            categories = ', '.join(
+                [cat.name for cat in view_instance.object.category.all()]
+            ) if hasattr(view_instance.object, 'category') else 'Nenhuma'
+            
+            log_func(
+                f'Evento {self.action_name}: {view_instance.object.title} '
+                f'({view_instance.object.date_time.strftime("%d/%m/%Y")}) '
+                f'Local: {view_instance.object.local} '
+                f'Categorias: {categories} '
+                f'por {view_instance.request.user.username}'
+            )
+
+
+class SubscribeLoggingDecorator(LoggingDecorator):
+    """Decorator especializado para logging de Inscrições"""
+    
+    def _log_after(self, view_instance):
+        if hasattr(view_instance, 'object'):
+            log_func = self._get_logger()
+            log_func(
+                f'Inscrição {self.action_name}: '
+                f'Usuário {view_instance.object.client.username} '
+                f'no evento {view_instance.object.events.title} '
+                f'({view_instance.object.events.date_time.strftime("%d/%m/%Y")}) '
+                f'em {view_instance.object.updated_at}'
+            )
+
+
+class SignUpLoggingDecorator(LoggingDecorator):
+    """Decorator especializado para logging de Cadastro de Usuários"""
+    
+    def _log_after(self, view_instance):
+        if hasattr(view_instance, 'object'):
+            log_func = self._get_logger()
+            log_func(f'Novo usuário cadastrado: {view_instance.object.username}')
+
+
+#################################################################################
+#                      ✅ PADRÃO DECORATOR - FIM                                #
+#################################################################################
+
+
+#################################################################################
+#                                                                               #
+#        VIEWS COM DECORATOR APLICADO (Padrão Decorator - Uso Prático)         #
+#                                                                               #
+#  As views abaixo usam LoggingDecorator para logging transparente.             #
+#  Cada método create/update/delete está decorado com CategoryLoggingDecorator, #
+#  EventLoggingDecorator, SubscribeLoggingDecorator ou SignUpLoggingDecorator.  #
+#                                                                               #
+#  BENEFÍCIO: Logging centralizado, código limpo, sem duplicação.              #
+#                                                                               #
+#################################################################################
 
 
 # class InscritionsViewer(LoginRequiredMixin, CreateView):
@@ -30,8 +172,6 @@ import logging
     
 # class IndexView(TemplateView):
 #     template_name = 'index.html'
-    
-logger = logging.getLogger('core')
 
 # -------- CATEGORY CRUD --------
 
@@ -49,15 +189,9 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('category_list')
     # Cria uma nova categoria
 
+    @CategoryLoggingDecorator('criada')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        response = super().form_valid(form)
-        logger.info(
-            f'Nova categoria criada\n'
-            f'Nome: {self.object.name}\n'
-            f'Criada por: {self.request.user.username}\n'
-            f'Data de criação: {self.object.created_at}'
-        )
-        return response
+        return super().form_valid(form)
 
 
 
@@ -68,14 +202,9 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('category_list')
     # Edita uma categoria existente
 
+    @CategoryLoggingDecorator('atualizada')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        response = super().form_valid(form)
-        logger.info(
-            f'Categoria atualizada: {self.object.name}\n'
-            f'Editada por: {self.request.user.username}\n'
-            f'Data da atualização: {self.object.updated_at}'
-        )
-        return response
+        return super().form_valid(form)
 
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
@@ -84,10 +213,8 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('category_list')
     # Exclui uma categoria
 
+    @CategoryLoggingDecorator('deletada', log_level='warning')  # ✅ DECORATOR: Logging aplicado aqui
     def delete(self, request, *args, **kwargs):
-        category = self.get_object()
-        logger.warning(
-            f'Categoria sendo excluída: {category.name}, por {request.user.username}')
         return super().delete(request, *args, **kwargs)
 
 
@@ -119,18 +246,10 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     template_name = 'eventos/event_form.html'
     success_url = reverse_lazy('event_list')
 
+    @EventLoggingDecorator('criado')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        logger.debug(f'Usuário {self.request.user.username} submeteu o formulário de evento: {form.cleaned_data}')
-        response = super().form_valid(form)
-        logger.info(
-    f'Novo evento criado: {self.object.title}\n'
-    f'Criado por: {self.request.user.username}\n'
-    f'Data do evento: {self.object.date_time}\n'
-    f'Local: {self.object.local}\n'
-    f'Vagas disponíveis: {self.object.vagas}\n'
-    f'Categorias: {", ".join(cat.name for cat in self.object.category.all())}'
-)
-        return response
+        return super().form_valid(form)
+
 
 class EventDetailView(LoginRequiredMixin, DetailView):
     model = Events
@@ -141,20 +260,16 @@ class EventDetailView(LoginRequiredMixin, DetailView):
         logger.info(f'Usuário {request.user.username} acessou detalhes do evento {self.get_object().title}')
         return super().get(request, *args, **kwargs)
 
+
 class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Events
     form_class = EventForm
     template_name = 'eventos/event_form.html'
     success_url = reverse_lazy('event_list')
 
+    @EventLoggingDecorator('atualizado')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        response = super().form_valid(form)
-        logger.info(
-            f'Evento atualizado: {self.object.title}\n'
-            f'Editado por: {self.request.user.username}\n'
-            f'Data da atualização: {self.object.updated_at}'
-        )
-        return response
+        return super().form_valid(form)
 
 
 class EventDeleteView(LoginRequiredMixin, DeleteView):
@@ -162,9 +277,8 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'eventos/event_confirm_delete.html'
     success_url = reverse_lazy('event_list')
 
+    @EventLoggingDecorator('deletado', log_level='warning')  # ✅ DECORATOR: Logging aplicado aqui
     def delete(self, request, *args, **kwargs):
-        event = self.get_object()
-        logger.warning(f'Evento sendo excluído: {event.title} por {request.user.username}')
         return super().delete(request, *args, **kwargs)
 
 
@@ -181,6 +295,7 @@ class SubscribeCreateView(NotSuperUserMixin, LoginRequiredMixin, CreateView):
     form_class = SubscribeForm
     template_name = 'eventos/subscribe_form.html'
     success_url = reverse_lazy('subscribe_list')
+    
     def get_form(self, *args, **kwargs): #Não é superuser, tira o campo de cliente (Usando pelo NotSuperUserMixins)
         form = super().get_form(*args, **kwargs)
         user = self.request.user
@@ -188,17 +303,9 @@ class SubscribeCreateView(NotSuperUserMixin, LoginRequiredMixin, CreateView):
             form.fields.pop('client', None)
         return form
     
+    @SubscribeLoggingDecorator('criada')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        response = super().form_valid(form)
-        logger.info(
-    f'Nova inscrição criada\n'
-    f'Usuário: {self.request.user.username}\n'
-    f'Evento: {self.object.events.title}\n'
-    f'Data do evento: {self.object.events.date_time}\n'
-    f'Local do evento: {self.object.events.local}\n'
-    f'Data da inscrição: {self.object.created_at}'
-)
-        return response
+        return super().form_valid(form)
 
 
 
@@ -208,15 +315,9 @@ class SubscribeUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'eventos/subscribe_form.html'
     success_url = reverse_lazy('subscribe_list')
 
+    @SubscribeLoggingDecorator('atualizada')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        response = super().form_valid(form)
-        logger.info(
-            f'Inscrição atualizada: Usuário {self.object.client.username} '
-            f'no evento {self.object.events.title}\n'
-            f'Editada por: {self.request.user.username}\n'
-            f'Data da atualização: {self.object.updated_at if hasattr(self.object, "updated_at") else "não disponível"}'
-        )
-        return response
+        return super().form_valid(form)
 
 
 class SubscribeDeleteView(LoginRequiredMixin, DeleteView):
@@ -234,10 +335,9 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('event_list')  # redireciona pra página principal após cadastro
 
+    @SignUpLoggingDecorator('cadastrado')  # ✅ DECORATOR: Logging aplicado aqui
     def form_valid(self, form):
-        response = super().form_valid(form)
-        logger.info(f"Novo usuário cadastrado com sucesso: {self.object.username}")
-        return response
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         username = self.request.POST.get('username', 'não informado')
