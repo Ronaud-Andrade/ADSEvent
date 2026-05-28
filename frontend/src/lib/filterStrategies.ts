@@ -1,7 +1,6 @@
 import { Event } from "../types/events";
 
-// Strategy: permite trocar dinamicamente a forma de filtrar eventos
-// sem alterar a lógica de renderização do componente.
+
 export type EventFilterType =
   | "title"
   | "location"

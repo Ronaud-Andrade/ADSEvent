@@ -1,6 +1,4 @@
-﻿// SubscribeList.tsx
-
-import React, {
+﻿import React, {
   useState,
   useEffect,
 } from 'react';
@@ -65,8 +63,6 @@ const SubscribeList: React.FC = () => {
   const [searchQuery, setSearchQuery] =
     useState('');
 
-  // Strategy: tipo de filtro selecionado pelo usuário. Cada estratégia
-  // encapsula um critério de busca diferente (título, local, categoria).
   const [filterType, setFilterType] =
     useState<EventFilterType>('title');
 
@@ -98,7 +94,6 @@ const SubscribeList: React.FC = () => {
     const strategy =
       eventFilterStrategies[filterType];
 
-    // Aplica a estratégia escolhida para filtrar a lista de eventos.
     const filtered =
       availableEvents.filter((event) =>
         strategy.matches(event, searchQuery)

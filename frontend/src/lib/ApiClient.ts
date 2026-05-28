@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from "axios";
 
-// Singleton: garante que toda a aplicação use apenas uma
 // instância compartilhada do cliente HTTP com a mesma configuração.
 export class ApiClient {
   private static instance: ApiClient | null = null;

@@ -1,9 +1,7 @@
-/* Importa o cliente HTTP Singleton e os tipos TypeScript */
+
 import { ApiClient } from "./ApiClient";
 import { Event } from "../types/events";
 
-/* Facade: expõe métodos de alto nível para consumir a API sem precisar
-   lidar diretamente com axios, URLs ou headers em cada componente. */
 const api = ApiClient.getInstance().axios;
 
 /* Tipagem do usuário */
